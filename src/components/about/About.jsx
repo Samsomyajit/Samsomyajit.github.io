@@ -23,12 +23,12 @@ const About = () => {
         </p>
         <div className="a-desc">
           <p className="a-desc-text">
-          Once upon a time there lived a gentleman... I am a textbook definition of a traditional noblesse.
+          Once upon a time there lived a gentleman... I am a textbook definition of this traditional noblesse.
           The coming of 21<sup>st</sup> century has seen technological marvels, explorations and innovations. 
           Even in this centuary I have "somehow" managed to preserve the chivalric code of honour and trust, while exploring
-          the great scientific unknown. My family Coat-of-Arms charge is the noble fox, which signifies wisdom and loaylty, and my crest is the orange gryphon
+          the great scientific unknown. My family Coat-of-Arms charge is the noble fox, which signifies wisdom and loyalty, and my crest is the orange gryphon
           which represents ambition and leadership. I love to read wide variety of books especially classics and fantasy. 
-          I also love long walks, educational debates, and  writing.   
+          I also love long walks, educational debates, and writing.   
           </p>
           <img src={Coa} alt="" className="a-coa-img bg" />
         </div>
