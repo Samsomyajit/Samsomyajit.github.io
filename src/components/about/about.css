@@ -21,7 +21,7 @@
     position: absolute;
     top: 50px;
     left: 50px;
-    background-color: #660000;
+    background-color: #4d0027;
   }
   
   .a-card {
@@ -41,7 +41,7 @@
   .a-coa-img.bg{
     width: 140px;
     height: 140px;
-    background-color: #660000;
+    background-color: #4d0027;
     border-radius: 20px;
   }
 

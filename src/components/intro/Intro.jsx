@@ -1,4 +1,13 @@
 import "./intro.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faYoutube,
+  faFacebook,
+  faTwitter,
+  faLinkedin,
+  faGithub,
+  faInstagram
+} from "@fortawesome/free-brands-svg-icons";
 import Me from "../../images/me.png"
 const Intro = () => {
     return (
@@ -21,6 +30,43 @@ const Intro = () => {
                     I am also a researcher on topics like Network Science and Cognition. 
                     I am an avid reader, gamer and a thinker. I also co-founded Bread and Code, a web-service consultancy.
                     </p>
+                    <div className="i-social-icons">
+                    <p className="social-container">
+                            <a
+                            href="https://www.youtube.com/channel/UC3DSWjmAGh3EcpGqgkQjPbg"
+                            className="youtube social"
+                            >
+                            <FontAwesomeIcon icon={faYoutube} size="2x" />
+                            </a>
+                            <a
+                            href="https://www.facebook.com/Somyajitchakrabortysam/"
+                            className="facebook social"
+                            >
+                            <FontAwesomeIcon icon={faFacebook} size="2x" />
+                            </a>
+                            <a
+                            href="https://www.linkedin.com/in/somyajit-chakraborty-301844130/"
+                            className="Linkedin social"
+                            >
+                            <FontAwesomeIcon icon={faLinkedin} size="2x" />
+                            </a>
+                            <a
+                            href="https://github.com/Samsomyajit"
+                            className="Github social"
+                            >
+                            <FontAwesomeIcon icon={faGithub} size="2x" />
+                            </a>
+                            <a
+                            href="https://www.instagram.com/somyajit_sam/"
+                            className="instagram social"
+                            >
+                            <FontAwesomeIcon icon={faInstagram} size="2x" />
+                            </a>
+                            <a href="https://twitter.com/Samsomyajit" className="twitter social">
+                            <FontAwesomeIcon icon={faTwitter} size="2x" />
+                            </a>
+                        </p>
+                    </div>
                 </div>
                 <svg
                 width="75"
