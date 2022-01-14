@@ -9,6 +9,12 @@ import {
   faInstagram
 } from "@fortawesome/free-brands-svg-icons";
 import Me from "../../images/me.png"
+
+const run = () =>{
+    var path = "https://drive.google.com/file/d/1M3VZ-7e-_isHC4K-0eAAgUumTSI2aOXk/view?usp=sharing";
+    window.open(path, null);
+}
+
 const Intro = () => {
     return (
         <div className="i">
@@ -66,6 +72,9 @@ const Intro = () => {
                             <FontAwesomeIcon icon={faTwitter} size="2x" />
                             </a>
                         </p>
+                    </div>
+                    <div className="btn">
+                            <button onClick={run}>My CV</button>
                     </div>
                 </div>
                 <svg

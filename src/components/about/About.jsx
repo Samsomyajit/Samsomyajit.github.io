@@ -1,6 +1,23 @@
 import "./about.css";
 import Award from "../../images/award.jpg";
 import Coa from "../../images/coa.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faNpm,
+  faReact,
+  faNodeJs,
+  faJava,
+  faJs,
+  faHtml5,
+  faAws,
+  faPython,
+  faDev,
+  faPhp,
+  faVuejs,
+  faCss3,
+  faEmpire,
+  faDocker,
+} from "@fortawesome/free-brands-svg-icons";
 
 const About = () => {
   return (
@@ -42,6 +59,22 @@ const About = () => {
             </p>
           </div>
         </div>
+        <div className="tech-stack">
+              <FontAwesomeIcon className="npm" icon={faNpm} size="2x" />
+              <FontAwesomeIcon className="react" icon={faReact} size="2x" />
+              <FontAwesomeIcon className="html" icon={faHtml5} size="2x" />
+              <FontAwesomeIcon className="node" icon={faNodeJs} size="2x" />
+              <FontAwesomeIcon className="java" icon={faJava} size="2x" />
+              <FontAwesomeIcon className="py" icon={faPython} size="2x" />
+              <FontAwesomeIcon className="js" icon={faJs} size="2x" />
+              <FontAwesomeIcon className="php" icon={faPhp} size="2x" />
+              <FontAwesomeIcon className="aws" icon={faAws} size="2x" />
+              <FontAwesomeIcon className="dev" icon={faDev} size="2x" />
+              <FontAwesomeIcon className="vue" icon={faVuejs} size="2x" />
+              <FontAwesomeIcon className="css" icon={faCss3} size="2x" />
+              <FontAwesomeIcon className="emp" icon={faEmpire} size="2x" />
+              <FontAwesomeIcon className="dck" icon={faDocker} size="2x" />
+            </div>
       </div>
     </div>
   );
