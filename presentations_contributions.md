@@ -1,6 +1,6 @@
 ---
-layout: default
 title: "Presentations & Contributions"
+layout: default
 ---
 
 # Presentations & Academic Contributions

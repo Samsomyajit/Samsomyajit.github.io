@@ -1,6 +1,6 @@
 ---
-layout: default
 title: "Academic Experience"
+layout: default
 ---
 
 # Academic Experience

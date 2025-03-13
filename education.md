@@ -1,6 +1,6 @@
 ---
-layout: default
 title: "Education"
+layout: default
 ---
 
 # Education
