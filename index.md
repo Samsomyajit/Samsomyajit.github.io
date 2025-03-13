@@ -1,6 +1,6 @@
 ---
-title: "Home"
 layout: default
+title: "Home"
 ---
 
 <!-- Top Navigation Menu -->

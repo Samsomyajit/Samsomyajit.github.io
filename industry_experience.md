@@ -1,6 +1,6 @@
 ---
-title: "Industry Experience"
 layout: default
+title: "Industry Experience"
 ---
 
 # Industry Experience

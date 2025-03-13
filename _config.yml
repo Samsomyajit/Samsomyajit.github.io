@@ -1,17 +1,9 @@
-title: "Sam Chakraborty"
+title: "Sam Chakraborty MSc. "
 description: "Researcher @University College Cork"
-theme: jekyll-theme-merlot
+theme: jekyll-theme-architect
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sass-converter
 
-header_pages:
-  - index.md
-  - academic_experience.md
-  - industry_experience.md
-  - current_status.md
-  - education.md
-  - publications.md
-  - presentations_contributions.md
-  - blog.md
+

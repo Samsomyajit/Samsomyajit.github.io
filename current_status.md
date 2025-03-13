@@ -1,6 +1,6 @@
 ---
-title: "Current Status"
 layout: default
+title: "Current Status"
 ---
 
 # Current Status
