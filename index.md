@@ -7,7 +7,7 @@ title: "Home"
 _Researcher University College Cork_
 
 <div align="center">
-  <img src="assets/img/profile.jpg" alt="Profile Photo" width="200" style="border-radius:50%;">
+  <img src="assets/img/prof.png" alt="Profile Photo" width="200" style="border-radius:50%;">
 </div>
 
 <p align="center">
