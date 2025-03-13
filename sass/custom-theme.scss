@@ -17,3 +17,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Optional: More advanced overrides to minima’s built-in styles */
+body {
+  background-color: #fffaf9;  // a subtle off-white
+}
+nav {
+  background-color: #c0392b;
+}
+header, footer {
+  background-color: #900d0d; // a deeper shade
+  color: #fff;
+}
+
+a img:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
