@@ -1,0 +1,14 @@
+# _config.yml
+title: "Sam Chakraborty"
+description: "Marie Curie Early Career Researcher"
+theme: minima  # We will override colors with custom CSS
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sass-converter
+
+# (Optional) If you want GitHub Pages to watch for SCSS
+sass:
+  style: compressed
+  load_paths:
+    - _sass

@@ -1,0 +1,19 @@
+// _sass/custom-theme.scss
+
+// Override minima's main accent color with a deep red
+$brand-color: #c0392b; /* Or whichever shade of red you prefer */
+
+// (Optional) Extra color overrides or styling
+a {
+  color: $brand-color;
+  &:hover {
+    color: darken($brand-color, 10%);
+  }
+}
+
+/* Headings in red, body text in neutral color */
+h1, h2, h3, h4, h5, h6 {
+  color: $brand-color;
+}
+
+/* Optional: More advanced overrides to minima’s built-in styles */
