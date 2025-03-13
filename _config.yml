@@ -1,10 +1,17 @@
-# _config.yml
 title: "Sam Chakraborty"
 description: "Researcher @University College Cork"
-theme: jekyll-theme-cayman  # We will override colors with custom CSS
+theme: jekyll-theme-cayman
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sass-converter
 
-
+header_pages:
+  - index.md
+  - academic_experience.md
+  - industry_experience.md
+  - current_status.md
+  - education.md
+  - publications.md
+  - presentations_contributions.md
+  - blog.md
