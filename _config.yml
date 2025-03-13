@@ -1,6 +1,6 @@
 # _config.yml
 title: "Sam Chakraborty"
-description: "Marie Curie Early Career Researcher"
+description: "Researcher @University College Cork"
 theme: minima  # We will override colors with custom CSS
 plugins:
   - jekyll-feed
