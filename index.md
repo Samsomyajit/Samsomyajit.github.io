@@ -3,17 +3,6 @@ layout: default
 title: "Home"
 ---
 
-<!-- Top Navigation Menu -->
-<nav style="text-align: center; margin-bottom: 2rem; font-weight: bold;">
-  <a href="academic_experience.md" style="margin: 0 1rem;">Academic Experience</a>
-  <a href="blog.md" style="margin: 0 1rem;">Blog</a>
-  <a href="current_status.md" style="margin: 0 1rem;">Current Status</a>
-  <a href="education.md" style="margin: 0 1rem;">Education</a>
-  <a href="index.md" style="margin: 0 1rem;">Home</a>
-  <a href="industry_experience.md" style="margin: 0 1rem;">Industry</a>
-  <a href="presentations_contributions.md" style="margin: 0 1rem;">Presentations &amp; Contributions</a>
-  <a href="publications.md" style="margin: 0 1rem;">Publications</a>
-</nav>
 
 <!-- Main heading area -->
 <div style="text-align: center; margin-bottom: 1rem;">
