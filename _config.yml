@@ -1,6 +1,6 @@
 title: "Sam Chakraborty MSc. "
 description: "Researcher @University College Cork"
-theme: jekyll-theme-minima
+theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
