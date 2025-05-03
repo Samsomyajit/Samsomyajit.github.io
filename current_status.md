@@ -5,6 +5,9 @@ title: "Current Status"
 
 # Current Status
 
+- **CGS Doctoral Fellow (PhD)**  
+  Dept. of Chemical Engineering and Chemistry, Shanghai Jiao Tong University, China
+
 - **Computer Scientist RA (Gen AI)**  
   Dept. of Computer Science, University College Cork, Ireland
 
