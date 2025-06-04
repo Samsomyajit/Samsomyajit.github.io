@@ -1,6 +1,5 @@
 ---
 layout: default
-title: "Story so Far!"
 ---
 
 Hi! This would be the first of many anecdotes that I want to document and share with myself, my family, and all the people who have supported me over the years and also to everyone who might find this useful and relatable. First and foremost, a big thanks to everyone – my mother, my father, my grandmother, my sister and to my loving partner Yanrong. You have been a constant in my life over the years, without your support and occasional scoldings, I wouldn't be where I am right now. You lifted me with your values, kind words (sometimes harsh 😏) and made me a better person, a better scientist, a better son and a better soon-to-be husband. 
