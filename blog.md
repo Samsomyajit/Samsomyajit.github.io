@@ -6,7 +6,7 @@ title: "Blog"
 # Blog
 
 Stay tuned for future posts on:
-- [My anecdotes](anecdotes.md)
+- [My anecdotes](/blogs/anecdotes.md)
 - Advanced AI Research
 - Natural Language Processing
 - Large Language Models
