@@ -1,7 +1,4 @@
 
-
-# Anecdotes
-
 - [My story so far!](/blogs/anecdotes/story_so_far.md)
 
 
