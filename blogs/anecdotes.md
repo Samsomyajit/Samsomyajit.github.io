@@ -2,7 +2,7 @@
 layout: default
 title: "Anecdotes"
 ---
-- [My story so far!](/blogs/story_so_far.md)
+- [My story so far!](/blogs/story_so_far.html)
 
 
 Stay tuned for future posts!
