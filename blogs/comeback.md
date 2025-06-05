@@ -76,7 +76,7 @@ In conclusion, the global research ecosystem reveals an emerging divide. Countri
 
 
 
-![Figure 7 - Comeback and Dropout Authors by Country](comeback/Comeback_vs_Dropout_Authors_by_country.png)
+![Figure 7 - Comeback and Dropout Authors by Country](comeback/comeback_dropout.png)
 
 ---
 
