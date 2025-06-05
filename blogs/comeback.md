@@ -1,7 +1,6 @@
 
 
- **📉 Comeback or Dropout? What the Data Tells Us About Early Career Researchers
-**
+📉**Comeback or Dropout? What the Data Tells Us About Early Career Researchers**<br>
 _Authored by: Somyajit Chakraborty_
 
 > “Most of us fear failure, but for researchers, silence can be worse — years of no publications. What happens then? This study dives deep into that academic quiet.”
