@@ -1,6 +1,5 @@
 ---
 layout: default
-title: "Anecdotes"
 ---
 - [My story so far!](/blogs/story_so_far.html)
 
