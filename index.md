@@ -19,7 +19,7 @@ title: "Home"
   <!-- Text block to the right (for larger screens) -->
   <div style="text-align:center;">
     <p style="font-weight:bold; font-size:1rem; margin: 0.5rem 0;">
-      Generative AI | LLMs | Machine Learning | Deep Learning | NLP
+      Generative AI | LLMs | Computational Physics | Computational Chemistry | Complex Networks
     </p>
     <p style="margin:0.5rem 0;">
       Email: <strong>somyajitchppr@gmail.com</strong> &nbsp; | &nbsp; 
