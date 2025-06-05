@@ -37,7 +37,7 @@ p(CB, n) = α * exp(−β * n)
 
 Here, \( n \) is the number of years after discontinuation. Our best fit model used \( α = 0.61 \), \( β = 0.48 \) and achieved a very low RMSE of 0.017, suggesting a sharp decay in comeback probability as time increases.
 
-![Figure 17 - Comeback Probability Model](figures/fig17_comeback_probability.png)
+![Figure 17 - Comeback Probability Model](comeback/Final.png)
 
 Similarly, for dropouts, the model was:
 
@@ -47,7 +47,7 @@ p(DO, n) = α * exp(−β * n)
 
 With parameters \( α = 0.99 \), \( β = 0.69 \), it effectively captured the tendency of researchers to drop out early, especially in the first 2–4 years of their career.
 
-![Figure 21 - Dropout Distribution](figures/fig21_dropout_distribution.png)
+![Figure 21 - Dropout Distribution](comeback/Dropout_Percentage.png)
 
 ---
 
@@ -57,10 +57,8 @@ Our analysis reveals a stark contrast in productivity. Dropouts generally collab
 
 The comeback group favored conference publications — possibly due to faster turnaround — while journal presence remained limited even post-return. Yet, a small subset did return to prolific publishing.
 
-![Figure 18 - Publication Distribution of Comeback Researchers](figures/fig18_comeback_publication_boxplot.png)
 
 ---
-![Figure 2 - Geographic Distribution of Authors](figures/fig02_geographic_authors.png)
 
 ## 🌍 Academic Demographics Matter
 
@@ -78,16 +76,22 @@ In conclusion, the global research ecosystem reveals an emerging divide. Countri
 
 
 
-![Figure 7 - Comeback Authors by Country](figures/comeback_authors.png)
-![Figure 11 - Dropout Authors by Country](figures/dropout_authors.png)
+![Figure 7 - Comeback and Dropout Authors by Country](comeback/Comeback_vs_Dropout_Authors_by_country.png)
 
 ---
 
 ## 🤝 Collaboration Patterns
 
-Comeback researchers tended to re-integrate into academia via collaboration with higher “popularity index” authors — measured via citations and productivity. Dropouts, on the other hand, were often isolated or lacked strong networks.
+One of the most defining differences between comeback and dropout researchers lies in their collaboration patterns, particularly in terms of the “popularity index” (pi) of their co-authors. This index reflects a researcher's influence within the academic network, measured through parameters like total citations, h-index, and publication volume. In our analysis, we found that comeback researchers typically re-integrated into academia by strategically aligning themselves with highly influential co-authors—those with significantly higher popularity indices. This suggests that successful return to academia is often mediated by mentorship, sponsorship, or network access to established researchers who are already well embedded within the scholarly ecosystem.
 
-Heatmaps (e.g., Figure 20) visually reinforce this: influential researchers rarely collaborate with less-cited peers, deepening the divide.
+We found that the collaboration tendencies of comeback researchers reveal a clear pattern: researchers with moderate to high popularity indices often prefer to collaborate with others in a similar influence range. Low-popularity comeback authors tend to connect with peers in their own tier, but the ones who manage to rise post-comeback are those who bridge the gap—collaborating upwards with high-pi individuals. This vertical integration seems to provide not only visibility but also access to resources, high-quality venues, and research funding, which are crucial for reestablishing an academic presence after a publishing hiatus.
+
+In contrast, dropout researchers frequently exhibit weaker collaboration networks. Their co-authorship profiles tend to be narrower, more isolated, and less connected to high-pi individuals. This isolation may stem from early-career limitations such as lack of institutional support, difficulty accessing elite research circles, or insufficient mentorship. Moreover, dropout researchers often work in small teams or publish solo, limiting the network effects and cumulative advantage that come with high-impact collaborations.
+
+The gap in collaboration strength becomes even more significant when considering the trajectory of research careers. Comeback researchers who manage to publish again after a break often display increasing collaboration diversity, joining larger research groups or co-authoring with interdisciplinary teams. This not only accelerates their reintegration but also boosts their citation metrics and perceived productivity. On the other hand, dropout researchers usually show static or declining collaboration metrics leading up to their discontinuation, further reinforcing their marginalization from active scholarly networks.
+
+Overall, our findings underscore that collaboration—especially with influential peers—is not just a nice-to-have but a critical factor in determining whether a discontinued researcher returns or exits academia permanently. Facilitating better access to collaborative networks, particularly for those at risk of dropping out, could be one of the most effective interventions for improving retention and career continuity in the research community.
+
 
 ---
 
@@ -100,6 +104,7 @@ Our mathematical and empirical results suggest a need for early interventions:
 - Career-break reentry grants and mentorship programs can help the comeback cohort thrive.
 
 ---
-
+Want to read the full paper:
+- Gayen, A., Chakraborty, S., Mitra, S. and Jana, A., 2025. Comeback or dropout: study of discontinued researchers at early career stage. Scientometrics, pp.1-36. [Read Here](https://idp.springer.com/authorize/casa?redirect_uri=https://link.springer.com/article/10.1007/s11192-025-05243-z&casa_token=WDN1VgKGSXcAAAAA:iU0wI0iVDV0IuN72CENgIL1AuS-YSTEOxK2PBkonG17cdgSs6pJu9LRna5gdZyOSOwOtjC53d6BPdN-69w)
 
 _Thanks for reading! This study was a collaborative effort to shine a light on a silent but pressing problem in academia — and one we can address together._
