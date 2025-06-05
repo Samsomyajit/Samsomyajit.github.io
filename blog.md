@@ -7,7 +7,7 @@ title: "Blog"
 
 Stay tuned for future posts on:
 - [My anecdotes](/blogs/anecdotes.md)
-- Advanced AI Research
+- [Research](/blogs/research.md)
 - Natural Language Processing
 - Large Language Models
 - Visual Analytics
