@@ -1,3 +1,6 @@
+---
+layout: default
+---
 
 # 📉 Comeback or Dropout? What the Data Tells Us About Early Career Researchers
 
