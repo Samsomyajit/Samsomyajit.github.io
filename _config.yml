@@ -1,12 +1,42 @@
-title: "Sam Chakraborty MSc. "
-description: "Researcher @University College Cork"
+title: "Sam Chakraborty, MSc."
+description: "Researcher @ University College Cork"
 url: "https://samsomyajit.github.io"
-author: "Sam Chakraborty"
-theme: minima
+baseurl: ""  # No trailing slash
+
+remote_theme: "mmistakes/minimal-mistakes"
+theme: null
+
+author:
+  name: "Sam Chakraborty"
+  avatar: "/assets/img/prof.png"
+  bio: "Researcher in Generative AI, Computational Physics, Computational Chemistry and Complex Networks."
+  email: somyajitchppr@gmail.com
+  location: "University College Cork"
+  links:
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://linkedin.com/in/samsomyajit"
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/samsomyajit"
+    - label: "Google Scholar"
+      icon: "ai ai-google-scholar"
+      url: "https://scholar.google.com/"
+
+minimal_mistakes_skin: "air"
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-sass-converter
   - jekyll-sitemap
+  - jekyll-include-cache
 
+markdown: kramdown
+highlighter: rouge
 
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: single
+      author_profile: true
