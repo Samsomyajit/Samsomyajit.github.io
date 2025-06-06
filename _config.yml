@@ -2,7 +2,7 @@ title: "Sam Chakraborty MSc. "
 description: "Researcher @University College Cork"
 url: "https://samsomyajit.github.io"
 author: "Sam Chakraborty"
-theme: jekyll-theme-cayman
+theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
