@@ -46,6 +46,18 @@ plugins:
 markdown: kramdown
 highlighter: rouge
 
+# Top navigation links
+header_pages:
+  - index.md
+  - blog.md
+  - publications.md
+  - academic_experience.md
+  - industry_experience.md
+  - education.md
+  - current_status.md
+  - presentations_contributions.md
+
+
 # Navigation bar
 nav:
   - title: "Home"
