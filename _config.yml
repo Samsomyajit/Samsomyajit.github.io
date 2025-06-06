@@ -1,61 +1,10 @@
-title: "Sam Chakraborty, MSc."
-description: "Researcher @ University College Cork"
+title: "Sam Chakraborty MSc. "
+description: "Researcher @University College Cork"
 url: "https://samsomyajit.github.io"
-baseurl: ""  # No trailing slash
-
-remote_theme: "mmistakes/minimal-mistakes"
-theme: null
-
-author:
-  name: "Sam Chakraborty"
-  avatar: "/assets/img/prof.png"
-  bio: "Researcher in Generative AI, Computational Physics, Computational Chemistry and Complex Networks."
-  email: somyajitchppr@gmail.com
-  location: "University College Cork"
-  links:
-    - label: "Home"
-      icon: "fas fa-home"
-      url: "/"
-    - label: "Blog"
-      icon: "fas fa-pen"
-      url: "/blog.md"
-    - label: "Publications"
-      icon: "fas fa-book"
-      url: "/publications.md"
-    - label: "Academic Experience"
-      icon: "fas fa-university"
-      url: "/academic_experience.md"
-    - label: "Industry Experience"
-      icon: "fas fa-building"
-      url: "/industry_experience.md"
-    - label: "Education"
-      icon: "fas fa-graduation-cap"
-      url: "/education.md"
-    - label: "Current Status"
-      icon: "fas fa-info-circle"
-      url: "/current_status.md"
-    - label: "Talks"
-      icon: "fas fa-microphone"
-      url: "/presentations_contributions.md"
-
-
-minimal_mistakes_skin: "air"
-
+author: "Sam Chakraborty"
+theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sass-converter
   - jekyll-sitemap
-  - jekyll-include-cache
-
-markdown: kramdown
-highlighter: rouge
-
-
-
-# Default page layout
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: single
-      author_profile: true
