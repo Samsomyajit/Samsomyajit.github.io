@@ -13,15 +13,27 @@ author:
   email: somyajitchppr@gmail.com
   location: "University College Cork"
   links:
+    - label: "Email"
+      icon: "fas fa-envelope"
+      url: "mailto:somyajitchppr@gmail.com"
+    - label: "Phone"
+      icon: "fas fa-phone"
+      url: "tel:+353899418668"
     - label: "LinkedIn"
       icon: "fab fa-linkedin"
-      url: "https://linkedin.com/in/samsomyajit"
+      url: "https://www.linkedin.com/in/somyajit-sam-chakraborty/"
     - label: "GitHub"
       icon: "fab fa-github"
-      url: "https://github.com/samsomyajit"
+      url: "https://github.com/Samsomyajit"
     - label: "Google Scholar"
       icon: "ai ai-google-scholar"
-      url: "https://scholar.google.com/"
+      url: "https://scholar.google.com/citations?user=R9Wr3yQAAAAJ&hl=en&oi=ao"
+    - label: "ResearchGate"
+      icon: "ai ai-researchgate"
+      url: "https://www.researchgate.net/profile/Somyajit-Chakraborty"
+    - label: "ORCID"
+      icon: "ai ai-orcid"
+      url: "https://orcid.org/0000-0002-2038-5169"
 
 minimal_mistakes_skin: "air"
 
@@ -34,6 +46,26 @@ plugins:
 markdown: kramdown
 highlighter: rouge
 
+# Navigation bar
+nav:
+  - title: "Home"
+    url: /
+  - title: "Blog"
+    url: /blog/
+  - title: "Publications"
+    url: /publications/
+  - title: "Academic Experience"
+    url: /academic_experience/
+  - title: "Industry Experience"
+    url: /industry_experience/
+  - title: "Education"
+    url: /education/
+  - title: "Current Status"
+    url: /current_status/
+  - title: "Talks"
+    url: /presentations_contributions/
+
+# Default page layout
 defaults:
   - scope:
       path: ""
