@@ -1,10 +1,13 @@
-title: "Sam Chakraborty MSc. "
-description: "Researcher @University College Cork"
+title: "Sam Chakraborty, MSc."
+description: "Researcher @ University College Cork"
 url: "https://samsomyajit.github.io"
-author: "Sam Chakraborty"
-theme: minima
+baseurl: ""
+
+remote_theme: "mmistakes/minimal-mistakes"
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-sass-converter
   - jekyll-sitemap
+
+minimal_mistakes_skin: "air"
+author: Sam Chakraborty
