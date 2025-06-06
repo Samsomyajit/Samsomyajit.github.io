@@ -13,27 +13,31 @@ author:
   email: somyajitchppr@gmail.com
   location: "University College Cork"
   links:
-    - label: "Email"
-      icon: "fas fa-envelope"
-      url: "mailto:somyajitchppr@gmail.com"
-    - label: "Phone"
-      icon: "fas fa-phone"
-      url: "tel:+353899418668"
-    - label: "LinkedIn"
-      icon: "fab fa-linkedin"
-      url: "https://www.linkedin.com/in/somyajit-sam-chakraborty/"
-    - label: "GitHub"
-      icon: "fab fa-github"
-      url: "https://github.com/Samsomyajit"
-    - label: "Google Scholar"
-      icon: "ai ai-google-scholar"
-      url: "https://scholar.google.com/citations?user=R9Wr3yQAAAAJ&hl=en&oi=ao"
-    - label: "ResearchGate"
-      icon: "ai ai-researchgate"
-      url: "https://www.researchgate.net/profile/Somyajit-Chakraborty"
-    - label: "ORCID"
-      icon: "ai ai-orcid"
-      url: "https://orcid.org/0000-0002-2038-5169"
+    - label: "Home"
+      icon: "fas fa-home"
+      url: "/"
+    - label: "Blog"
+      icon: "fas fa-pen"
+      url: "/blog/"
+    - label: "Publications"
+      icon: "fas fa-book"
+      url: "/publications/"
+    - label: "Academic Experience"
+      icon: "fas fa-university"
+      url: "/academic_experience/"
+    - label: "Industry Experience"
+      icon: "fas fa-building"
+      url: "/industry_experience/"
+    - label: "Education"
+      icon: "fas fa-graduation-cap"
+      url: "/education/"
+    - label: "Current Status"
+      icon: "fas fa-info-circle"
+      url: "/current_status/"
+    - label: "Talks"
+      icon: "fas fa-microphone"
+      url: "/presentations_contributions/"
+
 
 minimal_mistakes_skin: "air"
 
@@ -46,36 +50,7 @@ plugins:
 markdown: kramdown
 highlighter: rouge
 
-# Top navigation links
-header_pages:
-  - index.md
-  - blog.md
-  - publications.md
-  - academic_experience.md
-  - industry_experience.md
-  - education.md
-  - current_status.md
-  - presentations_contributions.md
 
-
-# Navigation bar
-nav:
-  - title: "Home"
-    url: /
-  - title: "Blog"
-    url: /blog/
-  - title: "Publications"
-    url: /publications/
-  - title: "Academic Experience"
-    url: /academic_experience/
-  - title: "Industry Experience"
-    url: /industry_experience/
-  - title: "Education"
-    url: /education/
-  - title: "Current Status"
-    url: /current_status/
-  - title: "Talks"
-    url: /presentations_contributions/
 
 # Default page layout
 defaults:
