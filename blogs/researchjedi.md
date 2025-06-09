@@ -120,5 +120,5 @@ With training, a Jedi Master you may yet be.
 
 ---
 
-> *"In my experience, there is no such thing as luck."*  
+> *"The Force will be with you! Always!"*  
 > — **Obi-Wan Kenobi**
