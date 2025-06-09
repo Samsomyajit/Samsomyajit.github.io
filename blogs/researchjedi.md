@@ -123,20 +123,3 @@ With training, a Jedi Master you may yet be.
 > *"The Force will be with you! Always!"*  
 > — **Obi-Wan Kenobi**
 
----
-
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2em;">
-  <!-- Like Button -->
-  <div class="upvotejs">
-    <div class="upvote" data-post-id="researchjedi" data-upvote-count="0"></div>
-  </div>
-
-  <!-- View Counter -->
-  <div>
-    <img src="https://pageviews.fouanalytics.com/pageview.svg?url=https://samsomyajit.github.io/blogs/researchjedi" alt="View Count">
-  </div>
-</div>
-
-<link rel="stylesheet" href="https://unpkg.com/upvotejs@1.0.3/dist/upvotejs.min.css">
-<script src="https://unpkg.com/upvotejs@1.0.3/dist/upvotejs.min.js"></script>
-
