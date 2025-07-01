@@ -14,7 +14,7 @@ title: "Home"
 <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem;">
   <!-- Profile photo -->
   <div>
-    <img src="assets/img/profile.png" alt="Profile Photo" width="150" style="border-radius:50%;">
+    <img src="assets/img/profi.png" alt="Profile Photo" width="150" style="border-radius:50%;">
   </div>
   <!-- Text block to the right (for larger screens) -->
   <div style="text-align:center;">
