@@ -8,3 +8,4 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sass-converter
   - jekyll-sitemap
+math_engine: mathjax
