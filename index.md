@@ -7,7 +7,7 @@ title: "Home"
 <!-- Main heading area -->
 <div style="text-align: center; margin-bottom: 1rem;">
   <h1 style="margin-bottom: 0.2rem;">Sam Chakraborty, MSc.</h1>
-  <p style="font-size: 1.2rem; font-style: italic; margin-top: 0;">Researcher University College Cork</p>
+  <p style="font-size: 1.2rem; font-style: italic; margin-top: 0;">Doctoral Scholar @ Shanghai Jiao Tong University</p>
 </div>
 
 <!-- Profile photo and short "tagline" row -->
@@ -60,4 +60,4 @@ title: "Home"
 
 <!-- Intro / Welcome section -->
 ## Welcome
-Welcome to my personal academic website. I am an AI researcher working at University College Cork specializing in Large Language Models, Network Science, and Visual Analytics. My work spans Language Models, Computational Intelligence, Decision Making, Cognition, Optimization, Game Research, and Physics-Informed ML. I’m open to PhD opportunities in China, Mainland Europe, and the US. If you work on AI in GIS, Physics, Law, or innovative deep learning/optimization, let’s connect and push research boundaries together.
+Welcome to my personal academic website. I am an AI researcher working at Shanghai Jiao Tong University specializing in AI4Science,  Computational Fluid Dynamics, PDE solvers, Large Language Models, Network Science, and Agentic System. My work spans Language Models, Computational Intelligence, Decision Making, Cognition, Optimization, Game Research, and Physics-Informed ML. I’m open to research and technical collaborations in Mainland Europe, China, Singapore and the US. If you work on AI in Science, Physics, Social Dynamics, or innovative deep learning/optimization, let’s connect and push research boundaries together.
