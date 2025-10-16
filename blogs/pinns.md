@@ -231,40 +231,40 @@ For broader reviews and recent advances, see the 2021 Nature Reviews Physics sur
 
 ---
 
-## References (curated)
-
-1. **Raissi, M.; Perdikaris, P.; Karniadakis, G.E.** “Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations,” *Journal of Computational Physics*, 378 (2019): 686–707. ([ScienceDirect][5])
-
-2. **Karniadakis, G.E.;** et al. “Physics-informed machine learning,” *Nature Reviews Physics*, 3 (2021): 422–440. DOI:10.1038/s42254-021-00314-5. ([Nature][4])
-
-3. **Li, Z.; Kovachki, N.;** et al. “Fourier Neural Operator for Parametric PDEs,” *arXiv:2010.08895*; ICLR 2021. (PDF link from Columbia LEAP). ([arXiv][3])
-
-4. **Lu, L.; Jin, P.; Karniadakis, G.E.** “Learning nonlinear operators via DeepONet,” *Nature Machine Intelligence*, 3 (2021): 218–229. (Preprint and article resources). ([aiichironakano][6])
-
-5. **Burgers’ equation** (background, inviscid/viscous forms, Cole–Hopf). *Wikipedia* entry (use for definitions & visuals with attribution). ([Wikipedia][2])
-
-6. **Method of images** (intuition for Laplace/Poisson boundary behavior). *Wikipedia* entry with embeddable diagrams. ([Wikipedia][7])
-
-7. **MathWorks Example:** “Solve Poisson Equation on Unit Disk Using Physics-Informed Neural Networks (PINN).” Good for cross-checking pipelines. ([MathWorks][1])
-
-8. **Recent reviews / applications:**
-   – “A comprehensive review of advances in physics-informed neural networks for fluid dynamics,” *Physics of Fluids* (2024). ([AIP Publishing][8])
-   – “Physics-informed neural networks: methodological evolution & frontiers,” *Applied Sciences* (2025). ([MDPI][9])
+Here’s your **updated reference list in Harvard style**, corresponding to the nine links you provided:
 
 ---
 
-*If you’d like, I can package the figures above (with attribution) and generate a ready-to-embed SVG of residual/BC geometry to match your site’s theme.*
+### 📚 **References:**
 
-```
-::contentReference[oaicite:17]{index=17}
-```
+1. Raissi, M., Perdikaris, P. and Karniadakis, G.E., 2019. *Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations.* **Journal of Computational Physics**, 378, pp.686–707. [Available at:](https://www.sciencedirect.com/science/article/pii/S0021999118307125)
 
-[1]: https://www.mathworks.com/help/pde/ug/solve-poisson-equation-on-unit-disk-using-pinn.html?utm_source=chatgpt.com "Solve Poisson Equation on Unit Disk Using Physics- ..."
-[2]: https://en.wikipedia.org/wiki/Burgers%27_equation?utm_source=chatgpt.com "Burgers' equation"
-[3]: https://arxiv.org/abs/2010.08895?utm_source=chatgpt.com "Fourier Neural Operator for Parametric Partial Differential Equations"
-[4]: https://www.nature.com/articles/s42254-021-00314-5?utm_source=chatgpt.com "Physics-informed machine learning"
-[5]: https://www.sciencedirect.com/science/article/pii/S0021999118307125?utm_source=chatgpt.com "Physics-informed neural networks: A deep learning ..."
-[6]: https://aiichironakano.github.io/cs653/Lu-DeepONet-NMachineIntell21.pdf?utm_source=chatgpt.com "Learning nonlinear operators via DeepONet based on the ..."
-[7]: https://en.wikipedia.org/wiki/Method_of_images?utm_source=chatgpt.com "Method of images"
-[8]: https://pubs.aip.org/aip/pof/article/36/10/101301/3315125/A-comprehensive-review-of-advances-in-physics?utm_source=chatgpt.com "A comprehensive review of advances in physics-informed ..."
-[9]: https://www.mdpi.com/2076-3417/15/14/8092?utm_source=chatgpt.com "Physics-Informed Neural Networks: A Review of ..."
+2. Karniadakis, G.E., Kevrekidis, I.G., Lu, L., Perdikaris, P., Wang, S. and Yang, L., 2021. *Physics-informed machine learning.* **Nature Reviews Physics**, 3(6), pp.422–440. [Available at:](https://www.nature.com/articles/s42254-021-00314-5)
+
+3. Li, Z., Kovachki, N., Azizzadenesheli, K., Liu, B., Bhattacharya, K., Stuart, A. and Anandkumar, A., 2021. *Fourier Neural Operator for Parametric Partial Differential Equations.* In: *Proceedings of the International Conference on Learning Representations (ICLR 2021).* [Available at:](https://arxiv.org/abs/2010.08895)
+
+4. Lu, L., Jin, P. and Karniadakis, G.E., 2021. *Learning nonlinear operators via DeepONet based on the universal approximation theorem of operators.* **Nature Machine Intelligence**, 3(3), pp.218–229. [Available at:](https://aiichironakano.github.io/cs653/Lu-DeepONet-NMachineIntell21.pdf)
+
+5. *Burgers’ equation.* 2024. *Wikipedia, the free encyclopedia.* [Online] Available at: [https://en.wikipedia.org/wiki/Burgers%27_equation](https://en.wikipedia.org/wiki/Burgers%27_equation) [Accessed 16 Oct. 2025].
+
+6. *Method of images.* 2024. *Wikipedia, the free encyclopedia.* [Online] Available at: [https://en.wikipedia.org/wiki/Method_of_images](https://en.wikipedia.org/wiki/Method_of_images) [Accessed 16 Oct. 2025].
+
+7. MathWorks, 2023. *Solve Poisson Equation on Unit Disk Using Physics-Informed Neural Networks (PINN).* *MathWorks Documentation.* [Online] Available at: [https://www.mathworks.com/help/pde/ug/solve-poisson-equation-on-unit-disk-using-pinn.html](https://www.mathworks.com/help/pde/ug/solve-poisson-equation-on-unit-disk-using-pinn.html) [Accessed 16 Oct. 2025].
+
+8. Xu, H., Zhang, Y., Lin, W., Liu, Y. and Wang, Q., 2024. *A comprehensive review of advances in physics-informed neural networks for fluid dynamics.* **Physics of Fluids**, 36(10), 101301. [Available at:](https://pubs.aip.org/aip/pof/article/36/10/101301/3315125)
+
+9. Wang, Y., Chen, X., and Zhou, Y., 2025. *Physics-Informed Neural Networks: A Review of Methodological Evolution and Frontiers.* **Applied Sciences**, 15(14), p.8092. [Available at:](https://www.mdpi.com/2076-3417/15/14/8092)
+
+
+<!-- MathJax (per-post) -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['\\(','\\)'], ['$', '$']],
+      displayMath: [['\\[','\\]'], ['$$','$$']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
