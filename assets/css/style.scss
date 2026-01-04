@@ -1,0 +1,196 @@
+---
+---
+
+@import "minima";
+
+/* Custom Navbar Styling with Red Accents */
+
+/* Define red accent colors */
+$red-accent: #dc3545;
+$red-hover: #c82333;
+$red-light: #f8d7da;
+$red-dark: #bd2130;
+$dark-bg: #2c3e50;
+$light-text: #ffffff;
+
+/* Site Header (Navbar) Improvements */
+.site-header {
+  border-top: 5px solid $red-accent !important;
+  border-bottom: 2px solid rgba($red-accent, 0.3) !important;
+  min-height: 56px;
+  background-color: $light-text;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Site Title Styling */
+.site-title {
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  color: $dark-bg !important;
+  letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: $red-accent !important;
+    text-decoration: none !important;
+    transform: translateY(-1px);
+  }
+  
+  &:visited {
+    color: $dark-bg !important;
+  }
+}
+
+/* Navigation Links */
+.site-nav {
+  line-height: 56px;
+  
+  .page-link {
+    color: $dark-bg !important;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 16px;
+    margin-left: 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+    
+    /* Hover effect with red accent */
+    &:hover {
+      color: $red-accent !important;
+      background-color: rgba($red-accent, 0.08);
+      text-decoration: none !important;
+      transform: translateY(-2px);
+    }
+    
+    /* Active/Current page indicator */
+    &.active,
+    &:active {
+      color: $light-text !important;
+      background-color: $red-accent;
+      box-shadow: 0 2px 4px rgba($red-accent, 0.3);
+    }
+    
+    /* Underline animation on hover */
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: $red-accent;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    
+    &:hover::after {
+      width: 80%;
+    }
+  }
+}
+
+/* Mobile Menu Button */
+.site-nav .menu-icon > svg {
+  fill: $red-accent !important;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    fill: $red-hover !important;
+    transform: scale(1.1);
+  }
+}
+
+/* Mobile Navigation Trigger */
+.site-nav label[for="nav-trigger"] {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/* Mobile Menu Dropdown */
+@media screen and (max-width: 600px) {
+  .site-nav {
+    background-color: $light-text;
+    border: 1px solid rgba($red-accent, 0.2);
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
+    .page-link {
+      display: block;
+      padding: 12px 20px;
+      margin: 4px 8px;
+      
+      &:hover {
+        background-color: rgba($red-accent, 0.1);
+        border-left: 3px solid $red-accent;
+        padding-left: 17px;
+      }
+    }
+  }
+}
+
+/* Additional enhancements for cleaner look */
+.site-header .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Link styling consistency */
+a {
+  color: $red-accent;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: $red-hover;
+    text-decoration: underline;
+  }
+}
+
+/* Footer with red accent */
+.site-footer {
+  border-top: 2px solid rgba($red-accent, 0.3);
+}
+
+/* Headings with subtle red accent */
+h1, h2, h3, h4, h5, h6 {
+  color: $dark-bg;
+  
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 0;
+    background-color: $red-accent;
+    margin-right: 0;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+  }
+  
+  &:hover::before {
+    height: 100%;
+    margin-right: 10px;
+  }
+}
+
+/* Code blocks and inline code with red accents */
+code.language-plaintext.highlighter-rouge {
+  background-color: rgba($red-accent, 0.05);
+  border: 1px solid rgba($red-accent, 0.2);
+  color: $red-dark;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* Horizontal rules with red accent */
+hr {
+  border-color: rgba($red-accent, 0.3) !important;
+}
