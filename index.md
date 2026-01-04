@@ -61,3 +61,35 @@ title: "Home"
 <!-- Intro / Welcome section -->
 ## Welcome
 Welcome to my personal academic website. I am an AI researcher working at Shanghai Jiao Tong University specializing in AI4Science,  Computational Fluid Dynamics, PDE solvers, Large Language Models, Network Science, and Agentic System. My work spans Language Models, Computational Intelligence, Decision Making, Cognition, Optimization, Game Research, and Physics-Informed ML. I’m open to research and technical collaborations in Mainland Europe, China, Singapore and the US. If you work on AI in Science, Physics, Social Dynamics, or innovative deep learning/optimization, let’s connect and push research boundaries together.
+
+---
+
+## 🔍 Quick Links
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
+  <a href="github_projects.md" style="display: block; padding: 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 10px; text-align: center; font-weight: 600; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); transition: transform 0.3s ease;">
+    <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">🚀</span>
+    GitHub Projects
+  </a>
+  
+  <a href="publications.md" style="display: block; padding: 1.5rem; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; text-decoration: none; border-radius: 10px; text-align: center; font-weight: 600; box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3); transition: transform 0.3s ease;">
+    <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">📚</span>
+    Publications
+  </a>
+  
+  <a href="academic_experience.md" style="display: block; padding: 1.5rem; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; text-decoration: none; border-radius: 10px; text-align: center; font-weight: 600; box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3); transition: transform 0.3s ease;">
+    <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">🎓</span>
+    Experience
+  </a>
+  
+  <a href="blog.md" style="display: block; padding: 1.5rem; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; text-decoration: none; border-radius: 10px; text-align: center; font-weight: 600; box-shadow: 0 4px 15px rgba(250, 112, 154, 0.3); transition: transform 0.3s ease;">
+    <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">✍️</span>
+    Blog
+  </a>
+</div>
+
+<style>
+  div a:hover {
+    transform: translateY(-5px);
+  }
+</style>
