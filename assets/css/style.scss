@@ -65,11 +65,15 @@ $light-text: #ffffff;
     }
     
     /* Active/Current page indicator */
-    &.active,
-    &:active {
+    &.active {
       color: $light-text !important;
       background-color: $red-accent;
       box-shadow: 0 2px 4px rgba($red-accent, 0.3);
+    }
+    
+    /* Click state */
+    &:active {
+      transform: translateY(0);
     }
     
     /* Underline animation on hover */
@@ -125,7 +129,8 @@ $light-text: #ffffff;
       &:hover {
         background-color: rgba($red-accent, 0.1);
         border-left: 3px solid $red-accent;
-        padding-left: 17px;
+        padding-left: 20px;
+        margin-left: 11px;
       }
     }
   }
@@ -163,21 +168,23 @@ a {
 /* Headings with subtle red accent */
 h1, h2, h3, h4, h5, h6 {
   color: $dark-bg;
+  position: relative;
+  padding-left: 14px;
   
   &::before {
     content: '';
-    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 4px;
-    height: 0;
+    height: 50%;
     background-color: $red-accent;
-    margin-right: 0;
-    vertical-align: middle;
     transition: all 0.3s ease;
   }
   
   &:hover::before {
     height: 100%;
-    margin-right: 10px;
   }
 }
 
