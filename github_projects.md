@@ -464,7 +464,7 @@ title: "GitHub Projects"
         <h3 class="project-title">Academic Website</h3>
       </div>
       <p class="project-description">
-        This personal academic website built with Jekyll and GitHub Pages. Showcases publications, projects, teaching experience, and research interests.
+        This personal academic website is built with Jekyll and GitHub Pages. Showcases publications, projects, teaching experience, and research interests.
       </p>
       <div class="project-tags">
         <span class="tag">Jekyll</span>
