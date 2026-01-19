@@ -262,7 +262,8 @@ title: "GitHub Projects"
         <span class="tag">Deep Learning</span>
       </div>
       <div class="project-links">
-        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Code →</a>
+        <a href="https://github.com/Samsomyajit/pibert" class="project-link" target="_blank">View Code →</a>
+        <a href="https://samsomyajit.github.io/pibert/" class="project-link" target="_blank">View Demo →</a>
       </div>
     </div>
 
@@ -283,7 +284,7 @@ title: "GitHub Projects"
         <span class="tag">LLMs</span>
       </div>
       <div class="project-links">
-        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Code →</a>
+        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Repositories →</a>
       </div>
     </div>
 
@@ -304,7 +305,7 @@ title: "GitHub Projects"
         <span class="tag">Visualization</span>
       </div>
       <div class="project-links">
-        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Code →</a>
+        <a href="https://github.com/Samsomyajit/ECR-Research" class="project-link" target="_blank">View Code →</a>
       </div>
     </div>
   </div>
@@ -330,7 +331,7 @@ title: "GitHub Projects"
         <span class="tag">Graphs</span>
       </div>
       <div class="project-links">
-        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Code →</a>
+        <a href="https://github.com/Samsomyajit/BioGraphVAE" class="project-link" target="_blank">View Code →</a>
       </div>
     </div>
 
@@ -349,7 +350,7 @@ title: "GitHub Projects"
         <span class="tag">Energy</span>
       </div>
       <div class="project-links">
-        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Code →</a>
+        <a href="https://github.com/Samsomyajit/windpulse" class="project-link" target="_blank">View Code →</a>
       </div>
     </div>
 
@@ -367,7 +368,7 @@ title: "GitHub Projects"
         <span class="tag">Materials Science</span>
       </div>
       <div class="project-links">
-        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Code →</a>
+        <a href="https://github.com/Samsomyajit/Physics_guided_sputterML" class="project-link" target="_blank">View Code →</a>
       </div>
     </div>
   </div>
@@ -393,7 +394,7 @@ title: "GitHub Projects"
         <span class="tag">Recommendation</span>
       </div>
       <div class="project-links">
-        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Code →</a>
+        <a href="https://github.com/Samsomyajit/Trust_Health" class="project-link" target="_blank">View Code →</a>
       </div>
     </div>
 
@@ -429,7 +430,7 @@ title: "GitHub Projects"
         <span class="tag">Scientometrics</span>
       </div>
       <div class="project-links">
-        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Code →</a>
+        <a href="https://github.com/Samsomyajit/ECR-Research" class="project-link" target="_blank">View Code →</a>
       </div>
     </div>
   </div>
@@ -454,7 +455,7 @@ title: "GitHub Projects"
         <span class="tag">Research</span>
       </div>
       <div class="project-links">
-        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Code →</a>
+        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Repositories →</a>
       </div>
     </div>
 
@@ -473,6 +474,7 @@ title: "GitHub Projects"
       </div>
       <div class="project-links">
         <a href="https://github.com/Samsomyajit/Samsomyajit.github.io" class="project-link" target="_blank">View Code →</a>
+        <a href="https://samsomyajit.github.io/" class="project-link" target="_blank">View Website →</a>
       </div>
     </div>
 
@@ -490,7 +492,54 @@ title: "GitHub Projects"
         <span class="tag">NumPy</span>
       </div>
       <div class="project-links">
-        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Code →</a>
+        <a href="https://github.com/Samsomyajit" class="project-link" target="_blank">View Repositories →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Web Applications Section -->
+<div class="category-section">
+  <h2 class="section-title">🌐 Web Applications</h2>
+  
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-icon">📝</span>
+        <h3 class="project-title">BreadKrumbs</h3>
+      </div>
+      <p class="project-description">
+        Simple React.js based note-keeping application. Features a clean interface for creating, editing, and managing notes with modern React hooks and CSS grid layout.
+      </p>
+      <div class="project-tags">
+        <span class="tag">React</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">CSS Grid</span>
+        <span class="tag">Web App</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Samsomyajit/BreadKrumbs" class="project-link" target="_blank">View Code →</a>
+        <a href="https://samsomyajit.github.io/BreadKrumbs/" class="project-link" target="_blank">Live Demo →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-icon">✅</span>
+        <h3 class="project-title">Task Tracker</h3>
+      </div>
+      <p class="project-description">
+        React-based task management application with JSON server integration. Organize and track your daily tasks with an intuitive user interface.
+      </p>
+      <div class="project-tags">
+        <span class="tag">React</span>
+        <span class="tag">JSON Server</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Task Management</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Samsomyajit/Task-Tracker" class="project-link" target="_blank">View Code →</a>
+        <a href="https://samsomyajit.github.io/Task-Tracker/" class="project-link" target="_blank">Live Demo →</a>
       </div>
     </div>
   </div>
