@@ -308,6 +308,27 @@ title: "GitHub Projects"
         <a href="https://github.com/Samsomyajit/ECR-Research" class="project-link" target="_blank">View Code →</a>
       </div>
     </div>
+
+    <!-- Project 4: WindPulse -->
+    <div class="project-card">
+      <span class="featured-badge">⭐ Featured</span>
+      <div class="project-header">
+        <span class="project-icon">🌬️</span>
+        <h3 class="project-title">WindPulse</h3>
+      </div>
+      <p class="project-description">
+        Machine learning models for wind energy forecasting in India. Comparative analysis of ML models and Weibull statistics using long-term data for sustainable energy prediction.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Time Series</span>
+        <span class="tag">Energy</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Samsomyajit/windpulse" class="project-link" target="_blank">View Code →</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -332,25 +353,6 @@ title: "GitHub Projects"
       </div>
       <div class="project-links">
         <a href="https://github.com/Samsomyajit/BioGraphVAE" class="project-link" target="_blank">View Code →</a>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-header">
-        <span class="project-icon">🌬️</span>
-        <h3 class="project-title">Wind Energy Forecasting</h3>
-      </div>
-      <p class="project-description">
-        Machine learning models for wind energy forecasting in India. Comparative analysis of ML models and Weibull statistics using long-term data for sustainable energy prediction.
-      </p>
-      <div class="project-tags">
-        <span class="tag">Python</span>
-        <span class="tag">Scikit-learn</span>
-        <span class="tag">Time Series</span>
-        <span class="tag">Energy</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/Samsomyajit/windpulse" class="project-link" target="_blank">View Code →</a>
       </div>
     </div>
 
