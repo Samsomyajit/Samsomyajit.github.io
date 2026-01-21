@@ -43,7 +43,7 @@ export default function Home() {
           <FadeIn>
             <FloatingElement amplitude={5} duration={4}>
               <motion.img
-                src="https://avatars.githubusercontent.com/u/54627828?v=4"
+                src="/Profi.png"
                 alt="Sam Chakraborty"
                 className="profile-image"
                 initial={{ scale: 0, rotate: -180 }}
