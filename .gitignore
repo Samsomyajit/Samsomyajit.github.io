@@ -19,3 +19,10 @@ Thumbs.db
 *~
 .vscode/
 .idea/
+
+# Node.js
+node_modules/
+react-app/node_modules/
+react-app/dist/
+*.log
+npm-debug.log*

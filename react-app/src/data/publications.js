@@ -1,0 +1,100 @@
+export const publications = {
+  journals: [
+    {
+      id: 1,
+      title: "Comeback or dropout: study of discontinued researchers at early career stage",
+      authors: "Gayen, A., Chakraborty, S., Mitra, S. and Jana, A.",
+      year: 2025,
+      journal: "Scientometrics",
+      pages: "1-36",
+    },
+    {
+      id: 2,
+      title: "Influence of Multi-dimensional Social Capital on Structure of Scientific Collaboration Networks: MDSC@ SciCoNet",
+      authors: "Gayen, A., Chakraborty, S., Chakraborty, N. and Jana, A.",
+      year: 2025,
+      journal: "SN Computer Science",
+      volume: "6(5)",
+      pages: "394",
+    },
+    {
+      id: 3,
+      title: "Trust@ Health: A Trust-Based Multilayered Network for Scalable Healthcare Service Management",
+      authors: "Gayen, A., Chakraborty, S., Chakraborty, J. and Jana, A.",
+      year: 2025,
+      journal: "IEEE Access",
+    },
+    {
+      id: 4,
+      title: "Enhancing wind energy forecasting in India: A site-specific comparative analysis of machine learning models and Weibull statistics using long-term data",
+      authors: "Yadav, H.K., Chakraborty, S., Gupta, M.N., Bhattacharjee, A., Yadav, S., Sanyal, A.P., Sarkar, J. and Sarkar, A.",
+      year: 2025,
+      journal: "Sustainable Energy Technologies and Assessments",
+      volume: "84",
+      pages: "104735",
+    },
+  ],
+  underReview: [
+    {
+      id: 5,
+      title: "PIBERT: A Physics-Informed Bi-directional Hybrid Spectral Transformer for Multiscale CFD Surrogate Modeling",
+      authors: "Chakraborty, S., Ming, P., and Chen, X.",
+      year: 2025,
+      journal: "Journal of Computational Physics",
+      status: "Under review",
+    },
+    {
+      id: 6,
+      title: "Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets",
+      authors: "Cheng, N., Chakraborty, S., Liu, X., Zhang, W., Liang, X., Zhao, H., Bi, W., Zhang, M., Sun, B., He, J. and Liu, Y.",
+      year: 2025,
+      journal: "Journal of Alloys and Compounds",
+      status: "Under review",
+    },
+  ],
+  conferences: [
+    {
+      id: 7,
+      title: "Ml-HCN: A Novel Healthcare System Architecture Based on Multi-layered Network Approach",
+      authors: "Gayen, A., Chakraborty, S., Chakraborty, J. and Jana, A.",
+      year: 2024,
+      conference: "15th Int. Conf. on Computing Communication & Networking Technologies (ICCCNT)",
+      publisher: "IEEE",
+    },
+    {
+      id: 8,
+      title: "How Can I Grow!!: Analysis of Co-authorship Network of Early Career Stage Researchers",
+      authors: "Gayen, A., Chakraborty, S., Chakraborty, N. and Jana, A.",
+      year: 2024,
+      conference: "Int. Conf. on Smart Computing and Communication",
+      pages: "341-351",
+      publisher: "Springer",
+    },
+    {
+      id: 9,
+      title: "BioGraphVAE: A Bio-inspired Autoencoder for Structured Data Reconstruction",
+      authors: "Chakraborty, S., Chakraborty, D., Mondal, K., Das, S., Jana, A. and Gayen, A.",
+      year: 2025,
+      conference: "2nd International Symposium on Artificial Intelligence and Internet of Things (AIIoT-25)",
+    },
+  ],
+  preprints: [
+    {
+      id: 10,
+      title: "MedicaNet: Trust based recommender system to recommend doctors with the help of symptoms",
+      authors: "Gayen, A. and Chakraborty, S.",
+      year: 2020,
+      journal: "Computational Intelligence and Neuroscience",
+      volume: "2020(8826557)",
+    },
+    {
+      id: 11,
+      title: "LLMPR: A Novel LLM-Driven Transfer Learning based Petition Ranking Model",
+      authors: "Gayen, A., Chakraborty, S., Sen, M., Paul, S. and Jana, A.",
+      year: 2025,
+      journal: "arXiv preprint arXiv:2505.21689",
+    },
+  ],
+};
+
+export const scholarUrl = "https://scholar.google.com/citations?user=R9Wr3yQAAAAJ&hl=en&oi=ao";
