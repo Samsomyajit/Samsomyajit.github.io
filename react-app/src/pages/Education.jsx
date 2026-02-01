@@ -11,7 +11,7 @@ const education = [
     location: 'Shanghai, China',
     period: '2025 - 2029',
     description: 'Research focus on CFD, DEM, Simulations, LLMs, Physics Informed Machine Learning, and Computational Chemistry.',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/06/SJTU_emblem.svg/200px-SJTU_emblem.svg.png',
+    logo: '/assets/img/SJTU.png',
     current: true,
   },
   {
@@ -22,7 +22,7 @@ const education = [
     location: 'Cork, Ireland',
     period: '2023 - 2024',
     description: 'Thesis: "Genchron Network Analytics tool for Medieval Literature Studies" (Honours). Modules included Deep Learning, Machine Learning, Statistical Modelling, Python for Data Science.',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/dc/University_College_Cork_coat_of_arms.svg/200px-University_College_Cork_coat_of_arms.svg.png',
+    logo: '/assets/img/UCC.png',
     honors: true,
   },
   {
@@ -33,7 +33,7 @@ const education = [
     location: 'Kolkata, India',
     period: '2018 - 2022',
     description: 'Thesis: "Scoring SM Posts using Behavioural Inputs using Social Networks". Grade: 8.27/10',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/2/21/Techno_India_University_Logo.png',
+    logo: '/assets/img/TIU.png',
   },
 ];
 
