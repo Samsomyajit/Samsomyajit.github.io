@@ -1,6 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import rehypeRaw from 'rehype-raw';
 import { 
   Heart, 
   MessageCircle, 
@@ -69,8 +74,33 @@ function BlogPost({ blog }) {
   const [interactions, setInteractions] = useState(getBlogInteractions());
   const [newComment, setNewComment] = useState('');
   const [authorName, setAuthorName] = useState('');
+  const [markdown, setMarkdown] = useState('');
+  const [loading, setLoading] = useState(true);
 
   const blogData = interactions[blog.id] || { likes: 0, comments: [] };
+
+  useEffect(() => {
+    // Fetch markdown content if contentUrl is provided
+    if (blog.contentUrl) {
+      fetch(blog.contentUrl)
+        .then(res => res.text())
+        .then(text => {
+          // Remove YAML frontmatter if present
+          const content = text.replace(/^---[\s\S]*?---\n/, '');
+          setMarkdown(content);
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error('Error loading markdown:', err);
+          setMarkdown('Error loading content.');
+          setLoading(false);
+        });
+    } else {
+      // Fall back to inline content
+      setMarkdown(blog.content || '');
+      setLoading(false);
+    }
+  }, [blog.contentUrl, blog.content]);
 
   const handleLike = () => {
     const updated = {
@@ -139,9 +169,20 @@ function BlogPost({ blog }) {
 
       <FadeIn delay={0.2}>
         <div className="post-content">
-          {blog.content.split('\n').map((paragraph, index) => (
-            paragraph.trim() && <p key={index}>{paragraph}</p>
-          ))}
+          {loading ? (
+            <p>Loading...</p>
+          ) : blog.contentUrl ? (
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm, remarkMath]}
+              rehypePlugins={[rehypeKatex, rehypeRaw]}
+            >
+              {markdown}
+            </ReactMarkdown>
+          ) : (
+            markdown.split('\n').map((paragraph, index) => (
+              paragraph.trim() && <p key={index}>{paragraph}</p>
+            ))
+          )}
         </div>
       </FadeIn>
 

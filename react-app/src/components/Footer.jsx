@@ -33,6 +33,12 @@ export default function Footer() {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
+      <img 
+        src="/shield.png" 
+        alt="Personal seal" 
+        className="footer-shield"
+        title="Personal shield"
+      />
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-section">
