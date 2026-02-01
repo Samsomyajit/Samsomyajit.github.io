@@ -13,8 +13,7 @@ import {
   GraduationCap, 
   Briefcase, 
   FileText,
-  MessageSquare,
-  Shield
+  MessageSquare
 } from 'lucide-react';
 
 const navItems = [
@@ -24,7 +23,6 @@ const navItems = [
   { path: '/education', label: 'Education', icon: GraduationCap },
   { path: '/experience', label: 'Experience', icon: Briefcase },
   { path: '/blog', label: 'Blog', icon: MessageSquare },
-  { path: '/my-realm', label: 'My Realm', icon: Shield },
 ];
 
 export default function Navbar() {
