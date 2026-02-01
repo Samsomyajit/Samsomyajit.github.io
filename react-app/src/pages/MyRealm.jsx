@@ -1,146 +1,13 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   Shield, 
-  Upload, 
   FileText, 
   Image as ImageIcon,
   Scroll,
-  Wand2,
-  LogOut,
-  User,
-  Lock
+  Wand2
 } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
 import { FadeIn, AnimatedCard, StaggerContainer, StaggerItem } from '../components/AnimatedComponents';
-
-function LoginForm({ onLogin }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const result = onLogin(username, password);
-    if (!result.success) {
-      setError(result.error);
-    }
-  };
-
-  return (
-    <motion.div 
-      className="login-container"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-    >
-      <div className="login-card">
-        <Shield size={48} className="login-icon" />
-        <h2>Enter the Realm</h2>
-        <p className="login-subtitle">Authenticate to access your fantasy sanctuary</p>
-        
-        <form onSubmit={handleSubmit} className="login-form">
-          <div className="form-group">
-            <User size={20} />
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <Lock size={20} />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          
-          {error && <p className="error-message">{error}</p>}
-          
-          <motion.button
-            type="submit"
-            className="btn btn-primary"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Enter
-          </motion.button>
-        </form>
-      </div>
-    </motion.div>
-  );
-}
-
-function UploadSection({ onUpload }) {
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('starwars');
-  const [content, setContent] = useState('');
-  const [file, setFile] = useState(null);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onUpload({ title, category, content, file });
-    setTitle('');
-    setContent('');
-    setFile(null);
-  };
-
-  return (
-    <AnimatedCard className="upload-section">
-      <h3>
-        <Upload size={24} />
-        Upload New Content
-      </h3>
-      
-      <form onSubmit={handleSubmit} className="upload-form">
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="starwars">Star Wars Fan Fiction</option>
-          <option value="dnd">D&D Scripts</option>
-          <option value="artwork">Fantasy Artwork</option>
-        </select>
-        
-        <textarea
-          placeholder="Content or description..."
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          rows={6}
-        />
-        
-        <div className="file-input">
-          <input
-            type="file"
-            accept="image/*,.pdf,.txt,.doc,.docx"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-        </div>
-        
-        <motion.button
-          type="submit"
-          className="btn btn-primary"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Upload
-        </motion.button>
-      </form>
-    </AnimatedCard>
-  );
-}
 
 function ContentItem({ item, index }) {
   const icons = {
@@ -179,7 +46,6 @@ function ContentItem({ item, index }) {
 }
 
 export default function MyRealm() {
-  const { isAuthenticated, isLoading, login, logout } = useAuth();
   const [contents, setContents] = useState([]);
 
   useEffect(() => {
@@ -189,36 +55,6 @@ export default function MyRealm() {
       setContents(JSON.parse(stored));
     }
   }, []);
-
-  const handleUpload = (newContent) => {
-    const content = {
-      ...newContent,
-      id: Date.now(),
-      date: new Date().toISOString()
-    };
-    const updated = [content, ...contents];
-    setContents(updated);
-    localStorage.setItem('realm_contents', JSON.stringify(updated));
-  };
-
-  if (isLoading) {
-    return (
-      <div className="page realm-page">
-        <div className="loading-state">
-          <Shield size={48} className="spinner" />
-          <p>Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return (
-      <div className="page realm-page">
-        <LoginForm onLogin={login} />
-      </div>
-    );
-  }
 
   return (
     <div className="page realm-page">
@@ -232,29 +68,13 @@ export default function MyRealm() {
           <p className="page-subtitle">
             A sanctuary for fantasy, fan fiction, and creative adventures
           </p>
-          <motion.button
-            className="btn btn-secondary logout-btn"
-            onClick={logout}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <LogOut size={18} />
-            Logout
-          </motion.button>
-        </FadeIn>
-      </section>
-
-      {/* Upload Section */}
-      <section className="realm-upload">
-        <FadeIn delay={0.1}>
-          <UploadSection onUpload={handleUpload} />
         </FadeIn>
       </section>
 
       {/* Content Grid */}
       <section className="realm-content">
         <FadeIn delay={0.2}>
-          <h2 className="section-title">Your Creative Works</h2>
+          <h2 className="section-title">Creative Works</h2>
         </FadeIn>
         
         <StaggerContainer staggerDelay={0.1}>
@@ -262,7 +82,7 @@ export default function MyRealm() {
             {contents.length === 0 ? (
               <div className="empty-state">
                 <Scroll size={48} />
-                <p>No content yet. Start by uploading your first creation!</p>
+                <p>No content available yet. Check back soon for fantasy stories, D&D adventures, and artwork!</p>
               </div>
             ) : (
               contents.map((item, index) => (
