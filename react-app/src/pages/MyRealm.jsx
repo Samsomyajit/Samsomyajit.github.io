@@ -160,7 +160,7 @@ function ContentItem({ item, index }) {
           <span className="realm-category">{item.category.replace('starwars', 'Star Wars').replace('dnd', 'D&D')}</span>
         </div>
       </div>
-      <p className="realm-content">{item.content}</p>
+      <p className="realm-item-content">{item.content}</p>
       {item.file && (
         <div className="realm-file">
           <FileText size={16} />
