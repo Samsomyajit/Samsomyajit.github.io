@@ -37,6 +37,13 @@ export default function Home() {
           <div className="gradient-orb orb-1" />
           <div className="gradient-orb orb-2" />
           <div className="gradient-orb orb-3" />
+          
+          {/* Starfall animation - only visible in dark mode */}
+          <div className="starfall-container">
+            {[...Array(20)].map((_, i) => (
+              <div key={i} className="star"></div>
+            ))}
+          </div>
         </div>
         
         <div className="hero-content">
