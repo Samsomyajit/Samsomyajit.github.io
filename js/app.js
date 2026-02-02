@@ -287,7 +287,7 @@ function showBlogPost(blogId) {
         // Trigger MathJax to render math equations
         if (window.MathJax && window.MathJax.typesetPromise) {
           window.MathJax.typesetPromise([document.getElementById('post-content')]).catch((err) => {
-            console.log('MathJax typeset error:', err);
+            console.warn('MathJax typeset error:', err);
           });
         }
       })
@@ -327,8 +327,8 @@ function parseMarkdown(text) {
     return `%%MATHBLOCK${mathBlocks.length - 1}%%`;
   });
   
-  // Protect inline math ($...$) - but not currency like "$5"
-  text = text.replace(/\$([^\$\n]+?)\$/g, (match) => {
+  // Protect inline math ($...$) - exclude currency like "$5" by requiring non-digit after first $
+  text = text.replace(/\$([^\$\d\n][^\$\n]*?)\$/g, (match) => {
     inlineMath.push(match);
     return `%%INLINEMATH${inlineMath.length - 1}%%`;
   });
@@ -356,17 +356,16 @@ function parseMarkdown(text) {
     .replace(/^# (.*$)/gim, '<h1>$1</h1>')
     // Bold
     .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
-    // Italic (but not inside URLs or math)
-    .replace(/(?<![\\\/])\*([^\*\n]+?)\*(?![\\\/])/gim, '<em>$1</em>')
+    // Italic - match *text* but not at start of line (to avoid list conflicts) or in URLs
+    .replace(/(?<=\s|^>)\*([^\*\n]+?)\*(?=\s|[.,!?;:]|$)/gim, '<em>$1</em>')
     // Images (MUST be before links!)
     .replace(/!\[(.*?)\]\((.*?)\)/gim, '<img src="$2" alt="$1" loading="lazy" class="blog-content-image">')
     // Links (but not inside protected content)
     .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener">$1</a>')
     // Blockquotes
     .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>')
-    // Unordered lists
-    .replace(/^\* (.*$)/gim, '<li>$1</li>')
-    .replace(/^\- (.*$)/gim, '<li>$1</li>')
+    // Unordered lists (combine both * and - patterns)
+    .replace(/^[\*\-] (.*$)/gim, '<li>$1</li>')
     // Ordered lists
     .replace(/^\d+\. (.*$)/gim, '<li>$1</li>')
     // Inline code (after protecting code blocks)
@@ -378,10 +377,10 @@ function parseMarkdown(text) {
   
   // Restore code blocks with proper formatting
   codeBlocks.forEach((code, i) => {
-    // Remove language identifier from first line if present
+    // Remove language identifier from first line if present (supports python, c++, javascript, etc.)
     const lines = code.split('\n');
     const firstLine = lines[0].trim();
-    const isLanguage = /^[a-zA-Z]+$/.test(firstLine);
+    const isLanguage = /^[a-zA-Z0-9#+\-]+$/.test(firstLine) && firstLine.length < 20;
     const codeContent = isLanguage ? lines.slice(1).join('\n') : code;
     text = text.replace(`%%CODEBLOCK${i}%%`, `<pre><code>${escapeHtml(codeContent.trim())}</code></pre>`);
   });
