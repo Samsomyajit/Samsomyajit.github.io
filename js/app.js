@@ -340,12 +340,15 @@ function parseMarkdown(text) {
     return `%%CODEBLOCK${codeBlocks.length - 1}%%`;
   });
   
-  // Protect script tags (like MathJax config)
-  const scriptTags = [];
-  text = text.replace(/<script[\s\S]*?<\/script>/gi, (match) => {
-    scriptTags.push(match);
-    return `%%SCRIPT${scriptTags.length - 1}%%`;
-  });
+  // Remove script tags from markdown content - they're not needed as MathJax is loaded globally
+  // Note: Content is author-controlled (from repository markdown files), not user input
+  // Use a loop to handle nested or malformed script tags
+  let previousText;
+  do {
+    previousText = text;
+    // Match opening script tag, any content, and closing script tag with flexible whitespace
+    text = text.replace(/<script\b[\s\S]*?<\/\s*script[\s\S]*?>/gi, '');
+  } while (text !== previousText);
   
   text = text
     // Horizontal rules (must be before other replacements)
@@ -383,11 +386,6 @@ function parseMarkdown(text) {
     const isLanguage = /^[a-zA-Z0-9#+\-]+$/.test(firstLine) && firstLine.length < 20;
     const codeContent = isLanguage ? lines.slice(1).join('\n') : code;
     text = text.replace(`%%CODEBLOCK${i}%%`, `<pre><code>${escapeHtml(codeContent.trim())}</code></pre>`);
-  });
-  
-  // Restore script tags (we don't want them rendered, so remove them)
-  scriptTags.forEach((script, i) => {
-    text = text.replace(`%%SCRIPT${i}%%`, '');
   });
   
   // Restore display math blocks
