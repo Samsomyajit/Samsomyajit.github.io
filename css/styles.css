@@ -1878,6 +1878,27 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Math display blocks */
+.post-content .math-display {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.post-content .math-inline {
+  display: inline;
+}
+
+/* Horizontal rule styling */
+.post-content hr {
+  border: none;
+  height: 1px;
+  background: var(--border-color);
+  margin: 2rem 0;
+}
+
 .post-content table {
   width: 100%;
   border-collapse: collapse;
