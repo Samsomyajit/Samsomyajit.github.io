@@ -74,7 +74,7 @@ Lucifeal is a relic-hunter who learned the oldest truth of magic in the quietest
 
 ---
 
-# Build Features (by class)
+### Build Features (by class)
 
 ### Ranger 12 (Gloom Stalker)
 #### Core Ranger (Tasha-leaning)
