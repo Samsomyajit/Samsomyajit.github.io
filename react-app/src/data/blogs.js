@@ -27,6 +27,15 @@ export const blogs = [
     image: 'https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=800',
   },
   {
+    id: 'myworld',
+    title: 'Welcome to My Fantasy Closet',
+    category: 'Anecdotes',
+    date: '2024-09-20',
+    excerpt: 'A peek into my fantasy-loving heart, from Star Wars wisdom to D&D character sheets and the sigil I made to remind myself who I want to be.',
+    contentUrl: '/blogs/myworld.md',
+    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800',
+  },
+  {
     id: 'comeback',
     title: 'Comeback or Dropout? What the Data Tells Us About Early Career Researchers',
     category: 'Research',
