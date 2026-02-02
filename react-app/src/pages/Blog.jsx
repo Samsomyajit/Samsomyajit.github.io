@@ -85,8 +85,8 @@ function BlogPost({ blog }) {
       fetch(blog.contentUrl)
         .then(res => res.text())
         .then(text => {
-          // Remove YAML frontmatter if present
-          const content = text.replace(/^---[\s\S]*?---\n/, '');
+          // Remove YAML frontmatter if present (handles with or without trailing newline)
+          const content = text.replace(/^---[\s\S]*?---\s*\n?/, '');
           setMarkdown(content);
           setLoading(false);
         })

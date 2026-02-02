@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: "PINNs in Practice: From First Principles to PyTorch"
