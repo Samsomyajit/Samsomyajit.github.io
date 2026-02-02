@@ -154,7 +154,7 @@ with torch.no_grad():
     xg = torch.linspace(0, 1, 401, device=device).unsqueeze(1)
     err = torch.sqrt(((net(xg) - torch.sin(math.pi * xg)) ** 2).mean())
     print("L2 grid error ~", err.item())
-````
+```
 
 For a MATLAB reference implementation of Poisson PINNs (nice for sanity checks), see the official example [7].
 
@@ -299,6 +299,3 @@ For broader reviews and recent advances, see the 2021 *Nature Reviews Physics* s
           {left:'\\(', right:'\\)', display:false}
         ]});"></script>
 -->
-
-```
-```
