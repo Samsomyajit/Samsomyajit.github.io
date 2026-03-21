@@ -6,17 +6,24 @@ import { FadeIn, AnimatedCard, StaggerContainer, StaggerItem } from '../componen
 function PublicationCard({ pub, type }) {
   return (
     <AnimatedCard className="publication-card">
-      <div className="pub-type-badge">{type}</div>
-      <h3 className="pub-title">{pub.title}</h3>
-      <p className="pub-authors">{pub.authors}</p>
-      <div className="pub-details">
-        {pub.journal && <span className="pub-venue">{pub.journal}</span>}
-        {pub.conference && <span className="pub-venue">{pub.conference}</span>}
-        {pub.volume && <span className="pub-volume">Vol. {pub.volume}</span>}
-        {pub.pages && <span className="pub-pages">pp. {pub.pages}</span>}
-        <span className="pub-year">{pub.year}</span>
+      {pub.thumbnail && (
+        <div className="pub-thumbnail-wrap">
+          <img src={pub.thumbnail} alt={`${pub.title} cover`} className="pub-thumbnail" loading="lazy" />
+        </div>
+      )}
+      <div className="pub-content">
+        <div className="pub-type-badge">{type}</div>
+        <h3 className="pub-title">{pub.title}</h3>
+        <p className="pub-authors">{pub.authors}</p>
+        <div className="pub-details">
+          {pub.journal && <span className="pub-venue">{pub.journal}</span>}
+          {pub.conference && <span className="pub-venue">{pub.conference}</span>}
+          {pub.volume && <span className="pub-volume">Vol. {pub.volume}</span>}
+          {pub.pages && <span className="pub-pages">pp. {pub.pages}</span>}
+          <span className="pub-year">{pub.year}</span>
+        </div>
+        {pub.status && <span className="pub-status">{pub.status}</span>}
       </div>
-      {pub.status && <span className="pub-status">{pub.status}</span>}
     </AnimatedCard>
   );
 }

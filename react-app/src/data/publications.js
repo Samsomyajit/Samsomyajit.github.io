@@ -23,6 +23,7 @@ export const publications = {
       authors: "Gayen, A., Chakraborty, S., Chakraborty, J. and Jana, A.",
       year: 2025,
       journal: "IEEE Access",
+      thumbnail: "/assets/img/TrustHealth.jpg",
     },
     {
       id: 4,
@@ -32,6 +33,7 @@ export const publications = {
       journal: "Sustainable Energy Technologies and Assessments",
       volume: "84",
       pages: "104735",
+      thumbnail: "/assets/img/Enhancing wind energy forecasting in India- A site-specific comparative analysis of machine learning models and Weibull statistics using long-term data.jpg",
     },
   ],
   underReview: [
@@ -42,6 +44,7 @@ export const publications = {
       year: 2025,
       journal: "Journal of Computational Physics",
       status: "Under review",
+      thumbnail: "/assets/img/PIBERT (2).png",
     },
     {
       id: 6,
@@ -69,6 +72,7 @@ export const publications = {
       conference: "Int. Conf. on Smart Computing and Communication",
       pages: "341-351",
       publisher: "Springer",
+      thumbnail: "/assets/img/Bridging.png",
     },
     {
       id: 9,
@@ -93,6 +97,7 @@ export const publications = {
       authors: "Gayen, A., Chakraborty, S., Sen, M., Paul, S. and Jana, A.",
       year: 2025,
       journal: "arXiv preprint arXiv:2505.21689",
+      thumbnail: "/assets/img/MScDA.png",
     },
   ],
 };
