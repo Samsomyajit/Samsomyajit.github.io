@@ -2262,3 +2262,44 @@ a:hover {
   color: var(--border-color);
 }
 
+/* ============================================
+   PUBLICATION THUMBNAILS
+   ============================================ */
+
+.pub-thumbnail {
+  flex-shrink: 0;
+  width: 90px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 4px;
+  align-self: center;
+}
+
+.featured-pub-thumbnail {
+  flex-shrink: 0;
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 6px;
+  align-self: center;
+}
+
+@media (max-width: 600px) {
+  .pub-compact-card.has-thumbnail {
+    flex-wrap: wrap;
+  }
+  .pub-compact-card.has-thumbnail .pub-thumbnail {
+    width: 100%;
+    height: 140px;
+    order: -1;
+  }
+  .featured-pub-thumbnail {
+    width: 100%;
+    height: 160px;
+    order: 1;
+  }
+  .featured-pub-row {
+    flex-wrap: wrap;
+  }
+}
+
