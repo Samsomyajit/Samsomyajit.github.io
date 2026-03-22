@@ -2048,7 +2048,7 @@ a:hover {
 
 .hero-position-line {
   font-size: 0.82rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   gap: 0.4rem;
