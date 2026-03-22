@@ -446,7 +446,6 @@ a:hover {
 }
 
 .social-icon[data-color="linkedin"]:hover { background: #0077b5; }
-.social-icon[data-color="researchgate"]:hover { background: #00d0af; }
 .social-icon[data-color="scholar"]:hover { background: #4285f4; }
 .social-icon[data-color="github"]:hover { background: #333; }
 .social-icon[data-color="email"]:hover { background: #ea4335; }
@@ -456,6 +455,22 @@ a:hover {
 .social-icon svg {
   width: 20px;
   height: 20px;
+}
+
+.social-icon .ai,
+.social-link .ai {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.title-icon .ai {
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.scholar-link .ai {
+  font-size: 1.25rem;
+  line-height: 1;
 }
 
 .hero-cta {
