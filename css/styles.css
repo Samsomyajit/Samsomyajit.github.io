@@ -382,6 +382,13 @@ a:hover {
   color: var(--text-secondary);
 }
 
+.hero-chinese-name {
+  display: inline;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-primary);
+}
+
 .hero-role {
   font-size: 1rem;
   color: var(--text-secondary);
@@ -443,6 +450,8 @@ a:hover {
 .social-icon[data-color="scholar"]:hover { background: #4285f4; }
 .social-icon[data-color="github"]:hover { background: #333; }
 .social-icon[data-color="email"]:hover { background: #ea4335; }
+.social-icon[data-color="orcid"]:hover { background: #a6ce39; }
+.social-icon[data-color="wos"]:hover { background: #ce122e; }
 
 .social-icon svg {
   width: 20px;
