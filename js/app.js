@@ -412,112 +412,96 @@ function escapeHtml(text) {
 }
 
 // ============================================
-// GITHUB PROJECTS
+// PROJECTS
 // ============================================
-async function loadGitHubProjects() {
+function renderProjects() {
   const container = document.getElementById('projects-container');
   const statsContainer = document.getElementById('projects-stats');
-  
-  container.innerHTML = `
-    <div class="loading-state">
-      <div class="spinner">${icons.loader}</div>
-      <p>Loading projects from GitHub...</p>
+
+  const categories = ['All', ...new Set(projects.map(p => p.category))];
+  const featuredCount = projects.filter(p => p.featured).length;
+  const languageCount = new Set(projects.map(p => p.language).filter(Boolean)).size;
+
+  // Render stats
+  statsContainer.innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-number">${projects.length}</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">${featuredCount}</span>
+        <span class="stat-label">Featured</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">${languageCount}</span>
+        <span class="stat-label">Languages</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">${categories.length - 1}</span>
+        <span class="stat-label">Categories</span>
+      </div>
     </div>
   `;
-  
-  try {
-    const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=30`);
-    if (!response.ok) throw new Error('Failed to fetch');
-    
-    const repos = await response.json();
-    const filteredRepos = repos
-      .filter(repo => !repo.fork)
-      .sort((a, b) => b.stargazers_count - a.stargazers_count);
-    
-    const totalStars = filteredRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-    const totalForks = filteredRepos.reduce((sum, repo) => sum + repo.forks_count, 0);
-    const languages = new Set(filteredRepos.map(r => r.language).filter(Boolean)).size;
-    
-    // Render stats
-    statsContainer.innerHTML = `
-      <div class="stats-grid">
-        <div class="stat-item">
-          <span class="stat-number">${filteredRepos.length}</span>
-          <span class="stat-label">Repositories</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">${totalStars}</span>
-          <span class="stat-label">Stars</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">${totalForks}</span>
-          <span class="stat-label">Forks</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">${languages}</span>
-          <span class="stat-label">Languages</span>
-        </div>
-      </div>
-    `;
-    
-    // Render projects
-    container.innerHTML = `
-      <div class="projects-grid">
-        ${filteredRepos.map(repo => `
-          <div class="animated-card project-card">
-            <div class="project-image">
-              <img src="https://opengraph.githubassets.com/1/${githubUsername}/${repo.name}" 
-                   alt="${repo.name}" 
-                   loading="lazy">
+
+  // Render category filters
+  const filtersHTML = `
+    <div class="project-filters" id="project-filters">
+      ${categories.map(cat => `
+        <button class="filter-btn ${cat === 'All' ? 'active' : ''}"
+                onclick="filterProjects('${cat}')" data-category="${cat}">
+          ${cat}
+        </button>
+      `).join('')}
+    </div>
+  `;
+
+  // Render project cards
+  const cardsHTML = `
+    <div class="projects-grid" id="projects-grid">
+      ${projects.map(project => `
+        <div class="animated-card project-card" data-category="${project.category}">
+          <div class="project-image">
+            <img src="${project.image}" alt="${project.title}" loading="lazy">
+            ${project.featured ? '<span class="project-featured-badge">Featured</span>' : ''}
+            <span class="project-category-badge">${project.category}</span>
+          </div>
+          <div class="project-content">
+            <div class="project-year">${project.year}</div>
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-subtitle">${project.subtitle}</p>
+            <p class="project-description">${project.description}</p>
+            <div class="project-topics">
+              ${project.tags.map(tag => `<span class="topic-tag">${tag}</span>`).join('')}
             </div>
-            <div class="project-content">
-              <h3 class="project-title">${repo.name}</h3>
-              <p class="project-description">${repo.description || 'No description available'}</p>
-              
-              <div class="project-meta">
-                ${repo.language ? `
-                  <span class="project-language">
-                    <span class="language-dot" style="background-color: ${languageColors[repo.language] || languageColors.default}"></span>
-                    ${repo.language}
-                  </span>
-                ` : ''}
-                <span class="project-stat">${icons.star} ${repo.stargazers_count}</span>
-                <span class="project-stat">${icons.gitFork} ${repo.forks_count}</span>
-              </div>
-              
-              ${repo.topics && repo.topics.length > 0 ? `
-                <div class="project-topics">
-                  ${repo.topics.slice(0, 4).map(topic => `<span class="topic-tag">${topic}</span>`).join('')}
-                </div>
-              ` : ''}
-              
-              <div class="project-links">
-                <a href="${repo.html_url}" target="_blank" rel="noopener" class="project-link">
-                  ${icons.code} View Code
+            <div class="project-links">
+              <a href="${project.githubUrl}" target="_blank" rel="noopener" class="project-link">
+                ${icons.github} GitHub
+              </a>
+              ${project.paperUrl ? `
+                <a href="${project.paperUrl}" target="_blank" rel="noopener" class="project-link secondary">
+                  ${icons.fileText} Paper
                 </a>
-                ${repo.homepage ? `
-                  <a href="${repo.homepage}" target="_blank" rel="noopener" class="project-link secondary">
-                    ${icons.externalLink} Demo
-                  </a>
-                ` : ''}
-              </div>
+              ` : ''}
             </div>
           </div>
-        `).join('')}
-      </div>
-    `;
-    
-    setTimeout(animateCards, 100);
-  } catch (error) {
-    container.innerHTML = `
-      <div class="error-state">
-        <p>Failed to load projects</p>
-        <a href="https://github.com/${githubUsername}?tab=repositories" target="_blank" class="btn btn-primary">
-          View on GitHub
-        </a>
-      </div>
-    `;
-  }
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  container.innerHTML = filtersHTML + cardsHTML;
+  setTimeout(animateCards, 100);
+}
+
+function filterProjects(category) {
+  const cards = document.querySelectorAll('#projects-grid .project-card');
+  const buttons = document.querySelectorAll('#project-filters .filter-btn');
+  buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.category === category));
+  cards.forEach(card => {
+    const show = category === 'All' || card.dataset.category === category;
+    card.style.display = show ? '' : 'none';
+  });
 }
 
 // ============================================
@@ -627,16 +611,11 @@ function init() {
   // Load initial page
   navigateTo('home');
   
-  // Load GitHub projects when projects page is visited
-  const observer = new MutationObserver(() => {
-    if (currentPage === 'projects') {
-      loadGitHubProjects();
-      observer.disconnect();
-    }
-  });
-  
   // Render blog page
   renderBlogPage();
+
+  // Render projects page
+  renderProjects();
   
   // Set up dynamic year in footer
   document.getElementById('current-year').textContent = new Date().getFullYear();
