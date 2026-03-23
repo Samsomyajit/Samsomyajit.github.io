@@ -113,6 +113,33 @@ const scholarUrl = "https://scholar.google.com/citations?user=R9Wr3yQAAAAJ&hl=en
 // ============================================
 const blogs = [
   {
+    id: 'feminism-soft-heart',
+    title: 'Feminism, Men, and the Discipline of a Soft Heart',
+    category: 'Anecdotes',
+    date: '2026-03-23',
+    excerpt: 'A personal reflection on what feminism means for men, the moral capacity of a soft heart, and how married life with Yanrong has made questions of dignity and care real and immediate.',
+    contentUrl: 'blogs/feminism_soft_heart_reflection.md',
+    image: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800',
+  },
+  {
+    id: 'science-unity-essay',
+    title: 'Science, History, Philosophy, and the Unity of Knowledge',
+    category: 'Research',
+    date: '2026-03-23',
+    excerpt: 'Exploring how science is deeply entangled with history, philosophy, and the arts — and why understanding science means understanding its human and intellectual context.',
+    contentUrl: 'blogs/science_unity_essay_harvard.md',
+    image: 'https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=800',
+  },
+  {
+    id: 'reading-writing-essay',
+    title: 'Reading, Writing, and the Craft of the Essay',
+    category: 'Research',
+    date: '2026-03-23',
+    excerpt: 'How reading and writing are mutually dependent acts, and how scientific writing frameworks like IMRAD and PMRC can strengthen even general essay writing.',
+    contentUrl: 'blogs/reading_writing_essay_pmrc_imrad.md',
+    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800',
+  },
+  {
     id: 'story-so-far',
     title: 'My Story So Far!',
     category: 'Anecdotes',
