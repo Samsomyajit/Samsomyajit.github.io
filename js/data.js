@@ -480,7 +480,7 @@ const projects = [
     title: 'Step Up',
     subtitle: 'Technology-enabled self-persuasion empowerment tools to increase walking',
     description: 'Technology-enabled self-persuasion empowerment tools to increase walking in middle-aged and older citizens. This project develops intelligent digital interventions that motivate and sustain physical activity through personalised, evidence-based persuasive strategies.',
-    image: 'https://www.sfi.ie/media/Step-Up.jpg',
+    image: 'https://www.sfi.ie/__uuid/981cab89-b3e9-4983-a8f3-3a8e69444cf7/iStock-84486384.jpg',
     tags: ['Digital Health', 'Persuasive Technology', 'mHealth', 'Older Adults', 'Behaviour Change'],
     category: 'Digital Health & Wellbeing',
     githubUrl: 'https://github.com/Samsomyajit',
