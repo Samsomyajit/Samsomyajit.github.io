@@ -475,6 +475,22 @@ const projects = [
     year: 2020,
     language: 'Python',
   },
+  {
+    id: 8,
+    title: 'Step Up',
+    subtitle: 'Technology-enabled self-persuasion empowerment tools to increase walking',
+    description: 'Technology-enabled self-persuasion empowerment tools to increase walking in middle-aged and older citizens. This project develops intelligent digital interventions that motivate and sustain physical activity through personalised, evidence-based persuasive strategies.',
+    image: 'https://www.sfi.ie/media/Step-Up.jpg',
+    tags: ['Digital Health', 'Persuasive Technology', 'mHealth', 'Older Adults', 'Behaviour Change'],
+    category: 'Digital Health & Wellbeing',
+    githubUrl: 'https://github.com/Samsomyajit',
+    projectUrl: 'https://www.sfi.ie/challenges/sustainable-communities-challenge/Step-Up/',
+    fundingIcon: 'https://github.com/user-attachments/assets/763a57c0-3603-4748-b86f-1bb063f89983',
+    fundingLabel: 'Funded by Taighde Éireann',
+    featured: true,
+    year: 2025,
+    language: 'Python',
+  },
 ];
 
 // ============================================
