@@ -89,9 +89,17 @@ function updateThemeIcon(isDark) {
 // ============================================
 // NAVIGATION
 // ============================================
-function navigateTo(page, blogId = null) {
+function navigateTo(page, blogId = null, updateHash = true) {
   currentPage = page;
   currentBlogId = blogId;
+
+  // Update the URL hash so every page/post has a shareable link
+  if (updateHash) {
+    const hash = blogId ? `#blog/${blogId}` : `#${page}`;
+    if (window.location.hash !== hash) {
+      window.history.pushState(null, '', hash);
+    }
+  }
   
   // Update active nav links
   document.querySelectorAll('.nav-link').forEach(link => {
@@ -125,6 +133,35 @@ function navigateTo(page, blogId = null) {
   
   // Animate cards
   setTimeout(animateCards, 100);
+}
+
+// Parse the URL hash and navigate to the corresponding page/post
+function navigateFromHash() {
+  const hash = window.location.hash.slice(1); // strip leading '#'
+  if (!hash || hash === 'home') {
+    navigateTo('home', null, false);
+    return;
+  }
+  // Blog post: #blog/<id>
+  if (hash.startsWith('blog/')) {
+    const blogId = hash.slice('blog/'.length);
+    // Validate the blog ID exists before navigating
+    if (blogs.find(b => b.id === blogId)) {
+      navigateTo('blog', blogId, false);
+    } else {
+      navigateTo('blog', null, false);
+    }
+    return;
+  }
+  // Derive valid pages dynamically from nav links in the DOM
+  const validPages = Array.from(document.querySelectorAll('.nav-link'))
+    .map(link => link.dataset.page)
+    .filter(Boolean);
+  if (validPages.includes(hash)) {
+    navigateTo(hash, null, false);
+  } else {
+    navigateTo('home', null, false);
+  }
 }
 
 function closeMobileMenu() {
@@ -608,14 +645,15 @@ function init() {
     }
   });
   
-  // Load initial page
-  navigateTo('home');
-  
-  // Render blog page
+  // Render blog page and projects before navigating so content is ready
   renderBlogPage();
-
-  // Render projects page
   renderProjects();
+
+  // Navigate based on the current URL hash (enables shareable blog post links)
+  navigateFromHash();
+
+  // Handle browser back/forward navigation
+  window.addEventListener('popstate', navigateFromHash);
   
   // Set up dynamic year in footer
   document.getElementById('current-year').textContent = new Date().getFullYear();
