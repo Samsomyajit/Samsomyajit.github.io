@@ -14,6 +14,8 @@
   --card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.1);
   --nav-bg: rgba(255, 255, 255, 0.97);
   --overlay: rgba(255, 255, 255, 0.8);
+  --funding-badge-bg: #334155;
+  --funding-badge-text: #f1f5f9;
 }
 
 /* Dark Theme */
@@ -32,6 +34,8 @@
   --card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.4);
   --nav-bg: rgba(15, 23, 42, 0.97);
   --overlay: rgba(15, 23, 42, 0.8);
+  --funding-badge-bg: var(--bg-tertiary);
+  --funding-badge-text: var(--text-secondary);
 }
 
 /* Reset & Base Styles */
@@ -1091,7 +1095,7 @@ a:hover {
   gap: 0.5rem;
   margin-bottom: 0.75rem;
   padding: 0.4rem 0.6rem;
-  background: var(--bg-tertiary);
+  background: var(--funding-badge-bg);
   border-radius: 6px;
   width: fit-content;
 }
@@ -1106,7 +1110,7 @@ a:hover {
 .project-funding-label {
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--funding-badge-text);
   white-space: nowrap;
 }
 
