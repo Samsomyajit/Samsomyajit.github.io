@@ -508,6 +508,12 @@ function renderProjects() {
             <h3 class="project-title">${project.title}</h3>
             <p class="project-subtitle">${project.subtitle}</p>
             <p class="project-description">${project.description}</p>
+            ${project.fundingIcon ? `
+              <div class="project-funding">
+                <img src="${project.fundingIcon}" alt="${project.fundingLabel || 'Funding body'}" class="project-funding-icon" title="${project.fundingLabel || ''}">
+                ${project.fundingLabel ? `<span class="project-funding-label">${project.fundingLabel}</span>` : ''}
+              </div>
+            ` : ''}
             <div class="project-topics">
               ${project.tags.map(tag => `<span class="topic-tag">${tag}</span>`).join('')}
             </div>
@@ -518,6 +524,11 @@ function renderProjects() {
               ${project.paperUrl ? `
                 <a href="${project.paperUrl}" target="_blank" rel="noopener" class="project-link secondary">
                   ${icons.fileText} Paper
+                </a>
+              ` : ''}
+              ${project.projectUrl ? `
+                <a href="${project.projectUrl}" target="_blank" rel="noopener" class="project-link secondary">
+                  ${icons.externalLink} Website
                 </a>
               ` : ''}
             </div>
