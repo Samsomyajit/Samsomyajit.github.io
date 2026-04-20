@@ -4,6 +4,8 @@ import { publications, scholarUrl } from '../data/publications';
 import { FadeIn, AnimatedCard, StaggerContainer, StaggerItem } from '../components/AnimatedComponents';
 
 function PublicationCard({ pub, type }) {
+  const linkText = type === 'Patent' ? 'View Patent' : 'View Publication';
+
   return (
     <AnimatedCard className="publication-card">
       {pub.thumbnail && (
@@ -27,7 +29,7 @@ function PublicationCard({ pub, type }) {
         {pub.status && <span className="pub-status">{pub.status}</span>}
         {pub.url && (
           <a href={pub.url} target="_blank" rel="noopener noreferrer" className="pub-link">
-            View Patent <ExternalLink size={14} />
+            {linkText} <ExternalLink size={14} />
           </a>
         )}
       </div>
