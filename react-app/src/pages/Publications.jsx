@@ -18,11 +18,17 @@ function PublicationCard({ pub, type }) {
         <div className="pub-details">
           {pub.journal && <span className="pub-venue">{pub.journal}</span>}
           {pub.conference && <span className="pub-venue">{pub.conference}</span>}
+          {pub.applicationNumber && <span className="pub-volume">{pub.applicationNumber}</span>}
           {pub.volume && <span className="pub-volume">Vol. {pub.volume}</span>}
           {pub.pages && <span className="pub-pages">pp. {pub.pages}</span>}
           <span className="pub-year">{pub.year}</span>
         </div>
         {pub.status && <span className="pub-status">{pub.status}</span>}
+        {pub.url && (
+          <a href={pub.url} target="_blank" rel="noopener noreferrer" className="pub-link">
+            View Patent <ExternalLink size={14} />
+          </a>
+        )}
       </div>
     </AnimatedCard>
   );
@@ -33,7 +39,8 @@ export default function Publications() {
     publications.journals.length + 
     publications.conferences.length + 
     publications.preprints.length + 
-    publications.underReview.length;
+    publications.underReview.length +
+    publications.patents.length;
 
   return (
     <div className="page publications-page">
@@ -78,6 +85,10 @@ export default function Publications() {
             <div className="stat-item">
               <span className="stat-number">{publications.underReview.length}</span>
               <span className="stat-label">Under Review</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">{publications.patents.length}</span>
+              <span className="stat-label">Patents</span>
             </div>
             <div className="stat-item">
               <span className="stat-number">{totalPubs}</span>
@@ -138,6 +149,25 @@ export default function Publications() {
             {publications.conferences.map((pub) => (
               <StaggerItem key={pub.id}>
                 <PublicationCard pub={pub} type="Conference" />
+              </StaggerItem>
+            ))}
+          </div>
+        </StaggerContainer>
+      </section>
+
+      {/* Patents */}
+      <section className="pub-section">
+        <FadeIn>
+          <h2 className="section-title">
+            <FileText size={24} />
+            Patents
+          </h2>
+        </FadeIn>
+        <StaggerContainer staggerDelay={0.1}>
+          <div className="publications-grid">
+            {publications.patents.map((pub) => (
+              <StaggerItem key={pub.id}>
+                <PublicationCard pub={pub} type="Patent" />
               </StaggerItem>
             ))}
           </div>

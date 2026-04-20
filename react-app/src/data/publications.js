@@ -100,6 +100,18 @@ export const publications = {
       thumbnail: "/assets/img/MScDA.png",
     },
   ],
+  patents: [
+    {
+      id: 12,
+      title: "基于多智能体协同优化的药物溶出曲线预测方法、设备及存储介质",
+      authors: "Inventor: 叶一明",
+      year: 2025,
+      applicationNumber: "CN121662209A",
+      journal: "Chinese Patent Application",
+      url: "https://patents.google.com/patent/CN121662209A/en?oq=CN121662209A",
+      thumbnail: "https://github.com/user-attachments/assets/5e80c609-1df9-479d-9c9e-13b6156987fd",
+    },
+  ],
 };
 
 export const scholarUrl = "https://scholar.google.com/citations?user=R9Wr3yQAAAAJ&hl=en&oi=ao";
