@@ -35,6 +35,12 @@ title: "Publications"
 - **Chakraborty, S., Chakraborty, D., Mondal, K., Das, S., Jana, A. and Gayen, A., 2025.**  
   _BioGraphVAE: A Bio-inspired Autoencoder for Structured Data Reconstruction._ In 2nd International Symposium on Artificial Intelligence and Internet of Things (AIIoT-25).
 
+- **Gayen, A., Paul, S., Chakraborty, S. and Jana, A., 2026.**  
+  _LeX-Route: Automated Petition Routing in Indian Judiciary with Hybrid Embedding Ensembles._ In 27th Engineering Applications of Neural Networks (EAAAI/EANN 2026).
+
+- **Chakraborty, S., Naskar, S., Paul, S., Chakraborty, N., Gayen, A. and Jana, A., 2026.**  
+  _CenterDistill: Weakly-Supervised Distillation for Ambiguity-Aware Cross-Lingual QA._ In 27th Engineering Applications of Neural Networks (EAAAI/EANN 2026).
+
 ## 📄 Preprints
 - **Gayen, A. and Chakraborty, S. (2020).**  
   _MedicaNet: Trust based recommender system to recommend doctors with the help of symptoms._ Computational Intelligence and Neuroscience, 2020(8826557).

@@ -81,6 +81,20 @@ export const publications = {
       year: 2025,
       conference: "2nd International Symposium on Artificial Intelligence and Internet of Things (AIIoT-25)",
     },
+    {
+      id: 13,
+      title: "LeX-Route: Automated Petition Routing in Indian Judiciary with Hybrid Embedding Ensembles",
+      authors: "Gayen, A., Paul, S., Chakraborty, S. and Jana, A.",
+      year: 2026,
+      conference: "27th Engineering Applications of Neural Networks (EAAAI/EANN 2026)",
+    },
+    {
+      id: 14,
+      title: "CenterDistill: Weakly-Supervised Distillation for Ambiguity-Aware Cross-Lingual QA",
+      authors: "Chakraborty, S., Naskar, S., Paul, S., Chakraborty, N., Gayen, A. and Jana, A.",
+      year: 2026,
+      conference: "27th Engineering Applications of Neural Networks (EAAAI/EANN 2026)",
+    },
   ],
   preprints: [
     {
