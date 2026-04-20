@@ -19,7 +19,7 @@ function PublicationCard({ pub, type }) {
           {pub.journal && <span className="pub-venue">{pub.journal}</span>}
           {pub.conference && <span className="pub-venue">{pub.conference}</span>}
           {pub.patentOffice && <span className="pub-venue">{pub.patentOffice}</span>}
-          {pub.applicationNumber && <span className="pub-application-number">{pub.applicationNumber}</span>}
+          {pub.publicationNumber && <span className="pub-application-number">{pub.publicationNumber}</span>}
           {pub.volume && <span className="pub-volume">Vol. {pub.volume}</span>}
           {pub.pages && <span className="pub-pages">pp. {pub.pages}</span>}
           <span className="pub-year">{pub.year}</span>
