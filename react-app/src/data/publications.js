@@ -107,7 +107,7 @@ export const publications = {
       authors: "Inventor: 叶一明",
       year: 2025,
       applicationNumber: "CN121662209A",
-      journal: "Chinese Patent Application",
+      patentOffice: "China National Intellectual Property Administration (CNIPA)",
       url: "https://patents.google.com/patent/CN121662209A/en?oq=CN121662209A",
       thumbnail: "https://github.com/user-attachments/assets/5e80c609-1df9-479d-9c9e-13b6156987fd",
     },
