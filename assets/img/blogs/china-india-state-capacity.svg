@@ -1,0 +1,40 @@
+<svg width="1400" height="850" viewBox="0 0 1400 850" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">State Capacity and Industrial Absorption</title>
+  <desc id="desc">Conceptual chart contrasting high coordinated state capacity and fragmented implementation pathways.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <linearGradient id="lineChina" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fb7185"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+    <linearGradient id="lineIndia" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1400" height="850" fill="url(#bg)"/>
+
+  <text x="700" y="72" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="700" text-anchor="middle">State Capacity and Labour Transformation</text>
+
+  <line x1="140" y1="730" x2="1260" y2="730" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="140" y1="140" x2="140" y2="730" stroke="#94a3b8" stroke-width="2"/>
+
+  <text x="700" y="795" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="26" text-anchor="middle">Time and policy continuity</text>
+  <text x="54" y="450" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="26" transform="rotate(-90 54,450)" text-anchor="middle">Industrial absorption capacity</text>
+
+  <polyline points="170,690 300,620 450,520 620,420 820,320 1040,230 1220,180" fill="none" stroke="url(#lineChina)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="170,690 300,665 450,640 620,610 820,570 1040,535 1220,500" fill="none" stroke="url(#lineIndia)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="1040" cy="230" r="12" fill="#f43f5e"/>
+  <circle cx="1040" cy="535" r="12" fill="#3b82f6"/>
+
+  <rect x="870" y="176" width="250" height="58" rx="10" fill="#111827" stroke="#fda4af"/>
+  <text x="995" y="213" fill="#ffe4e6" font-family="Inter, Arial, sans-serif" font-size="24" text-anchor="middle">China: Coordinated scaling</text>
+
+  <rect x="870" y="485" width="260" height="58" rx="10" fill="#111827" stroke="#93c5fd"/>
+  <text x="1000" y="522" fill="#dbeafe" font-family="Inter, Arial, sans-serif" font-size="24" text-anchor="middle">India: Uneven transition</text>
+</svg>
