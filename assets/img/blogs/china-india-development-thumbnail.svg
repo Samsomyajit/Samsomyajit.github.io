@@ -1,0 +1,42 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">China and India Development Comparison</title>
+  <desc id="desc">A stylized split graphic comparing development pathways in China and India.</desc>
+  <defs>
+    <linearGradient id="bgLeft" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8b0000"/>
+      <stop offset="100%" stop-color="#d32f2f"/>
+    </linearGradient>
+    <linearGradient id="bgRight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b3d91"/>
+      <stop offset="100%" stop-color="#1565c0"/>
+    </linearGradient>
+    <linearGradient id="grid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="630" fill="url(#bgLeft)"/>
+  <rect x="600" width="600" height="630" fill="url(#bgRight)"/>
+
+  <g opacity="0.22">
+    <rect x="120" y="130" width="24" height="360" fill="url(#grid)"/>
+    <rect x="168" y="210" width="24" height="280" fill="url(#grid)"/>
+    <rect x="216" y="170" width="24" height="320" fill="url(#grid)"/>
+    <rect x="912" y="250" width="24" height="240" fill="url(#grid)"/>
+    <rect x="960" y="280" width="24" height="210" fill="url(#grid)"/>
+    <rect x="1008" y="320" width="24" height="170" fill="url(#grid)"/>
+  </g>
+
+  <line x1="600" y1="80" x2="600" y2="550" stroke="#ffffff" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="8 10"/>
+
+  <text x="300" y="150" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700" text-anchor="middle">China</text>
+  <text x="900" y="150" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700" text-anchor="middle">India</text>
+
+  <text x="600" y="260" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="800" text-anchor="middle">Development Paths</text>
+  <text x="600" y="320" fill="#f5f5f5" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="500" text-anchor="middle">Work • State Capacity • Structural Change</text>
+
+  <rect x="320" y="390" width="560" height="120" rx="16" fill="#111827" fill-opacity="0.45" stroke="#ffffff" stroke-opacity="0.28"/>
+  <text x="600" y="445" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600" text-anchor="middle">Why China Pulled Ahead</text>
+  <text x="600" y="482" fill="#e5e7eb" font-family="Inter, Arial, sans-serif" font-size="24" text-anchor="middle">and Why India Moved More Slowly</text>
+</svg>

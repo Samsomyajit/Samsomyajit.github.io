@@ -113,6 +113,15 @@ const scholarUrl = "https://scholar.google.com/citations?user=R9Wr3yQAAAAJ&hl=en
 // ============================================
 const blogs = [
   {
+    id: 'china-india-development',
+    title: 'Why China Pulled Ahead While India Moved More Slowly: Work, State Capacity, and the Politics of Development',
+    category: 'Research',
+    date: '2026-04-23',
+    excerpt: 'A comparative analysis of how state capacity, labour transformation, and social aspiration shaped divergent development trajectories in China and India.',
+    contentUrl: 'blogs/china_india_development_blog.md',
+    image: 'assets/img/blogs/china-india-development-thumbnail.svg',
+  },
+  {
     id: 'feminism-soft-heart',
     title: 'Feminism, Men, and the Discipline of a Soft Heart',
     category: 'Anecdotes',

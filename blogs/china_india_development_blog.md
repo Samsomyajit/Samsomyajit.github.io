@@ -14,6 +14,8 @@ This is where the contrast with India becomes sharp. India has achieved major su
 To understand this divergence, one must look at several layers at once: ideology, state capacity, geography, labour mobilisation, urbanisation, export strategy, leadership quality, and social values about work. One must also understand the cultural psychology behind modern Chinese reform and the social psychology behind India’s employment crisis.
 
 In that sense, Lu Xun and Yu Dafu are not ornamental references. They are part of the story. Lu Xun stands for the moral necessity of awakening a society trapped inside an “iron house” of old habits and decaying institutions (Lu Xun, 1922; Encyclopaedia Britannica, 2026a). Yu Dafu, who began with intensely personal anguish and later shifted toward concern for “the state of the masses,” captures another emotional truth of modern China: national humiliation was transformed into a developmental will (Encyclopaedia Britannica, 2026b). That emotional conversion mattered. China’s twentieth century did not only produce revolution. It produced a state determined not to remain weak.
+![China and India development comparison](assets/img/blogs/china-india-development-thumbnail.svg)
+
 
 ---
 
@@ -78,6 +80,8 @@ But geography only became economically decisive because policy activated it. Por
 India also has a large coastline and several major urban centres. Its problem has not been pure geographical disadvantage. Rather, it has been weaker integration of geography with industrial policy, logistics, urban governance, and labour-intensive manufacturing strategy. This is why India grew strongly in some services and technology sectors without generating a China-like manufacturing takeoff.
 
 So geography explains part of the story—but only in interaction with state capacity.
+![State capacity and labour transformation comparison](assets/img/blogs/china-india-state-capacity.svg)
+
 
 ---
 
@@ -110,6 +114,8 @@ This matters because prestige can distort labour allocation. If too many talente
 China’s rise was different in this respect. The reform period did not erase hierarchy or status, but it normalised the idea that millions could move through factories, workshops, construction sites, local administrations, and export firms without such work being treated as socially shameful. The political culture of revolution, mass mobilisation, and socialist production had already weakened some older prejudices against manual and collective labour. Reform-era marketisation then gave those forms of labour higher returns.
 
 India, by contrast, still struggles with a cultural economy in which “success” is often imagined vertically rather than widely. Too many people are taught to climb into a tiny tower instead of helping build a broad productive base.
+![Aspiration breadth versus employment breadth](assets/img/blogs/china-india-jobs-aspiration.svg)
+
 
 ---
 
