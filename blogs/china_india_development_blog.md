@@ -246,7 +246,7 @@ Zeng, D.Z. (2011) *How Do Special Economic Zones and Industrial Clusters Drive C
 
 ---
 
-## Suggested books for expanding this into a longer essay or chapter
+## Suggested books for reading
 
 1. Vogel, E.F. (2011) *Deng Xiaoping and the Transformation of China*.
 2. Naughton, B. (2018) *The Chinese Economy: Adaptation and Growth*.
