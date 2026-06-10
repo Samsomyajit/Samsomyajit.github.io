@@ -10,7 +10,7 @@ tags:
   - philosophy of technology
   - governance
   - future of humanity
-cover: "homo_in_compitis_expanded_assets/blog_hero_homo_in_compitis.png"
+cover: "https://github.com/user-attachments/assets/9027f0f7-a670-4eb1-81df-39cacb6ae661"
 ---
 
 
