@@ -169,7 +169,7 @@ The challenge of AI is therefore not only technical. It is spiritual, philosophi
 
 ## 6. From Obedient Tools to Co-Evolution: What Human–AI Research Adds
 
-A recent research framework helps sharpen this reflection. Chakraborty (2026) argues that the old imagination of AI as a merely obedient tool is no longer sufficient. Classical robot ethics, often symbolized by Asimov’s laws, imagines the machine as a servant whose main duty is to obey and avoid harm. That framework is culturally influential, but it assumes a relatively simple relationship: a human gives instructions, a machine follows them, and ethics is built into the hierarchy of command.
+A recent research framework made by me helps sharpen this reflection. Chakraborty (2026) argues that the old imagination of AI as a merely obedient tool is no longer sufficient. Classical robot ethics, often symbolized by Asimov’s laws, imagines the machine as a servant whose main duty is to obey and avoid harm. That framework is culturally influential, but it assumes a relatively simple relationship: a human gives instructions, a machine follows them, and ethics is built into the hierarchy of command.
 
 Contemporary AI is no longer so simple. Modern systems are generative, adaptive, increasingly multimodal, sometimes embedded in institutions, and moving toward world-model-based and embodied forms. They do not merely execute isolated commands. They participate in workflows, shape attention, support decisions, generate information environments, and may eventually act through robots, laboratories, vehicles, infrastructure, and other physical systems.
 
@@ -183,7 +183,7 @@ We must also ask:
 
 > “How can humans, AI systems, and institutions develop together without domination, dependency, manipulation, or social collapse?”
 
-Chakraborty (2026) describes this as **conditional mutualism under governance**. The phrase is important because it refuses two extremes. It does not imagine AI as a simple slave, and it does not romanticize AI as an independent species that should be left alone. Instead, it treats coexistence as a conditional relationship: humans and AI systems can create reciprocal benefits, but those benefits remain stable only when bounded by governance, reversibility, psychological safety, and social legitimacy.
+I explored this as **conditional mutualism under governance**. The phrase is important because it refuses two extremes. It does not imagine AI as a simple slave, and it does not romanticize AI as an independent species that should be left alone. Instead, it treats coexistence as a conditional relationship: humans and AI systems can create reciprocal benefits, but those benefits remain stable only when bounded by governance, reversibility, psychological safety, and social legitimacy.
 
 This idea connects directly to the theme of imagination. If technology changes what we can imagine, then AI changes not only imagination but also the conditions under which imagination is produced. It can become a collaborator, tutor, designer, simulator, critic, assistant, and mirror. But without governance, it can also become a system of dependency, manipulation, surveillance, and asymmetric power.
 
@@ -201,7 +201,7 @@ The movement is from tool to ecosystem, from command to coexistence, from obedie
 
 ## 7. The Three Worlds of Human–AI Coexistence
 
-One of the strongest ideas in Chakraborty (2026) is that human–AI coexistence does not occur in one world. It occurs across at least three connected worlds: the physical, the psychological, and the social.
+One of the strongest ideas I studied is that human–AI coexistence does not occur in one world. It occurs across at least three connected worlds: the physical, the psychological, and the social.
 
 | World | What it includes | Why it matters |
 |---|---|---|
@@ -346,7 +346,7 @@ This is where imagination must become ethical. To imagine a future is not only t
 
 ## 11. Design Principles for a Future Worth Building
 
-Chakraborty (2026) identifies several principles for governed coexistence. They can be adapted into a broader philosophy of technology and imagination.
+My paper identifies several principles for governed coexistence. They can be adapted into a broader philosophy of technology and imagination.
 
 | Principle | Meaning for human imagination and society |
 |---|---|
