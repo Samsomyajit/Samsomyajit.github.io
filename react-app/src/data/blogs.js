@@ -1,5 +1,14 @@
 export const blogs = [
   {
+    id: 'homo-in-compitis',
+    title: 'Homo in Compitis: The Magic of Human Imagination and Technology',
+    category: 'Research',
+    date: '2026-06-10',
+    excerpt: 'A long-form reflection on human imagination, AI coexistence, and governance, grounded in the co-evolutionary arXiv framework.',
+    contentUrl: '/blogs/homoincompitis/Homo_in_Compitis_Blog.md',
+    image: 'https://github.com/user-attachments/assets/9027f0f7-a670-4eb1-81df-39cacb6ae661',
+  },
+  {
     id: 'story-so-far',
     title: 'My Story So Far!',
     category: 'Anecdotes',
