@@ -10,10 +10,13 @@ tags:
   - philosophy of technology
   - governance
   - future of humanity
+cover: "https://github.com/user-attachments/assets/9027f0f7-a670-4eb1-81df-39cacb6ae661"
 ---
 
 
 # Homo in Compitis: The Magic of Human Imagination and Technology
+
+![Homo in Compitis banner](https://github.com/user-attachments/assets/9027f0f7-a670-4eb1-81df-39cacb6ae661)
 
 > *Technology may look like magic, but imagination is the deeper magic: the flame that turns tools into civilization, knowledge into wisdom, and the present into a future worth building.*
 
@@ -416,3 +419,11 @@ Chakraborty, S. (2026) ‘A Co-Evolutionary Theory of Human–AI Coexistence: Mu
 Clarke, A.C. (1973) *Profiles of the Future: An Inquiry into the Limits of the Possible*. Revised edition. New York: Harper & Row.
 
 Descartes, R. (1637) *Discourse on the Method*. Leiden: Jan Maire.
+
+Floridi, L. and Cowls, J. (2019) ‘A Unified Framework of Five Principles for AI in Society’, *Harvard Data Science Review*, 1(1). Available at: https://doi.org/10.1162/99608f92.8cd550d1
+
+Russell, S. and Norvig, P. (2021) *Artificial Intelligence: A Modern Approach*. 4th edn. Pearson.
+
+Turing, A.M. (1950) ‘Computing Machinery and Intelligence’, *Mind*, 59(236), pp. 433–460. Available at: https://doi.org/10.1093/mind/LIX.236.433
+
+Wiener, N. (1960) *The Human Use of Human Beings: Cybernetics and Society*. Revised edn. New York: Doubleday.
