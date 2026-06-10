@@ -296,7 +296,7 @@ This figure strengthens the blog because it shows that governance quality matter
 
 ## 9. Imagination as a Governance Problem
 
-The original essay asks: as technology transforms the world, how does it reshape our imagination?
+As technology transforms the world, how does it reshape our imagination?
 
 The research discussion allows a sharper answer: in the age of AI, imagination itself becomes a governance problem.
 
