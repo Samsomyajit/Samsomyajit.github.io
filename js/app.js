@@ -443,32 +443,32 @@ function parseMarkdown(text) {
 function convertMarkdownTables(text) {
   const lines = text.split('\n');
   const output = [];
-  let i = 0;
+  let lineIndex = 0;
 
   const isAlignmentRow = (line) => /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(line);
   const isTableRow = (line) => /^\s*\|.*\|\s*$/.test(line);
   const parseCells = (line) => line.replace(/^\s*\|/, '').replace(/\|\s*$/, '').split('|').map(cell => cell.trim());
 
-  while (i < lines.length) {
-    if (i + 1 < lines.length && isTableRow(lines[i]) && isAlignmentRow(lines[i + 1])) {
-      const headers = parseCells(lines[i]);
-      i += 2;
+  while (lineIndex < lines.length) {
+    if (lineIndex + 1 < lines.length && isTableRow(lines[lineIndex]) && isAlignmentRow(lines[lineIndex + 1])) {
+      const headers = parseCells(lines[lineIndex]);
+      lineIndex += 2;
 
       const rows = [];
-      while (i < lines.length && isTableRow(lines[i])) {
-        rows.push(parseCells(lines[i]));
-        i++;
+      while (lineIndex < lines.length && isTableRow(lines[lineIndex])) {
+        rows.push(parseCells(lines[lineIndex]));
+        lineIndex++;
       }
 
-      const headerHtml = headers.map(cell => `<th>${cell}</th>`).join('');
+      const headerHtml = headers.map(cell => `<th>${escapeHtml(cell)}</th>`).join('');
       const bodyHtml = rows
-        .map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`)
+        .map(row => `<tr>${row.map(cell => `<td>${escapeHtml(cell)}</td>`).join('')}</tr>`)
         .join('');
 
       output.push(`<table><thead><tr>${headerHtml}</tr></thead><tbody>${bodyHtml}</tbody></table>`);
     } else {
-      output.push(lines[i]);
-      i++;
+      output.push(lines[lineIndex]);
+      lineIndex++;
     }
   }
 
