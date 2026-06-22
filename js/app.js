@@ -386,6 +386,8 @@ function parseMarkdown(text) {
     // Match opening script tag, any content, and closing script tag with flexible whitespace
     text = text.replace(/<script\b[\s\S]*?<\/\s*script[\s\S]*?>/gi, '');
   } while (text !== previousText);
+
+  text = convertMarkdownTables(text);
   
   text = text
     // Horizontal rules (must be before other replacements)
@@ -436,6 +438,47 @@ function parseMarkdown(text) {
   });
   
   return text;
+}
+
+function convertMarkdownTables(text) {
+  const lines = text.split('\n');
+  const output = [];
+  let lineIndex = 0;
+
+  const isAlignmentRow = (line) => /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(line);
+  const isTableRow = (line) => /^\s*\|.*\|\s*$/.test(line);
+  const parseCells = (line) => line.replace(/^\s*\|/, '').replace(/\|\s*$/, '').split('|').map(cell => cell.trim());
+  const escapeTableCell = (cell) => cell
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+  while (lineIndex < lines.length) {
+    if (lineIndex + 1 < lines.length && isTableRow(lines[lineIndex]) && isAlignmentRow(lines[lineIndex + 1])) {
+      const headers = parseCells(lines[lineIndex]);
+      lineIndex += 2;
+
+      const rows = [];
+      while (lineIndex < lines.length && isTableRow(lines[lineIndex])) {
+        rows.push(parseCells(lines[lineIndex]));
+        lineIndex++;
+      }
+
+      const headerHtml = headers.map(cell => `<th>${escapeTableCell(cell)}</th>`).join('');
+      const bodyHtml = rows
+        .map(row => `<tr>${row.map(cell => `<td>${escapeTableCell(cell)}</td>`).join('')}</tr>`)
+        .join('');
+
+      output.push(`<table><thead><tr>${headerHtml}</tr></thead><tbody>${bodyHtml}</tbody></table>`);
+    } else {
+      output.push(lines[lineIndex]);
+      lineIndex++;
+    }
+  }
+
+  return output.join('\n');
 }
 
 // Helper function to escape HTML in code blocks

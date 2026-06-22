@@ -250,7 +250,7 @@ The key comparison is between three regimes:
 
 *Table 1. Scenario-level summary metrics reproduced from Chakraborty (2026). The baseline regime yields high coexistence and negligible domination; no governance produces domination and high conflict; over-governance avoids domination but suppresses productive mutualism.*
 
-![Governance regime metrics derived from Chakraborty 2026.](governance_regime_metrics.png)
+![Governance regime metrics derived from Chakraborty 2026.](blogs/homoincompitis/governance_regime_metrics.png)
 
 *Figure 3. Derived visualization of the scenario-level metrics. Governed mutualism gives the highest coexistence and lowest conflict. No governance produces domination. Over-governance avoids domination but remains slow and low in productive coexistence.*
 
@@ -362,7 +362,7 @@ My paper identifies several principles for governed coexistence. They can be ada
 
 ### Suggested figure from the paper
 
-![Design principles for governed coexistence.](https://arxiv.org/html/2604.22227v3/Figures/FIgure6.png)
+![Design principles for governed coexistence.](https://arxiv.org/html/2604.22227v3/Figures/Figure6.png)
 
 *Figure 6. Design principles for governed human–AI coexistence. Source: Chakraborty (2026).*
 
