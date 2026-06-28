@@ -25,6 +25,7 @@
 
   loadScript('js/app-original.js', () => {
     if (document.readyState !== 'loading' && typeof init === 'function') {
+      document.removeEventListener('DOMContentLoaded', init);
       init();
     }
     loadScript('js/i18n.js');
