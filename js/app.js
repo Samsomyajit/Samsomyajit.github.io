@@ -2,6 +2,7 @@
   'use strict';
 
   const PACEPAL_TITLE = 'PacePal: A Geo-Aware Retrieval-Augmented Chatbot Agent for Walking Engagement and Well-Being';
+  const FOURIER_WAVELET_TITLE = 'A Physics-Informed Fourier-Wavelet Transformer for Multiscale Computational Fluid Dynamics Surrogate Modeling';
   const ROUTE_PATHS = Object.freeze({
     home: '/',
     publications: '/publications/',
@@ -61,18 +62,137 @@
   let siteInitialized = false;
   let animationObserver = null;
 
-  function addPacePalPublication() {
-    if (typeof publications === 'undefined' || !Array.isArray(publications.conferences)) return;
-    if (publications.conferences.some((item) => item.title === PACEPAL_TITLE)) return;
+  function addNewPublications() {
+    if (typeof publications === 'undefined') return;
 
-    publications.conferences.unshift({
-      id: 12,
-      title: PACEPAL_TITLE,
-      authors: 'Chakraborty, S., Shoaib, M., Minghim, R. and Tabassum, M.',
-      year: 2026,
-      conference: '1st International Conference on Human-Centric Artificial Intelligence (ICHCAI 2026), Halden, Norway',
-      publisher: 'IEEE Xplore',
-      status: 'Accepted for presentation and publication, subject to revisions and publication checks'
+    if (Array.isArray(publications.conferences) && !publications.conferences.some((item) => item.title === PACEPAL_TITLE)) {
+      publications.conferences.unshift({
+        id: 12,
+        title: PACEPAL_TITLE,
+        authors: 'Chakraborty, S., Shoaib, M., Minghim, R. and Tabassum, M.',
+        year: 2026,
+        conference: '1st International Conference on Human-Centric Artificial Intelligence (ICHCAI 2026), Halden, Norway',
+        publisher: 'IEEE Xplore',
+        dates: '27–28 May 2026',
+        status: 'Accepted for presentation and publication, subject to revisions, IEEE quality and plagiarism checks, and conference-scope alignment'
+      });
+    }
+
+    if (Array.isArray(publications.preprints) && !publications.preprints.some((item) => item.title === FOURIER_WAVELET_TITLE)) {
+      publications.preprints.unshift({
+        id: 13,
+        title: FOURIER_WAVELET_TITLE,
+        authors: 'Chakraborty, S., Pan, M. and Chen, X.',
+        year: 2026,
+        journal: 'arXiv preprint arXiv:2606.24696',
+        url: 'https://arxiv.org/abs/2606.24696',
+        status: 'Submitted to Engineering Applications of Artificial Intelligence'
+      });
+    }
+  }
+
+  function findPublicationGroup(title) {
+    return [...document.querySelectorAll('#page-publications .pub-compact-group')].find((group) => {
+      const heading = group.querySelector('.section-title');
+      return heading && heading.textContent.trim().includes(title);
+    });
+  }
+
+  function createCompactPublicationCard({ badge, badgeClass, title, authors, meta, link }) {
+    const card = document.createElement('div');
+    card.className = 'pub-compact-card animated-card';
+    card.dataset.publicationTitle = title;
+
+    const badgeElement = document.createElement('span');
+    badgeElement.className = `pub-compact-badge ${badgeClass}`;
+    badgeElement.textContent = badge;
+
+    const content = document.createElement('div');
+    content.className = 'pub-compact-content';
+
+    const titleElement = document.createElement('div');
+    titleElement.className = 'pub-compact-title';
+    titleElement.textContent = title;
+
+    const authorsElement = document.createElement('div');
+    authorsElement.className = 'pub-compact-authors';
+    authorsElement.textContent = authors;
+
+    const metaElement = document.createElement('div');
+    metaElement.className = 'pub-compact-meta';
+    meta.forEach((item, index) => {
+      if (index > 0) {
+        const separator = document.createElement('span');
+        separator.className = 'pub-compact-meta-sep';
+        separator.textContent = '·';
+        metaElement.appendChild(separator);
+      }
+      const span = document.createElement('span');
+      span.textContent = item;
+      metaElement.appendChild(span);
+    });
+
+    if (link) {
+      const separator = document.createElement('span');
+      separator.className = 'pub-compact-meta-sep';
+      separator.textContent = '·';
+      const anchor = document.createElement('a');
+      anchor.href = link;
+      anchor.target = '_blank';
+      anchor.rel = 'noopener';
+      anchor.textContent = 'arXiv';
+      metaElement.append(separator, anchor);
+    }
+
+    content.append(titleElement, authorsElement, metaElement);
+    card.append(badgeElement, content);
+    return card;
+  }
+
+  function addPublicationCardsToPage() {
+    const publicationPage = document.getElementById('page-publications');
+    if (!publicationPage) return;
+
+    const conferenceGroup = findPublicationGroup('Conference Proceedings');
+    const conferenceList = conferenceGroup?.querySelector('.pub-compact-list');
+    if (conferenceList && !publicationPage.querySelector(`[data-publication-title="${PACEPAL_TITLE}"]`)) {
+      conferenceList.appendChild(createCompactPublicationCard({
+        badge: 'Conf.',
+        badgeClass: 'conference',
+        title: PACEPAL_TITLE,
+        authors: 'Chakraborty, S., Shoaib, M., Minghim, R. and Tabassum, M.',
+        meta: ['ICHCAI 2026 — IEEE Xplore', 'Halden, Norway', '27–28 May 2026', 'Accepted']
+      }));
+    }
+
+    const preprintGroup = findPublicationGroup('Preprints');
+    const preprintList = preprintGroup?.querySelector('.pub-compact-list');
+    if (preprintList && !publicationPage.querySelector(`[data-publication-title="${FOURIER_WAVELET_TITLE}"]`)) {
+      preprintList.appendChild(createCompactPublicationCard({
+        badge: 'Preprint',
+        badgeClass: 'preprint',
+        title: FOURIER_WAVELET_TITLE,
+        authors: 'Chakraborty, S., Pan, M. and Chen, X.',
+        meta: ['arXiv:2606.24696', 'Submitted to Engineering Applications of Artificial Intelligence', '2026'],
+        link: 'https://arxiv.org/abs/2606.24696'
+      }));
+    }
+
+    const kpis = [...publicationPage.querySelectorAll('.kpi-pill')];
+    const counts = {
+      Journals: 4,
+      Conferences: 6,
+      'Under Review': 2,
+      Preprints: 3,
+      Patents: 1,
+      Total: 16
+    };
+    kpis.forEach((pill) => {
+      const label = pill.querySelector('.kpi-pill-label')?.textContent.trim();
+      const number = pill.querySelector('.kpi-pill-number');
+      if (label && number && Object.prototype.hasOwnProperty.call(counts, label)) {
+        number.textContent = String(counts[label]);
+      }
     });
   }
 
@@ -274,6 +394,7 @@
       }, 'heroBound');
     });
 
+    addPublicationCardsToPage();
     optimizeImages();
     setCleanNavigationUrls();
     navigateFromHash();
@@ -411,7 +532,7 @@
     document.head.appendChild(script);
   }
 
-  addPacePalPublication();
+  addNewPublications();
   ensureRootBase();
 
   const preload = document.createElement('link');
