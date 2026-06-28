@@ -6,7 +6,7 @@
     {
       category: 'Programme',
       categoryZh: '项目',
-      text: 'Joined the 2026 DeeCamp AI4S Training Camp (聚焦AI4S！2026 DeeCamp科学智能训练营).',
+      text: 'Joining the 2026 DeeCamp AI4S Training Camp (聚焦AI4S！2026 DeeCamp科学智能训练营).',
       textZh: '加入 2026 DeeCamp 科学智能训练营（聚焦 AI4S）。'
     },
     {
@@ -42,7 +42,7 @@
     {
       category: 'Industry',
       categoryZh: '产业合作',
-      text: 'Industrial partnership with a Beijing-based corporation on a pipeline digital twin for CFD analysis.',
+      text: 'Industrial partnership with Beijing Corp on a pipeline digital twin for CFD analysis.',
       textZh: '与北京企业开展管道数字孪生与 CFD 分析产业合作。'
     }
   ];
