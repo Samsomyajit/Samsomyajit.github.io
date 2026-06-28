@@ -1,0 +1,1 @@
+const publicationTarget=document.querySelector('[data-publication-list]');if(publicationTarget){publicationTarget.textContent='PacePal — accepted at ICHCAI 2026. Full publication record: Google Scholar.';}
