@@ -1,0 +1,7 @@
+window.PUBLICATIONS.push(
+['2025','Journal','Comeback or dropout: study of discontinued researchers at early career stage','Gayen, A.; Chakraborty, S.; Mitra, S.; Jana, A.','Scientometrics 130(2), 1201–1236 · DOI 10.1007/s11192-025-05243-z','/research/comeback-researchers/'],
+['2025','Journal','Influence of Multi-dimensional Social Capital on Structure of Scientific Collaboration Networks: MDSC@SciCoNet','Gayen, A.; Chakraborty, S.; Chakraborty, N.; Jana, A.','SN Computer Science 6(5), 394 · DOI 10.1007/s42979-025-03945-y','https://doi.org/10.1007/s42979-025-03945-y'],
+['2025','Journal','Enhancing wind energy forecasting in India: A site-specific comparative analysis of machine learning models and Weibull statistics using long-term data','Yadav, H. K.; Chakraborty, S.; et al.','Sustainable Energy Technologies and Assessments 84, 104735',''],
+['2025','Under review','PIBERT: A Physics-Informed Bi-directional Hybrid Spectral Transformer for Multiscale CFD Surrogate Modeling','Chakraborty, S.; Ming, P.; Chen, X.','Journal of Computational Physics','/research/pibert/'],
+['2025','Under review','Machine learning assisted inverse design of low resistivity In-Ga-Sn-Zn oxide sputtering targets','Cheng, N.; Chakraborty, S.; et al.','Journal of Alloys and Compounds','']
+);
