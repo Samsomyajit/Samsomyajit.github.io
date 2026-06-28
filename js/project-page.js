@@ -2,39 +2,50 @@
   const project = window.PROJECT_PAGE;
   const root = document.querySelector('[data-project-page]');
   if (!project || !root) return;
+  const isChinese = document.documentElement.lang === 'zh-CN';
+  const bilingual = (element, en, zh) => {
+    element.dataset.en = en;
+    element.dataset.zh = zh;
+    element.textContent = isChinese ? zh : en;
+    return element;
+  };
 
   const heading = document.createElement('h1');
-  heading.textContent = project.title;
+  heading.textContent = isChinese && project.titleZh ? project.titleZh : project.title;
+  if (project.titleZh) { heading.dataset.en = project.title; heading.dataset.zh = project.titleZh; }
   const summary = document.createElement('p');
-  summary.textContent = project.summary;
+  summary.textContent = isChinese && project.summaryZh ? project.summaryZh : project.summary;
+  if (project.summaryZh) { summary.dataset.en = project.summary; summary.dataset.zh = project.summaryZh; }
   root.append(heading, summary);
 
   const sections = [
-    ['Research problem', project.problem],
-    ['Main contributions', project.contributions],
-    ['Authors and affiliations', project.authors],
-    ['Publication status', project.status],
-    ['Links', project.links],
-    ['Recommended citation', project.citation],
-    ['Related research', project.related],
-    ['Frequently asked questions', project.faq]
+    ['Research problem','研究问题',project.problem,project.problemZh],
+    ['Main contributions','主要贡献',project.contributions,project.contributionsZh],
+    ['Authors and affiliations','作者与机构',project.authors,project.authorsZh],
+    ['Publication status','出版状态',project.status,project.statusZh],
+    ['Links','链接',project.links,null],
+    ['Recommended citation','推荐引用',project.citation,null],
+    ['Related research','相关研究',project.related,null],
+    ['Frequently asked questions','常见问题',project.faq,project.faqZh]
   ];
 
-  sections.forEach(([title, value]) => {
+  sections.forEach(([title, titleZh, value, valueZh]) => {
     if (!value || (Array.isArray(value) && value.length === 0)) return;
     const section = document.createElement('section');
-    const h2 = document.createElement('h2');
-    h2.textContent = title;
-    section.append(h2);
+    section.append(bilingual(document.createElement('h2'), title, titleZh));
     if (Array.isArray(value)) {
       const list = document.createElement('ul');
-      value.forEach((item) => {
+      value.forEach((item, index) => {
         const li = document.createElement('li');
-        if (typeof item === 'string') li.textContent = item;
-        else {
+        const translated = Array.isArray(valueZh) ? valueZh[index] : null;
+        if (typeof item === 'string') {
+          li.textContent = isChinese && translated ? translated : item;
+          if (translated) { li.dataset.en = item; li.dataset.zh = translated; }
+        } else {
           const a = document.createElement('a');
           a.href = item.href;
-          a.textContent = item.label;
+          a.textContent = isChinese && item.labelZh ? item.labelZh : item.label;
+          if (item.labelZh) { a.dataset.en = item.label; a.dataset.zh = item.labelZh; }
           if (item.external) { a.target = '_blank'; a.rel = 'noopener'; }
           li.append(a);
         }
@@ -43,7 +54,8 @@
       section.append(list);
     } else {
       const p = document.createElement('p');
-      p.textContent = value;
+      p.textContent = isChinese && valueZh ? valueZh : value;
+      if (valueZh) { p.dataset.en = value; p.dataset.zh = valueZh; }
       section.append(p);
     }
     root.append(section);
