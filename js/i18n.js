@@ -1,8 +1,10 @@
-```javascript
 (() => {
-  const key = 'site-language';
-  let lang = localStorage.getItem(key) === 'zh-CN' ? 'zh-CN' : 'en';
+  'use strict';
 
+  if (window.__standaloneLanguagePackLoaded) return;
+  window.__standaloneLanguagePackLoaded = true;
+
+  const storageKey = 'site-language';
   const labels = {
     Home: '首页',
     Publications: '出版成果',
@@ -23,131 +25,120 @@
     Preprints: '预印本'
   };
 
+  let language = localStorage.getItem(storageKey) === 'zh-CN' ? 'zh-CN' : 'en';
   const originals = new WeakMap();
-  let button;
-  let originalHero;
+  const pendingRoots = new Set();
+  let scheduled = false;
+  let languageButton = null;
+  let originalHero = null;
 
-  function translate(root = document.body) {
-    const walker = document.createTreeWalker(
-      root,
-      NodeFilter.SHOW_TEXT
-    );
+  function translateTextNode(node) {
+    if (!node || node.nodeType !== Node.TEXT_NODE) return;
+    const parent = node.parentElement;
+    if (!parent || parent.closest('script, style, code, pre, .hero-title')) return;
 
-    let node;
+    if (!originals.has(node)) originals.set(node, node.nodeValue);
+    const original = originals.get(node);
+    const trimmed = original.trim();
+    const translated = labels[trimmed];
 
-    while ((node = walker.nextNode())) {
-      const parent = node.parentElement;
-
-      if (
-        !parent ||
-        parent.closest('script, style, code, pre, .hero-title')
-      ) {
-        continue;
-      }
-
-      if (!originals.has(node)) {
-        originals.set(node, node.nodeValue);
-      }
-
-      const original = originals.get(node);
-      const trimmed = original.trim();
-
-      if (lang === 'zh-CN' && labels[trimmed]) {
-        node.nodeValue = original.replace(trimmed, labels[trimmed]);
-      }
-
-      if (lang === 'en') {
-        node.nodeValue = original;
-      }
+    if (language === 'zh-CN' && translated) {
+      const desired = original.replace(trimmed, translated);
+      if (node.nodeValue !== desired) node.nodeValue = desired;
+    } else if (language === 'en' && node.nodeValue !== original) {
+      node.nodeValue = original;
     }
+  }
+
+  function translateSubtree(root) {
+    if (!root) return;
+    if (root.nodeType === Node.TEXT_NODE) {
+      translateTextNode(root);
+      return;
+    }
+    if (root.nodeType !== Node.ELEMENT_NODE) return;
+
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    let node;
+    while ((node = walker.nextNode())) translateTextNode(node);
   }
 
   function updateIdentity() {
     const title = document.querySelector('.hero-title');
-
     if (title) {
-      if (originalHero === undefined) {
-        originalHero = title.innerHTML;
-      }
-
-      title.innerHTML =
-        lang === 'zh-CN'
-          ? '叶一明 <span class="hero-subtitle">Sam（Somyajit Chakraborty）</span>'
-          : originalHero;
+      if (originalHero === null) originalHero = title.innerHTML;
+      const desired = language === 'zh-CN'
+        ? '叶一明 <span class="hero-subtitle">Sam（Somyajit Chakraborty）</span>'
+        : originalHero;
+      if (title.innerHTML !== desired) title.innerHTML = desired;
     }
 
     const logo = document.querySelector('.nav-logo');
-
     if (logo) {
-      logo.textContent =
-        lang === 'zh-CN'
-          ? '叶一明'
-          : 'Somyajit Chakraborty';
+      const desiredLogo = language === 'zh-CN' ? '叶一明' : 'Somyajit Chakraborty';
+      if (logo.textContent !== desiredLogo) logo.textContent = desiredLogo;
     }
   }
 
-  function apply(next) {
-    lang = next === 'zh-CN' ? 'zh-CN' : 'en';
+  function updateButton() {
+    if (!languageButton) return;
+    languageButton.textContent = language === 'zh-CN' ? 'EN' : '中文';
+    languageButton.setAttribute(
+      'aria-label',
+      language === 'zh-CN' ? 'Switch to English' : '切换为简体中文'
+    );
+  }
 
-    localStorage.setItem(key, lang);
-    document.documentElement.lang = lang;
-
+  function applyLanguage(nextLanguage) {
+    language = nextLanguage === 'zh-CN' ? 'zh-CN' : 'en';
+    localStorage.setItem(storageKey, language);
+    document.documentElement.lang = language;
     updateIdentity();
-    translate();
-
-    if (button) {
-      button.textContent = lang === 'zh-CN' ? 'EN' : '中文';
-
-      button.setAttribute(
-        'aria-label',
-        lang === 'zh-CN'
-          ? 'Switch to English'
-          : '切换为简体中文'
-      );
-    }
+    translateSubtree(document.body);
+    updateButton();
   }
 
-  function initLanguagePack() {
+  function initialize() {
     const actions = document.querySelector('.nav-actions');
-    const theme = document.querySelector('.theme-toggle');
+    const theme = document.querySelector('.theme-toggle:not(.language-toggle)');
 
-    if (
-      actions &&
-      theme &&
-      !document.querySelector('.language-toggle')
-    ) {
-      button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'theme-toggle language-toggle';
-      button.style.fontSize = '0.72rem';
-      button.style.fontWeight = '700';
+    if (actions && theme) {
+      languageButton = document.querySelector('.language-toggle');
+      if (!languageButton) {
+        languageButton = document.createElement('button');
+        languageButton.type = 'button';
+        languageButton.className = 'theme-toggle language-toggle';
+        languageButton.style.fontSize = '0.72rem';
+        languageButton.style.fontWeight = '700';
+        theme.insertAdjacentElement('afterend', languageButton);
+      }
+      languageButton.addEventListener('click', () => {
+        applyLanguage(language === 'en' ? 'zh-CN' : 'en');
+      });
+    }
 
-      button.addEventListener('click', () => {
-        apply(lang === 'en' ? 'zh-CN' : 'en');
+    applyLanguage(language);
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => pendingRoots.add(node));
       });
 
-      actions.insertBefore(button, theme);
-    }
-
-    apply(lang);
-
-    new MutationObserver(() => {
-      translate();
-      updateIdentity();
-    }).observe(document.body, {
-      childList: true,
-      subtree: true
+      if (scheduled || pendingRoots.size === 0) return;
+      scheduled = true;
+      window.requestAnimationFrame(() => {
+        pendingRoots.forEach((root) => translateSubtree(root));
+        pendingRoots.clear();
+        scheduled = false;
+      });
     });
+
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener(
-      'DOMContentLoaded',
-      initLanguagePack,
-      { once: true }
-    );
+    document.addEventListener('DOMContentLoaded', initialize, { once: true });
   } else {
-    initLanguagePack();
+    initialize();
   }
 })();
-```
