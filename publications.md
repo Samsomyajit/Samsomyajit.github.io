@@ -20,7 +20,7 @@ title: "Publications"
 
 ### 🕒 Under Review
 - **Chakraborty, S., Ming, P., and Chen, X., 2025.**  
-  _PIBERT: A Physics-Informed Bi-directional Hybrid Spectral Transformer for Multiscale CFD Surrogate Modeling._ Journal of Computational Physics.*(Under review; 31 Dec 2025.)*
+  _PIBERT: A Physics-Informed Bi-directional Hybrid Spectral Transformer for Multiscale CFD Surrogate Modeling._ Journal of Computational Physics. *(Under review; 31 Dec 2025.)*
 
 - **Cheng, N., Chakraborty, S., Liu, X., Zhang, W., Liang, X., Zhao, H., Bi, W., Zhang, M., Sun, B., He, J. and Liu, Y.**  
   _Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets._ Journal of Alloys and Compounds. (2025)
@@ -41,11 +41,17 @@ title: "Publications"
 - **Chakraborty, S., Naskar, S., Paul, S., Chakraborty, N., Gayen, A. and Jana, A., 2026.**  
   _CenterDistill: Weakly-Supervised Distillation for Ambiguity-Aware Cross-Lingual QA._ In 27th Engineering Applications of Neural Networks (EAAAI/EANN 2026).
 
+- **Chakraborty, S., Shoaib, M., Minghim, R. and Tabassum, M., 2026.**  
+  _PacePal: A Geo-Aware Retrieval-Augmented Chatbot Agent for Walking Engagement and Well-Being._ Accepted for presentation at the 1st International Conference on Human-Centric Artificial Intelligence (ICHCAI 2026), Halden, Norway, 27–28 May 2026, and for publication in IEEE Xplore, subject to revisions and publication checks.
+
 ## 📄 Preprints
 - **Gayen, A. and Chakraborty, S. (2020).**  
   _MedicaNet: Trust based recommender system to recommend doctors with the help of symptoms._ Computational Intelligence and Neuroscience, 2020(8826557).
   
 - **Gayen, A., Chakraborty, S., Sen, M., Paul, S. and Jana, A., 2025.**  
   _LLMPR: A Novel LLM-Driven Transfer Learning based Petition Ranking Model._ arXiv preprint arXiv:2505.21689.
+
+- **Chakraborty, S., Pan, M. and Chen, X., 2026.**  
+  _A Physics-Informed Fourier-Wavelet Transformer for Multiscale Computational Fluid Dynamics Surrogate Modeling._ [arXiv preprint arXiv:2606.24696](https://arxiv.org/abs/2606.24696). Submitted to _Engineering Applications of Artificial Intelligence_.
 
 [Back to Home](index.md)
