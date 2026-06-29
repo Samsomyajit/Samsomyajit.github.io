@@ -17,6 +17,8 @@
   document.head.appendChild(preload);
 
   loadScript('js/latest-news.js', () => {
-    loadScript('js/app-core.js');
+    loadScript('js/bio-i18n.js', () => {
+      loadScript('js/app-core.js');
+    });
   });
 })();
