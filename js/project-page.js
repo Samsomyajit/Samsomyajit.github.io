@@ -18,6 +18,24 @@
   if (project.summaryZh) { summary.dataset.en = project.summary; summary.dataset.zh = project.summaryZh; }
   root.append(heading, summary);
 
+  const thumbnailMap = {
+    '/research/pibert/': ['/assets/img/PIBERT-2.png', 'PIBERT project thumbnail'],
+    '/research/trust-health/': ['/assets/img/TrustHealth.jpg', 'Trust@Health project thumbnail'],
+    '/research/comeback-researchers/': ['/assets/img/Bridging.png', 'Research career re-entry project thumbnail'],
+    '/research/llmpr/': ['/assets/img/MScDA.png', 'LLMPR project thumbnail']
+  };
+  const thumbnail = thumbnailMap[window.location.pathname];
+  if (thumbnail) {
+    const figure = document.createElement('figure');
+    figure.className = 'project-visual';
+    figure.style.margin = '2rem 0';
+    const image = document.createElement('img');
+    image.src = thumbnail[0];
+    image.alt = thumbnail[1];
+    figure.appendChild(image);
+    root.appendChild(figure);
+  }
+
   const sections = [
     ['Research problem','研究问题',project.problem,project.problemZh],
     ['Main contributions','主要贡献',project.contributions,project.contributionsZh],
@@ -69,6 +87,7 @@
     name: project.title,
     description: project.summary,
     url: window.location.href,
+    image: thumbnail ? new URL(thumbnail[0], window.location.origin).href : undefined,
     author: { '@type': 'Person', '@id': 'https://samchakraborty.me/#person', name: 'Somyajit Chakraborty' }
   });
   document.head.append(structured);
