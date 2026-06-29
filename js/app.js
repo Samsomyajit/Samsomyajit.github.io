@@ -16,6 +16,11 @@
   preload.href = 'js/app-core.js';
   document.head.appendChild(preload);
 
+  const metadataScript = document.createElement('script');
+  metadataScript.src = 'js/person-entity.js';
+  metadataScript.defer = true;
+  document.head.appendChild(metadataScript);
+
   loadScript('js/latest-news.js', () => {
     loadScript('js/bio-i18n.js', () => {
       loadScript('js/app-core.js');
