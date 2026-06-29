@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://samchakraborty.me/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/publications/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/projects/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/education/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/experience/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/blog/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/research/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/research/pibert/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/research/bubblefieldnet/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/research/llmpr/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/research/trust-health/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/research/comeback-researchers/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/research/physical-ai-pharmaceuticals/</loc><lastmod>2026-06-28</lastmod></url>
-<url><loc>https://samchakraborty.me/research/pacepal/</loc><lastmod>2026-06-28</lastmod></url>
+  <url>
+    <loc>https://samchakraborty.me/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/publications/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/projects/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/education/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/experience/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/blog/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/research/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/research/pibert/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/research/bubblefieldnet/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/research/pacepal/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/research/llmpr/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/research/trust-health/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/research/comeback-researchers/</loc>
+  </url>
+  <url>
+    <loc>https://samchakraborty.me/research/physical-ai-pharmaceuticals/</loc>
+  </url>
 </urlset>
