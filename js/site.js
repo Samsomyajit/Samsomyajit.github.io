@@ -74,6 +74,7 @@
       image.className = 'research-hero-thumbnail';
       image.src = src;
       image.alt = alt;
+      image.style.cssText = 'display:block;width:100%;max-width:560px;max-height:300px;object-fit:contain;margin:2rem auto 0;padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;box-shadow:var(--card-shadow-hover)';
       pageHero.appendChild(image);
     }
   };
