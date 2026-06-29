@@ -23,7 +23,11 @@
 
   loadScript('js/latest-news.js', () => {
     loadScript('js/bio-i18n.js', () => {
-      loadScript('js/app-core.js');
+      loadScript('js/app-core.js', () => {
+        if (window.location.pathname === '/') {
+          document.title = 'Somyajit Chakraborty | Doctoral Researcher at Shanghai Jiao Tong University';
+        }
+      });
     });
   });
 })();
