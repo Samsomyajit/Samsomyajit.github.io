@@ -40,7 +40,7 @@
       </div><nav class="mobile-nav" data-mobile-nav>${navLinks}</nav></header>`);
   }
   if (!document.querySelector('.site-footer')) {
-    document.body.insertAdjacentHTML('beforeend', '<footer class="site-footer"><div class="footer-shell"><span>© 2026 Somyajit Chakraborty</span><span data-en="Doctoral Researcher · AI for Science" data-zh="博士研究员 · 科学智能">Doctoral Researcher · AI for Science</span></div></footer>');
+    document.body.insertAdjacentHTML('beforeend', '<footer class="site-footer"><div class="footer-shell"><span>© 2026 Somyajit Chakraborty</span><span><a href="/research/">Research</a> · <a href="/publications/">Publications</a> · <a href="/news/">News</a></span><span data-en="Doctoral Researcher at Shanghai Jiao Tong University" data-zh="上海交通大学博士研究员">Doctoral Researcher at Shanghai Jiao Tong University</span></div></footer>');
   }
 
   const root = document.documentElement;
