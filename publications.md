@@ -25,7 +25,7 @@ title: "Publications"
 - **Cheng, N., Chakraborty, S., Liu, X., Zhang, W., Liang, X., Zhao, H., Bi, W., Zhang, M., Sun, B., He, J. and Liu, Y.**  
   _Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets._ Journal of Alloys and Compounds. (2025)
 
-## 🎤 Conferences
+## 🎤 Conferences and Book Chapters
 - **Gayen, A., Chakraborty, S., Chakraborty, J. and Jana, A. (2024, June).**  
   _Ml-HCN: A Novel Healthcare System Architecture Based on Multi-layered Network Approach._ In 2024 15th Int. Conf. on Computing Communication & Networking Technologies (ICCCNT). IEEE.  
   
@@ -38,8 +38,8 @@ title: "Publications"
 - **Gayen, A., Paul, S., Chakraborty, S. and Jana, A., 2026.**  
   _LeX-Route: Automated Petition Routing in Indian Judiciary with Hybrid Embedding Ensembles._ In 27th Engineering Applications of Neural Networks (EAAAI/EANN 2026).
 
-- **Chakraborty, S., Naskar, S., Paul, S., Chakraborty, N., Gayen, A. and Jana, A., 2026.**  
-  _CenterDistill: Weakly-Supervised Distillation for Ambiguity-Aware Cross-Lingual QA._ In 27th Engineering Applications of Neural Networks (EAAAI/EANN 2026).
+- **Chakraborty, S., Naskar, S., Paul, S., Jana, A., Chakraborty, N. and Gayen, A. (2026).**  
+  _CenterDistill: Weakly-supervised distillation for ambiguity-aware cross-lingual QA._ In Iliadis, L. et al. (eds.), _Engineering Applications of Neural Networks_. Communications in Computer and Information Science, vol. 3025. Springer Nature Switzerland, pp. 1–15. [doi: 10.1007/978-3-032-31141-2_11](https://doi.org/10.1007/978-3-032-31141-2_11).
 
 - **Chakraborty, S., Shoaib, M., Minghim, R. and Tabassum, M., 2026.**  
   _PacePal: A Geo-Aware Retrieval-Augmented Chatbot Agent for Walking Engagement and Well-Being._ Accepted for presentation at the 1st International Conference on Human-Centric Artificial Intelligence (ICHCAI 2026), Halden, Norway, 27–28 May 2026, and for publication in IEEE Xplore, subject to revisions and publication checks.
