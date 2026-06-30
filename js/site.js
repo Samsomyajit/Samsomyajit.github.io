@@ -19,6 +19,7 @@
   const navItems = [
     ['/', 'Home', '首页'],
     ['/publications/', 'Publications', '出版成果'],
+    ['/research/', 'Research', '研究'],
     ['/projects/', 'Projects', '研究项目'],
     ['/education/', 'Education', '教育经历'],
     ['/experience/', 'Experience', '工作经历'],
@@ -26,7 +27,8 @@
   ];
   const currentPath = window.location.pathname;
   const navLinks = navItems.map(([href, en, zh]) => {
-    const current = currentPath === href ? ' aria-current="page"' : '';
+    const isCurrent = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+    const current = isCurrent ? ' aria-current="page"' : '';
     return `<a href="${href}"${current} data-en="${en}" data-zh="${zh}">${en}</a>`;
   }).join('');
 
@@ -42,6 +44,42 @@
   if (!document.querySelector('.site-footer')) {
     document.body.insertAdjacentHTML('beforeend', '<footer class="site-footer"><div class="footer-shell"><span>© 2026 Somyajit Chakraborty</span><span><a href="/research/">Research</a> · <a href="/publications/">Publications</a> · <a href="/news/">News</a></span><span data-en="Doctoral Researcher at Shanghai Jiao Tong University" data-zh="上海交通大学博士研究员">Doctoral Researcher at Shanghai Jiao Tong University</span></div></footer>');
   }
+
+  const projectImages = {
+    '/publications/pibert/': ['/assets/img/PIBERT-2.png', 'PIBERT physics-informed CFD surrogate modeling overview'],
+    '/publications/trust-health/': ['/assets/img/TrustHealth.jpg', 'Trust@Health multilayer network publication overview'],
+    '/publications/comeback-researchers/': ['/assets/img/Bridging.png', 'Research career re-entry and knowledge bridging publication overview'],
+    '/publications/llmpr/': ['/assets/img/MScDA.png', 'LLMPR petition-ranking publication overview'],
+    '/research/pibert/': ['/assets/img/PIBERT-2.png', 'PIBERT project thumbnail'],
+    '/research/trust-health/': ['/assets/img/TrustHealth.jpg', 'Trust@Health project thumbnail'],
+    '/research/comeback-researchers/': ['/assets/img/Bridging.png', 'Research career re-entry project thumbnail'],
+    '/research/llmpr/': ['/assets/img/MScDA.png', 'LLMPR project thumbnail']
+  };
+
+  const applyAvailableThumbnail = () => {
+    const imageData = projectImages[currentPath];
+    if (!imageData) return;
+    const [src, alt] = imageData;
+    const projectVisual = document.querySelector('.project-visual');
+    if (projectVisual && !projectVisual.querySelector('img')) {
+      const image = document.createElement('img');
+      image.src = src;
+      image.alt = alt;
+      projectVisual.replaceChildren(image);
+      return;
+    }
+    const pageHero = document.querySelector('.page-hero');
+    if (pageHero && !pageHero.querySelector('.research-hero-thumbnail')) {
+      const image = document.createElement('img');
+      image.className = 'research-hero-thumbnail';
+      image.src = src;
+      image.alt = alt;
+      image.style.cssText = 'display:block;width:100%;max-width:560px;max-height:300px;object-fit:contain;margin:2rem auto 0;padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;box-shadow:var(--card-shadow-hover)';
+      pageHero.appendChild(image);
+    }
+  };
+
+  applyAvailableThumbnail();
 
   const root = document.documentElement;
   const languageButton = document.querySelector('[data-language-toggle]');
