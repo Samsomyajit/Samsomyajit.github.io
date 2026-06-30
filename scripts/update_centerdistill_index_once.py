@@ -41,9 +41,4 @@ if count != 1:
     raise SystemExit(f"Expected exactly one CenterDistill publication block, found {count}.")
 
 index_path.write_text(text.replace(old, new, 1), encoding="utf-8")
-
-# Remove the one-shot patch files before committing.
 Path(__file__).unlink()
-workflow = root / ".github" / "workflows" / "update-center-distill-index-once.yml"
-if workflow.exists():
-    workflow.unlink()
