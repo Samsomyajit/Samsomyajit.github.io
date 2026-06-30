@@ -1,0 +1,26 @@
+name: Update CenterDistill index record
+
+on:
+  push:
+    branches: [identity-static-pages-update]
+    paths:
+      - .github/workflows/update-center-distill-index-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: identity-static-pages-update
+      - name: Apply static index update
+        run: python scripts/update_centerdistill_index_once.py
+      - name: Commit the updated index
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update CenterDistill publication record in index.html
+          branch: identity-static-pages-update
+          file_pattern: index.html scripts/update_centerdistill_index_once.py
