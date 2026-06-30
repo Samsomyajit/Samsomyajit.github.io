@@ -40,16 +40,23 @@
     {
       en: [
         { text: 'CenterDistill', highlight: true },
-        { text: ' accepted at ' },
-        { text: 'CORE EANN / EAAAI 2026', highlight: true },
-        { text: '.' }
+        { text: ' published by ' },
+        { text: 'Springer Nature Switzerland', highlight: true },
+        { text: ' in ' },
+        { text: 'CCIS volume 3025', highlight: true },
+        { text: ', pages 1–15.' }
       ],
       zh: [
         { text: 'CenterDistill', highlight: true },
-        { text: ' 被 ' },
-        { text: 'CORE EANN / EAAAI 2026', highlight: true },
-        { text: ' 录用。' }
-      ]
+        { text: ' 已由 ' },
+        { text: 'Springer Nature Switzerland', highlight: true },
+        { text: ' 出版，收录于 ' },
+        { text: 'CCIS 第 3025 卷', highlight: true },
+        { text: '，第 1–15 页。' }
+      ],
+      href: 'https://doi.org/10.1007/978-3-032-31141-2_11',
+      linkLabel: 'View publication →',
+      linkLabelZh: '查看论文 →'
     },
     {
       en: [
