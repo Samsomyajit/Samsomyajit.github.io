@@ -1,0 +1,26 @@
+name: Add PIBERT blog record
+
+on:
+  push:
+    branches: [identity-static-pages-update]
+    paths:
+      - .github/workflows/add-pibert-blog-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: identity-static-pages-update
+      - name: Add the PIBERT blog record
+        run: python scripts/add_pibert_blog_once.py
+      - name: Commit the updated blog data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Add PIBERT blog post to website data
+          branch: identity-static-pages-update
+          file_pattern: js/data.js scripts/add_pibert_blog_once.py
