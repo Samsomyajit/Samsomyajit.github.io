@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Inside PIBERT: A Classroom Dialogue on Physics-Informed Fourier-Wavelet Transformers for Multiscale CFD"
+title: "Inside PIBERT: A Dialogue on Physics-Informed Fourier-Wavelet Transformers for Multiscale CFD"
 date: 2026-07-02
 tags: [PIBERT, CFD, Scientific-ML, Transformers, Fourier, Wavelets, Physics-Informed-ML]
 ---
