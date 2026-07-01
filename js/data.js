@@ -113,6 +113,15 @@ const scholarUrl = "https://scholar.google.com/citations?user=R9Wr3yQAAAAJ&hl=en
 // ============================================
 const blogs = [
   {
+    id: 'pibert-fourier-wavelet-dialogue',
+    title: 'Inside PIBERT: A Classroom Dialogue on Physics-Informed Fourier-Wavelet Transformers for Multiscale CFD',
+    category: 'Research',
+    date: '2026-07-02',
+    excerpt: 'A lecture-style exploration of PIBERT, covering hybrid Fourier-wavelet representations, physics-biased attention, self-supervised physics pretraining, benchmark results, and practical tradeoffs.',
+    contentUrl: 'blogs/pibert_fourier_wavelet_transformer_dialogue.md',
+    image: 'assets/img/PIBERT-2.png',
+  },
+  {
     id: 'homo-in-compitis',
     title: 'Homo in Compitis: The Magic of Human Imagination and Technology',
     category: 'Research',
