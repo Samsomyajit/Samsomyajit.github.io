@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Inside PIBERT: A Classroom Dialogue on Physics-Informed Fourier-Wavelet Transformers for Multiscale CFD"
+title: "Inside PIBERT: A Conversation on Physics-Informed Fourier-Wavelet Transformers for Multiscale CFD"
 date: 2026-07-02
 tags: [PIBERT, CFD, Scientific-ML, Transformers, Fourier, Wavelets, Physics-Informed-ML]
 ---
@@ -9,9 +9,10 @@ tags: [PIBERT, CFD, Scientific-ML, Transformers, Fourier, Wavelets, Physics-Info
 
 ![PIBERT architecture and multiscale CFD surrogate modeling overview](/assets/img/PIBERT-2.png)
 
-## A lecture on why multiscale CFD needs more than a conventional transformer
+## A lecture on why multiscale CFD needs more than a conventional transformer_
+_This lecture is a series of conversation that was transcripted during an interview._
 
-**John:** Welcome to *Advanced Topics in Scientific Machine Learning*. Today's lecture is on the paper **“A Physics-Informed Fourier-Wavelet Transformer for Multiscale Computational Fluid Dynamics Surrogate Modeling”** by Somyajit Chakraborty, Ming Pan, and Xizhong Chen at Shanghai Jiao Tong University.
+**Sam:** Welcome to *Advanced Topics in Scientific Machine Learning*. Today's lecture is on the paper **“A Physics-Informed Fourier-Wavelet Transformer for Multiscale Computational Fluid Dynamics Surrogate Modeling”** by Somyajit Chakraborty, Ming Pan, and Xizhong Chen at Shanghai Jiao Tong University.
 
 We have seen a growing trend of adapting transformers to scientific problems. Models such as BCAT and GeoTransolver illustrate how attention can help represent complex physical systems. This work pushes the idea further. It does not simply place a transformer on top of CFD data. Instead, it integrates physics into the model's input representation, attention mechanism, pretraining tasks, and fine-tuning objective.
 
@@ -19,7 +20,7 @@ That distinction matters because fluid dynamics is fundamentally multiscale. A f
 
 **Noah:** Is the main distinction therefore the focus on multiscale modeling? Other transformer-based PDE solvers also claim to handle complex systems. What specific gap is PIBERT trying to fill?
 
-**John:** The gap is in **how the physics is represented and enforced**.
+**Sam:** The gap is in **how the physics is represented and enforced**.
 
 Many scientific machine-learning models fall into one of two broad categories:
 
@@ -41,7 +42,7 @@ The goal is a surrogate that does not merely fit data and then receive an extern
 
 **Noah:** The hybrid Fourier-wavelet input sounds interesting. Why is one transform not enough?
 
-**John:** Because the two transforms see different aspects of the flow.
+**Sam:** Because the two transforms see different aspects of the flow.
 
 A Fourier representation is global. It is very effective for periodic structures, large-scale modes, and long-range organization. However, localized events are spread across many Fourier coefficients. Sharp gradients, thin shear layers, near-wall structures, and wake irregularities can therefore be difficult to preserve when the spectrum is truncated.
 
@@ -62,7 +63,7 @@ The learned gate allows the model to adaptively decide how much global spectral 
 
 **Noah:** So the gate could emphasize Fourier modes for globally organized flow and wavelets near sharp boundaries or transient structures?
 
-**John:** Exactly. The design is deliberately complementary rather than competitive. The paper also develops stability arguments for these components. The Fourier mixing is designed to be non-expansive under unitary conditions, while the tight-frame wavelet filters satisfy a Parseval-style energy partition. For a fixed gate, the fusion remains non-expansive. These properties do not guarantee perfect learning, but they provide a mathematically motivated foundation for stable multiscale representation.
+**Sam:** Exactly. The design is deliberately complementary rather than competitive. The paper also develops stability arguments for these components. The Fourier mixing is designed to be non-expansive under unitary conditions, while the tight-frame wavelet filters satisfy a Parseval-style energy partition. For a fixed gate, the fusion remains non-expansive. These properties do not guarantee perfect learning, but they provide a mathematically motivated foundation for stable multiscale representation.
 
 ---
 
@@ -70,7 +71,7 @@ The learned gate allows the model to adaptively decide how much global spectral 
 
 **Noah:** A standard transformer decides attention using query-key similarity. How is PDE knowledge introduced into that process?
 
-**John:** PIBERT modifies the attention logits. In a standard transformer, the score between token $i$ and token $j$ is represented by $L_{ij}$. PIBERT subtracts a physics-derived penalty:
+**Sam:** PIBERT modifies the attention logits. In a standard transformer, the score between token $i$ and token $j$ is represented by $L_{ij}$. PIBERT subtracts a physics-derived penalty:
 
 $$
 \widetilde{L}_{ij}
@@ -87,7 +88,7 @@ This means that a token associated with a larger physical violation receives a l
 
 **Noah:** Does this require evaluating the full PDE residual for every pair of tokens? That would seem expensive.
 
-**John:** No. That is precisely why the separable, key-dependent form is important. The residual diagnostics are computed on the grid, pooled to the token level, and attached to the key token. The model does not construct a different PDE residual for every query-key pair.
+**Sam:** No. That is precisely why the separable, key-dependent form is important. The residual diagnostics are computed on the grid, pooled to the token level, and attached to the key token. The model does not construct a different PDE residual for every query-key pair.
 
 For incompressible flow, the diagnostics include quantities such as the divergence residual
 
@@ -117,7 +118,7 @@ This is stronger than using a residual only as a final loss term. The residual i
 
 **Noah:** This sounds similar to foundation-model pretraining. What are the physics equivalents of masked language modeling?
 
-**John:** PIBERT uses two self-supervised objectives.
+**Sam:** PIBERT uses two self-supervised objectives.
 
 ### Masked Physics Prediction
 
@@ -140,7 +141,7 @@ In **Equation Consistency Prediction (ECP)**, the model acts as a physics critic
 
 **Noah:** Would random noise make the classification task too easy?
 
-**John:** It could. The paper therefore uses more difficult negative examples, including gradient-based adversarial perturbations. These hard negatives may look plausible while violating the governing physics in subtle ways. The model must learn deeper features of equation consistency rather than simply detecting obvious corruption.
+**Sam:** It could. The paper therefore uses more difficult negative examples, including gradient-based adversarial perturbations. These hard negatives may look plausible while violating the governing physics in subtle ways. The model must learn deeper features of equation consistency rather than simply detecting obvious corruption.
 
 The combination of MPP and ECP gives PIBERT a useful pretraining curriculum:
 
@@ -176,7 +177,7 @@ The important point is that physics does not enter only here. By the time fine-t
 
 **Noah:** Architectural ideas are interesting, but do they actually improve CFD prediction?
 
-**John:** The paper evaluates PIBERT on two RealPDEBench datasets: **cylinder-real** and **FSI-real**. The common task is next-step velocity-field prediction on resized $64\times64$ inputs. Baselines include FourierFlow, FNO2d, PITT, DeepONet2d, and PINN.
+**Sam:** The paper evaluates PIBERT on two RealPDEBench datasets: **cylinder-real** and **FSI-real**. The common task is next-step velocity-field prediction on resized $64\times64$ inputs. Baselines include FourierFlow, FNO2d, PITT, DeepONet2d, and PINN.
 
 | Benchmark | PIBERT result | Main interpretation |
 |---|---:|---|
@@ -207,7 +208,7 @@ The FSI results are important because the flow is geometrically and dynamically 
 
 **Noah:** The model is more accurate, but it is also more expensive. Is the additional complexity justified?
 
-**John:** It depends on the application.
+**Sam:** It depends on the application.
 
 PIBERT is most compelling when localized accuracy matters:
 
@@ -255,7 +256,7 @@ The main experiments focus on one-step reconstruction. Longer autoregressive rol
 
 **Noah:** So the deeper contribution is not just the Fourier-wavelet encoder?
 
-**John:** Correct. The broader lesson is architectural integration.
+**Sam:** Correct. The broader lesson is architectural integration.
 
 FNO introduced a powerful spectral perspective. PINNs demonstrated that governing equations can guide learning. Transformers showed how global interactions can be modeled through attention. Self-supervised learning showed that useful representations can be learned before labeled fine-tuning.
 
@@ -269,7 +270,7 @@ PIBERT combines these ideas into a single CFD surrogate:
 
 The performance gains do not come from one isolated trick. They come from embedding domain knowledge throughout the machine-learning pipeline.
 
-**John:** To conclude, PIBERT offers a pathway toward high-fidelity CFD surrogate modeling in which physics is not merely appended to the loss function. It shapes what the model sees, what it attends to, what it learns before supervision, and how it is optimized afterward.
+**Sam:** To conclude, PIBERT offers a pathway toward high-fidelity CFD surrogate modeling in which physics is not merely appended to the loss function. It shapes what the model sees, what it attends to, what it learns before supervision, and how it is optimized afterward.
 
 The price is additional complexity. For low-stakes or strongly latency-constrained applications, a lighter model may be sufficient. For high-stakes scientific and engineering problems where boundary effects, wake organization, vorticity, and multiscale structure matter, that complexity may be justified.
 
