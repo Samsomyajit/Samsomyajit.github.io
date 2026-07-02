@@ -8,8 +8,12 @@ tags: [PIBERT, CFD, Scientific-ML, Transformers, Fourier, Wavelets, Physics-Info
 > **TL;DR.** PIBERT is a physics-informed transformer for computational fluid dynamics that combines global Fourier representations, localized wavelet features, physics-biased attention, and self-supervised pretraining. Its central idea is not merely to add a physics penalty to a neural network, but to build physical reasoning into the representation, information-routing mechanism, and learning objectives of the model.
 
 ![PIBERT architecture and multiscale CFD surrogate modeling overview](/assets/img/PIBERT-2.png)
+<video width="640" height="360" controls>
+  <source src="/assets/pibert-cfd-surrogate-web.mp4" type="video/mp4">
+</video>
 
-## A lecture on why multiscale CFD needs more than a conventional transformer_
+
+## A lecture on why multiscale CFD needs more than a conventional transformer
 _This lecture is a series of conversation that was transcripted during an interview._
 
 **Sam:** Welcome to *Advanced Topics in Scientific Machine Learning*. Today's lecture is on the paper **“A Physics-Informed Fourier-Wavelet Transformer for Multiscale Computational Fluid Dynamics Surrogate Modeling”** by Somyajit Chakraborty, Ming Pan, and Xizhong Chen at Shanghai Jiao Tong University.
