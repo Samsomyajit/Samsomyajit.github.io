@@ -46,6 +46,7 @@
           {'@type': 'PropertyValue', propertyID: 'Web of Science', value: 'POV-3975-2026', url: 'https://www.webofscience.com/wos/author/record/POV-3975-2026'}
         ],
         sameAs: [
+          'https://www.wikidata.org/wiki/Q140420332',
           'https://orcid.org/0000-0002-2038-5169',
           'https://scholar.google.com/citations?user=R9Wr3yQAAAAJ',
           'https://github.com/Samsomyajit',
