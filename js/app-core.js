@@ -476,6 +476,7 @@
       language = nextLanguage === 'zh-CN' ? 'zh-CN' : 'en';
       localStorage.setItem(storageKey, language);
       document.documentElement.lang = language;
+      document.documentElement.dataset.language = language;
       updateIdentity();
       translateSubtree(document.body);
       updateLanguageButton();
