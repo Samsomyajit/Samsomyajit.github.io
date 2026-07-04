@@ -7,7 +7,11 @@ tags: [China, Ireland, India, Identity, PhD, Shanghai-Jiao-Tong-University, Pers
 
 > This is not a political manifesto. It is a personal chapter of a life: a story about inheritance, loneliness, books, friendship, love, migration, scholarship, marriage, and the strange privilege and burden of belonging to several civilizations at once.
 
-![My “snobbish” Trinity Gentleman self: formal, theatrical, and perhaps a little too fond of old-world manners.](/assets/img/blogs/why-china/01-trinity-gentleman-self.jpg)
+
+<p align="center">
+  <img src="/assets/img/blogs/why-china/01-trinity-gentleman-self.jpg" width="350" alt="My “snobbish” Trinity Gentleman self: formal, theatrical, and perhaps a little too fond of old-world manners.">
+</p>
+
 
 *My “Trinity Gentleman” self: the version of me that people sometimes mistake for snobbery, when it is really a costume stitched from literature, loneliness, and admiration for a certain idea of gentleness.*
 
