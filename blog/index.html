@@ -1,1 +1,17 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Blog</title><link rel="stylesheet" href="/css/site.css"></head><body><main class="page-shell" data-list-page="blog"></main><script src="/js/data.js" defer></script><script src="/js/site.js" defer></script><script src="/js/list-pages.js" defer></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Blog | Somyajit Chakraborty</title>
+  <link rel="canonical" href="https://samchakraborty.me/blog/">
+  <meta http-equiv="refresh" content="0;url=/#page-blog">
+</head>
+<body>
+  <p>Loading blog… <a href="/#page-blog">Continue</a>.</p>
+  <script>
+    const post = new URLSearchParams(window.location.search).get('post');
+    if (post) window.location.replace('/#blog/' + encodeURIComponent(post));
+  </script>
+</body>
+</html>
