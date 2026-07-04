@@ -1,6 +1,15 @@
 (() => {
   'use strict';
 
+  function loadBlogRegistration() {
+    if (document.querySelector('script[data-why-china-blog]')) return;
+    const script = document.createElement('script');
+    script.src = 'js/why-china-blog.js';
+    script.async = false;
+    script.dataset.whyChinaBlog = 'true';
+    document.head.appendChild(script);
+  }
+
   function installPersonEntity() {
     document.querySelectorAll('script[type="application/ld+json"]').forEach((script) => {
       try {
@@ -77,6 +86,8 @@
     });
     document.head.appendChild(schema);
   }
+
+  loadBlogRegistration();
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', installPersonEntity, {once: true});
