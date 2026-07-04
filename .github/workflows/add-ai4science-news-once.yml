@@ -1,0 +1,26 @@
+name: Add AI4Science news
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/add-ai4science-news-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Update rotating news
+        run: python scripts/add_ai4science_news_once.py
+      - name: Commit news update
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Add AI4Science Hackathon news
+          branch: main
+          file_pattern: js/latest-news.js scripts/add_ai4science_news_once.py
