@@ -1,0 +1,26 @@
+name: Update news page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/update-news-page-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Update permanent news page
+        run: python scripts/update_news_page_once.py
+      - name: Commit news page update
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Add AI4Science Hackathon item to news page
+          branch: main
+          file_pattern: news/index.html scripts/update_news_page_once.py
