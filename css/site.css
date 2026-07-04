@@ -1,6 +1,6 @@
 @import url('/css/styles.css');
 
-/* Standalone research/publication pages reuse the main site's visual system. */
+/* Standalone research/publication/news pages reuse the main homepage design tokens. */
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
