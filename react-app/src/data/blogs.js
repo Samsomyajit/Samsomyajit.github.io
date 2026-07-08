@@ -1,5 +1,14 @@
 export const blogs = [
   {
+    id: 'conscious-dust',
+    title: 'The Philosophy of Conscious Dust: Meaning After Nihilism, Religion, Love, and Chaos',
+    category: 'Anecdotes',
+    date: '2026-07-08',
+    excerpt: 'A reflective and critical essay on meaning after nihilism and religion, weaving love, family, 缘分, mathematics, science, art, and self-authorship into a new philosophy of conscious dust.',
+    contentUrl: '/blogs/conscious_dust.md',
+    image: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800',
+  },
+  {
     id: 'homo-in-compitis',
     title: 'Homo in Compitis: The Magic of Human Imagination and Technology',
     category: 'Research',
