@@ -3,6 +3,20 @@
 
   const PACEPAL_TITLE = 'PacePal: A Geo-Aware Retrieval-Augmented Chatbot Agent for Walking Engagement and Well-Being';
   const FOURIER_WAVELET_TITLE = 'A Physics-Informed Fourier-Wavelet Transformer for Multiscale Computational Fluid Dynamics Surrogate Modeling';
+  const NAVIER_CFD_PROJECT = Object.freeze({
+    id: 10,
+    title: 'NAVIER-CFD',
+    subtitle: 'Neural and Agentic Verification, Integration, Evaluation, and Recommendation for CFD',
+    description: 'A CFD-first Python platform and project website for neural PDE solvers, hybrid numerical acceleration, benchmark datasets, paper-evidence-aware model and dataset recommendation, Hugging Face integration, and agentic experiment planning.',
+    image: 'assets/img/navier-cfd-logo.svg',
+    tags: ['CFD', 'AI4Science', 'Neural PDE Solvers', 'Recommender Systems', 'Python'],
+    category: 'AI & Computational Physics',
+    githubUrl: 'https://github.com/Samsomyajit/NAVIER-CFD',
+    projectUrl: 'https://samsomyajit.github.io/NAVIER-CFD/',
+    featured: true,
+    year: 2026,
+    language: 'Python'
+  });
   const ROUTE_PATHS = Object.freeze({
     home: '/',
     publications: '/publications/',
@@ -89,6 +103,12 @@
         status: 'Submitted to Engineering Applications of Artificial Intelligence'
       });
     }
+  }
+
+  function addNewProjects() {
+    if (typeof projects === 'undefined' || !Array.isArray(projects)) return;
+    const alreadyPresent = projects.some((item) => item.title === NAVIER_CFD_PROJECT.title || item.githubUrl === NAVIER_CFD_PROJECT.githubUrl);
+    if (!alreadyPresent) projects.unshift({ ...NAVIER_CFD_PROJECT });
   }
 
   function findPublicationGroup(title) {
@@ -394,6 +414,7 @@
       }, 'heroBound');
     });
 
+    addNewProjects();
     addPublicationCardsToPage();
     optimizeImages();
     setCleanNavigationUrls();
@@ -534,6 +555,7 @@
   }
 
   addNewPublications();
+  addNewProjects();
   ensureRootBase();
 
   const preload = document.createElement('link');
