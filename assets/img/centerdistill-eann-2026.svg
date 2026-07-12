@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+<title id="title">CenterDistill research overview at EANN 2026</title>
+<desc id="desc">A six-panel technical illustration of CenterDistill covering ambiguous multilingual questions, embeddings, semantic centers, weakly supervised distillation, inference behaviour, and reported results.</desc>
+<defs>
+  <linearGradient id="header" x1="0" x2="1"><stop offset="0" stop-color="#123c8c"/><stop offset="1" stop-color="#0c62b7"/></linearGradient>
+  <linearGradient id="footer" x1="0" x2="1"><stop offset="0" stop-color="#f4f7ff"/><stop offset="1" stop-color="#eef5ff"/></linearGradient>
+  <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0b2455" flood-opacity="0.12"/></filter>
+  <style>
+    .t{font-family:Arial,Helvetica,sans-serif;fill:#0b2455}
+    .h1{font-size:64px;font-weight:800;letter-spacing:-1px}
+    .sub{font-size:30px;font-weight:700}
+    .ph{font-size:25px;font-weight:700;fill:white}
+    .body{font-size:19px;fill:#17243d}
+    .small{font-size:16px;fill:#33435f}
+    .metric{font-size:42px;font-weight:800}
+    .label{font-size:18px;font-weight:700}
+    .panel{fill:white;stroke:#2b68c4;stroke-width:2.2;rx:16;filter:url(#shadow)}
+    .cap{fill:url(#header);rx:14}
+    .muted{fill:#f7f9fe;stroke:#c8d7f0;stroke-width:1.5}
+  </style>
+</defs>
+<rect width="1600" height="1000" fill="#ffffff"/>
+<text x="38" y="72" class="t h1">CenterDistill</text>
+<text x="40" y="118" class="t sub">Weakly-Supervised Distillation for Ambiguity-Aware Cross-Lingual QA</text>
+<g transform="translate(1088,20)">
+  <circle cx="70" cy="60" r="52" fill="#ffffff" stroke="#1f4e9d" stroke-width="5"/>
+  <ellipse cx="70" cy="60" rx="46" ry="18" fill="none" stroke="#1f4e9d" stroke-width="3" transform="rotate(-22 70 60)"/>
+  <ellipse cx="70" cy="60" rx="18" ry="46" fill="none" stroke="#1f4e9d" stroke-width="3" transform="rotate(28 70 60)"/>
+  <path d="M18 58 C38 12, 89 8, 112 34 C94 29, 74 34, 59 51 C44 68, 31 70, 18 58 Z" fill="#b8d51b"/>
+  <path d="M35 77 C56 96, 89 94, 112 66 C100 82, 82 84, 67 72 C55 62, 45 64, 35 77 Z" fill="#6fbf3b"/>
+  <path d="M42 54 C56 35, 80 28, 101 43 C85 42, 75 48, 67 60 C59 71, 49 67, 42 54 Z" fill="#061044"/>
+  <text x="142" y="68" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="800" fill="#071044">EANN</text>
+  <line x1="335" y1="20" x2="335" y2="98" stroke="#071044" stroke-width="2"/>
+  <text x="350" y="42" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#071044">ENGINEERING</text>
+  <text x="350" y="64" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#071044">APPLICATIONS OF</text>
+  <text x="350" y="86" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" fill="#071044">NEURAL NETWORKS</text>
+</g>
+<text x="1190" y="150" class="t small" font-weight="700">EANN 2026  |  Springer CCIS 3025</text>
+<rect x="30" y="175" width="490" height="350" class="panel"/>
+<rect x="30" y="175" width="490" height="52" class="cap"/>
+<text x="275" y="209" text-anchor="middle" class="ph">1. Problem Setting</text>
+<circle cx="92" cy="285" r="30" fill="#173f82"/><rect x="64" y="315" width="56" height="44" rx="10" fill="#173f82"/>
+<rect x="145" y="245" width="325" height="108" rx="16" fill="#f7f9fe" stroke="#2b68c4" stroke-width="2"/>
+<text x="166" y="277" class="body" font-weight="700" fill="#1856b1">EN</text><text x="220" y="277" class="body">“Can you charge it here?”</text>
+<text x="166" y="311" class="body" font-weight="700" fill="#238a49">ES</text><text x="220" y="311" class="body">“¿Puedes cargarlo aquí?”</text>
+<text x="166" y="345" class="body" font-weight="700" fill="#7444ad">DE</text><text x="220" y="345" class="body">“Kannst du es hier aufladen?”</text>
+<circle cx="275" cy="405" r="35" fill="#ffffff" stroke="#173f82" stroke-width="4"/><text x="275" y="417" text-anchor="middle" class="t" font-size="42" font-weight="800">?</text>
+<line x1="275" y1="353" x2="275" y2="369" stroke="#344" stroke-width="2"/>
+<rect x="52" y="455" width="120" height="48" rx="12" fill="#edf4ff" stroke="#2b68c4"/><text x="112" y="485" text-anchor="middle" class="small">Answer</text>
+<rect x="185" y="455" width="120" height="48" rx="12" fill="#fff6e6" stroke="#e39a28"/><text x="245" y="485" text-anchor="middle" class="small">Clarify</text>
+<rect x="318" y="455" width="170" height="48" rx="12" fill="#f3edff" stroke="#7444ad"/><text x="403" y="485" text-anchor="middle" class="small">Present alternatives</text>
+<rect x="555" y="175" width="490" height="350" class="panel"/>
+<rect x="555" y="175" width="490" height="52" class="cap"/>
+<text x="800" y="209" text-anchor="middle" class="ph">2. Multilingual Question Embeddings</text>
+<text x="585" y="286" class="body" font-weight="700" fill="#1856b1">EN</text><text x="630" y="286" class="small">Can you charge it here?</text>
+<text x="585" y="353" class="body" font-weight="700" fill="#238a49">ES</text><text x="630" y="353" class="small">¿Puedes cargarlo aquí?</text>
+<text x="585" y="420" class="body" font-weight="700" fill="#7444ad">DE</text><text x="630" y="420" class="small">Kannst du es hier aufladen?</text>
+<rect x="800" y="260" width="118" height="184" rx="14" fill="#f7f9fe" stroke="#2b68c4" stroke-width="2"/>
+<text x="859" y="304" text-anchor="middle" class="small" font-weight="700">Shared</text><text x="859" y="329" text-anchor="middle" class="small" font-weight="700">XLM-R</text><text x="859" y="354" text-anchor="middle" class="small" font-weight="700">Encoder</text>
+<circle cx="830" cy="395" r="8" fill="#173f82"/><circle cx="859" cy="380" r="8" fill="#2b68c4"/><circle cx="888" cy="395" r="8" fill="#173f82"/><line x1="830" y1="395" x2="859" y2="380" stroke="#173f82"/><line x1="859" y1="380" x2="888" y2="395" stroke="#173f82"/>
+<line x1="760" y1="282" x2="795" y2="305" stroke="#3e4e69" stroke-width="2"/><line x1="760" y1="350" x2="795" y2="350" stroke="#3e4e69" stroke-width="2"/><line x1="760" y1="417" x2="795" y2="395" stroke="#3e4e69" stroke-width="2"/>
+<g transform="translate(948,278)"><rect width="18" height="18" fill="#dce9ff" stroke="#2b68c4"/><rect x="22" width="18" height="18" fill="#a9c7f3"/><rect x="44" width="18" height="18" fill="#4e87d8"/><rect x="66" width="18" height="18" fill="#17468f"/></g>
+<g transform="translate(948,345)"><rect width="18" height="18" fill="#dff4e4" stroke="#238a49"/><rect x="22" width="18" height="18" fill="#a7dbb2"/><rect x="44" width="18" height="18" fill="#55aa6d"/><rect x="66" width="18" height="18" fill="#227b43"/></g>
+<g transform="translate(948,412)"><rect width="18" height="18" fill="#eee3fb" stroke="#7444ad"/><rect x="22" width="18" height="18" fill="#cdb4ed"/><rect x="44" width="18" height="18" fill="#9364c9"/><rect x="66" width="18" height="18" fill="#633896"/></g>
+<text x="800" y="493" text-anchor="middle" class="small">A shared semantic space aligns questions across languages.</text>
+<rect x="1080" y="175" width="490" height="350" class="panel"/>
+<rect x="1080" y="175" width="490" height="52" class="cap"/>
+<text x="1325" y="209" text-anchor="middle" class="ph">3. Semantic Centers</text>
+<line x1="1135" y1="460" x2="1135" y2="270" stroke="#71809c"/><line x1="1135" y1="460" x2="1435" y2="460" stroke="#71809c"/><line x1="1135" y1="460" x2="1210" y2="390" stroke="#71809c"/>
+<ellipse cx="1230" cy="315" rx="72" ry="55" fill="#eaf2ff" stroke="#2b68c4" stroke-width="2" stroke-dasharray="7 6"/><ellipse cx="1380" cy="340" rx="75" ry="58" fill="#eaf8ee" stroke="#238a49" stroke-width="2" stroke-dasharray="7 6"/><ellipse cx="1285" cy="430" rx="78" ry="50" fill="#f3edff" stroke="#7444ad" stroke-width="2" stroke-dasharray="7 6"/>
+<g fill="#2b68c4"><circle cx="1195" cy="300" r="6"/><circle cx="1224" cy="286" r="6"/><circle cx="1255" cy="318" r="6"/><circle cx="1215" cy="335" r="6"/></g><g fill="#238a49"><circle cx="1344" cy="324" r="6"/><circle cx="1392" cy="307" r="6"/><circle cx="1410" cy="349" r="6"/><circle cx="1362" cy="365" r="6"/></g><g fill="#7444ad"><circle cx="1250" cy="420" r="6"/><circle cx="1294" cy="402" r="6"/><circle cx="1318" cy="437" r="6"/><circle cx="1276" cy="449" r="6"/></g>
+<circle cx="1230" cy="315" r="13" fill="#1856b1"/><circle cx="1380" cy="340" r="13" fill="#238a49"/><circle cx="1285" cy="430" r="13" fill="#7444ad"/>
+<text x="1452" y="294" class="small" font-weight="700">Center 1</text><text x="1452" y="322" class="small" font-weight="700">Center 2</text><text x="1452" y="350" class="small" font-weight="700">Center 3</text>
+<text x="1325" y="497" text-anchor="middle" class="small">Clusters define latent interpretations without manual labels.</text>
+<rect x="30" y="555" width="490" height="350" class="panel"/><rect x="30" y="555" width="490" height="52" class="cap"/><text x="275" y="589" text-anchor="middle" class="ph">4. Knowledge Distillation</text>
+<rect x="60" y="635" width="430" height="92" rx="14" fill="#f3edff" stroke="#7444ad"/><text x="275" y="666" text-anchor="middle" class="body" font-weight="700">Teacher: semantic-center distributions</text>
+<g transform="translate(100,685)"><rect width="25" height="18" fill="#2b68c4"/><rect x="33" y="-14" width="25" height="32" fill="#2b68c4"/><rect x="66" y="-30" width="25" height="48" fill="#238a49"/><rect x="99" y="-8" width="25" height="26" fill="#238a49"/><rect x="132" y="-23" width="25" height="41" fill="#7444ad"/><rect x="165" y="-4" width="25" height="22" fill="#7444ad"/></g>
+<text x="275" y="759" text-anchor="middle" class="small" font-weight="700">soft supervision  /  distillation loss</text><rect x="60" y="785" width="430" height="90" rx="14" fill="#eef8f1" stroke="#238a49"/><text x="275" y="818" text-anchor="middle" class="body" font-weight="700">XLM-R student</text>
+<rect x="95" y="837" width="145" height="25" rx="5" fill="#dce9ff"/><text x="168" y="855" text-anchor="middle" class="small">Predict centers</text><text x="275" y="858" text-anchor="middle" class="body" font-weight="700">+</text><rect x="310" y="837" width="145" height="25" rx="5" fill="#eaf8ee"/><text x="383" y="855" text-anchor="middle" class="small">Predict answer span</text><text x="275" y="894" text-anchor="middle" class="small">Weak supervision is derived directly from data.</text>
+<rect x="555" y="555" width="490" height="350" class="panel"/><rect x="555" y="555" width="490" height="52" class="cap"/><text x="800" y="589" text-anchor="middle" class="ph">5. Inference Behaviour</text>
+<circle cx="610" cy="661" r="25" fill="#2b9e4b"/><text x="610" y="670" text-anchor="middle" class="small" font-size="17" font-weight="700" fill="white">A</text><text x="652" y="650" class="body" font-weight="700">Answer</text><text x="652" y="676" class="small">Clear, confident interpretation</text>
+<rect x="825" y="628" width="190" height="58" rx="10" fill="#eef8f1" stroke="#2b9e4b"/><text x="920" y="651" text-anchor="middle" class="small">Q: Capital of France?</text><text x="920" y="674" text-anchor="middle" class="small" font-weight="700">A: Paris</text>
+<circle cx="610" cy="746" r="25" fill="#e39a28"/><text x="610" y="756" text-anchor="middle" font-size="29" fill="white">?</text><text x="652" y="735" class="body" font-weight="700">Clarify</text><text x="652" y="761" class="small">Ask a follow-up question</text><rect x="825" y="713" width="190" height="68" rx="10" fill="#fff7e8" stroke="#e39a28"/><text x="920" y="738" text-anchor="middle" class="small">“Do you mean charge</text><text x="920" y="760" text-anchor="middle" class="small">a device, battery, or card?”</text>
+<circle cx="610" cy="836" r="25" fill="#7444ad"/><text x="610" y="844" text-anchor="middle" class="small" font-size="13" font-weight="700" fill="white">ALT</text><text x="652" y="825" class="body" font-weight="700">Present alternatives</text><text x="652" y="851" class="small">Return multiple plausible answers</text><rect x="825" y="803" width="190" height="70" rx="10" fill="#f4effc" stroke="#7444ad"/><text x="920" y="827" text-anchor="middle" class="small">A1: device  A2: battery</text><text x="920" y="851" text-anchor="middle" class="small">A3: payment card</text><text x="800" y="894" text-anchor="middle" class="small">The predicted distribution determines response behaviour.</text>
+<rect x="1080" y="555" width="490" height="350" class="panel"/><rect x="1080" y="555" width="490" height="52" class="cap"/><text x="1325" y="589" text-anchor="middle" class="ph">6. Results &amp; Contributions</text>
+<text x="1125" y="672" class="t metric" fill="#1856b1">91.2%</text><text x="1128" y="699" class="small">Behaviour accuracy</text><text x="1125" y="770" class="t metric" fill="#238a49">93.0%</text><text x="1128" y="797" class="small">Center assignment accuracy</text><text x="1125" y="868" class="t metric" fill="#7444ad">8.8</text><text x="1128" y="895" class="small">Worst-cluster F1</text>
+<line x1="1320" y1="632" x2="1320" y2="885" stroke="#c5d1e6" stroke-width="2"/><text x="1350" y="660" class="body" font-weight="700">Key takeaways</text><text x="1350" y="694" class="small" font-size="14">No manual interpretation labels</text><text x="1350" y="730" class="small" font-size="14">Ambiguity-aware</text><text x="1350" y="750" class="small" font-size="14">multilingual QA</text><text x="1350" y="790" class="small" font-size="14">Better response behaviour</text><text x="1350" y="830" class="small" font-size="14">Generalizes EN-ES to EN-DE</text><text x="1350" y="870" class="small" font-size="14">Joint center + span prediction</text>
+<rect x="30" y="925" width="1540" height="55" rx="16" fill="url(#footer)" stroke="#2b68c4" stroke-width="2"/><text x="800" y="961" text-anchor="middle" class="t" font-size="24" font-weight="700">CenterDistill learns ambiguity-aware QA behaviour without manual interpretation labels.</text>
+</svg>
