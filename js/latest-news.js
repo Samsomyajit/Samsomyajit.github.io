@@ -154,18 +154,11 @@
   let startIndex = 0;
   let timer = null;
   let paused = false;
-  let rotating = false;
-  let resizeTimer = null;
 
-  function isChinese() {
-    return document.documentElement.lang === 'zh-CN';
-  }
+  const isChinese = () => document.documentElement.lang === 'zh-CN';
+  const visibleCount = () => window.matchMedia('(max-width: 720px)').matches ? 3 : 4;
 
-  function visibleCount() {
-    return window.matchMedia('(max-width: 720px)').matches ? 3 : 4;
-  }
-
-  function createHighlightedText(item) {
+  function createText(item) {
     const fragment = document.createDocumentFragment();
     const parts = isChinese() ? item.zh : item.en;
 
@@ -178,73 +171,132 @@
       }
       fragment.appendChild(span);
     });
+
+    if (item.href) {
+      fragment.appendChild(document.createTextNode(' '));
+      const link = document.createElement('a');
+      link.href = item.href;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = isChinese() ? item.linkLabelZh : item.linkLabel;
+      link.style.color = 'var(--accent-primary)';
+      link.style.fontWeight = '650';
+      link.style.whiteSpace = 'nowrap';
+      link.style.textDecoration = 'none';
+      fragment.appendChild(link);
+    }
+
     return fragment;
   }
 
-  function renderNews() {
-    const section = document.getElementById(sectionId);
-    if (!section) return;
-
-    const count = Math.min(visibleCount(), newsItems.length);
-    const visible = Array.from({ length: count }, (_, offset) => newsItems[(startIndex + offset) % newsItems.length]);
-    const wrapper = document.createElement('div');
-    wrapper.className = 'latest-news-wrapper';
-    wrapper.setAttribute('role', 'list');
-
-    visible.forEach((item) => {
-      const card = document.createElement(item.href ? 'a' : 'div');
-      card.className = 'latest-news-card';
-      card.setAttribute('role', 'listitem');
-      if (item.href) {
-        card.href = item.href;
-        card.target = '_blank';
-        card.rel = 'noopener';
-      }
-      const text = document.createElement('span');
-      text.className = 'latest-news-text';
-      text.appendChild(createHighlightedText(item));
-      card.appendChild(text);
-      if (item.href) {
-        const link = document.createElement('span');
-        link.className = 'latest-news-link';
-        link.textContent = isChinese() ? item.linkLabelZh : item.linkLabel;
-        card.appendChild(link);
-      }
-      wrapper.appendChild(card);
+  function createRow(item) {
+    const row = document.createElement('div');
+    row.setAttribute('role', 'listitem');
+    Object.assign(row.style, {
+      display: 'flex',
+      alignItems: 'flex-start',
+      gap: '0.85rem',
+      padding: '0.8rem 0',
+      borderBottom: '1px solid var(--border-color)',
+      color: 'var(--text-secondary)',
+      lineHeight: '1.65',
+      fontSize: 'clamp(0.98rem, 1.4vw, 1.08rem)'
     });
 
-    section.replaceChildren(wrapper);
+    const marker = document.createElement('span');
+    marker.setAttribute('aria-hidden', 'true');
+    Object.assign(marker.style, {
+      width: '0.48rem',
+      height: '0.48rem',
+      marginTop: '0.58rem',
+      borderRadius: '50%',
+      background: 'var(--accent-primary)',
+      flex: '0 0 auto'
+    });
+
+    const text = document.createElement('span');
+    text.style.minWidth = '0';
+    text.appendChild(createText(item));
+    row.append(marker, text);
+    return row;
   }
 
-  function rotateNews() {
-    if (paused || rotating || reducedMotion.matches) return;
-    rotating = true;
-    startIndex = (startIndex + 1) % newsItems.length;
-    renderNews();
-    rotating = false;
+  function ensureSection() {
+    let section = document.getElementById(sectionId);
+    if (section) return section;
+
+    const home = document.getElementById('page-home');
+    const welcome = home?.querySelector('.welcome-section');
+    if (!home || !welcome) return null;
+
+    section = document.createElement('section');
+    section.id = sectionId;
+    section.className = 'favorites-section';
+    section.dataset.latestNews = 'true';
+    section.setAttribute('aria-labelledby', 'latest-news-title');
+
+    const heading = document.createElement('h2');
+    heading.id = 'latest-news-title';
+    heading.className = 'section-title';
+    heading.textContent = isChinese() ? '最新动态' : 'Latest News';
+
+    const track = document.createElement('div');
+    track.dataset.latestNewsTrack = 'true';
+    track.setAttribute('role', 'list');
+    track.setAttribute('aria-label', isChinese() ? '最新动态' : 'Latest news updates');
+
+    section.append(heading, track);
+    welcome.insertAdjacentElement('afterend', section);
+    return section;
+  }
+
+  function render() {
+    const section = ensureSection();
+    if (!section) return;
+
+    const heading = section.querySelector('#latest-news-title');
+    const track = section.querySelector('[data-latest-news-track]');
+    if (!track) return;
+
+    if (heading) heading.textContent = isChinese() ? '最新动态' : 'Latest News';
+    track.setAttribute('aria-label', isChinese() ? '最新动态' : 'Latest news updates');
+
+    const count = Math.min(visibleCount(), newsItems.length);
+    const rows = Array.from({ length: count }, (_, offset) =>
+      createRow(newsItems[(startIndex + offset) % newsItems.length])
+    );
+    track.replaceChildren(...rows);
   }
 
   function scheduleRotation() {
     window.clearInterval(timer);
-    if (!reducedMotion.matches) timer = window.setInterval(rotateNews, rotationDelay);
+    if (reducedMotion.matches) return;
+    timer = window.setInterval(() => {
+      if (paused || document.hidden) return;
+      startIndex = (startIndex + 1) % newsItems.length;
+      render();
+    }, rotationDelay);
   }
 
   function init() {
-    const section = document.getElementById(sectionId);
+    const section = ensureSection();
     if (!section) return;
+
     section.addEventListener('mouseenter', () => { paused = true; });
     section.addEventListener('mouseleave', () => { paused = false; });
     section.addEventListener('focusin', () => { paused = true; });
     section.addEventListener('focusout', () => { paused = false; });
-    reducedMotion.addEventListener?.('change', () => {
-      renderNews();
-      scheduleRotation();
+
+    new MutationObserver(render).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['lang']
     });
-    window.addEventListener('resize', () => {
-      window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(renderNews, 150);
-    });
-    renderNews();
+
+    window.addEventListener('resize', render);
+    document.addEventListener('visibilitychange', scheduleRotation);
+    reducedMotion.addEventListener?.('change', scheduleRotation);
+
+    render();
     scheduleRotation();
   }
 
