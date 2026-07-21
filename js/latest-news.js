@@ -10,7 +10,7 @@
       en: [
         { text: 'New publication: ' },
         { text: 'Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets', highlight: true },
-        { text: ' accepted/published in ' },
+        { text: ' published in ' },
         { text: 'Journal of the American Ceramic Society', highlight: true },
         { text: '. DOI: 10.1111/jace.71067.' }
       ],
@@ -178,197 +178,79 @@
       }
       fragment.appendChild(span);
     });
-
-    if (item.href) {
-      fragment.appendChild(document.createTextNode(' '));
-      const link = document.createElement('a');
-      link.href = item.href;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = isChinese() ? item.linkLabelZh : item.linkLabel;
-      link.style.color = 'var(--accent-primary)';
-      link.style.fontWeight = '650';
-      link.style.whiteSpace = 'nowrap';
-      link.style.textDecoration = 'none';
-      fragment.appendChild(link);
-    }
-
     return fragment;
   }
 
-  function createNewsRow(item) {
-    const row = document.createElement('div');
-    row.setAttribute('role', 'listitem');
-    Object.assign(row.style, {
-      display: 'flex',
-      alignItems: 'flex-start',
-      gap: '0.85rem',
-      padding: '0.8rem 0',
-      borderBottom: '1px solid var(--border-color)',
-      color: 'var(--text-secondary)',
-      lineHeight: '1.65',
-      fontSize: 'clamp(0.98rem, 1.4vw, 1.08rem)',
-      willChange: 'transform, opacity'
-    });
+  function renderNews() {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
 
-    const marker = document.createElement('span');
-    marker.setAttribute('aria-hidden', 'true');
-    Object.assign(marker.style, {
-      width: '0.48rem',
-      height: '0.48rem',
-      marginTop: '0.58rem',
-      borderRadius: '50%',
-      background: 'var(--accent-primary)',
-      flex: '0 0 auto'
-    });
+    const count = Math.min(visibleCount(), newsItems.length);
+    const visible = Array.from({ length: count }, (_, offset) => newsItems[(startIndex + offset) % newsItems.length]);
+    const wrapper = document.createElement('div');
+    wrapper.className = 'latest-news-wrapper';
+    wrapper.setAttribute('role', 'list');
 
-    const text = document.createElement('span');
-    text.style.minWidth = '0';
-    text.appendChild(createHighlightedText(item));
-
-    row.append(marker, text);
-    return row;
-  }
-
-  function renderWindow(track, viewport, animateIn = false) {
-    const count = visibleCount();
-    const rows = [];
-
-    for (let offset = 0; offset < count; offset += 1) {
-      const item = newsItems[(startIndex + offset) % newsItems.length];
-      rows.push(createNewsRow(item));
-    }
-
-    track.replaceChildren(...rows);
-
-    window.requestAnimationFrame(() => {
-      const nextHeight = track.scrollHeight;
-      viewport.style.height = `${nextHeight}px`;
-
-      if (!animateIn || reducedMotion.matches) return;
-      rows.forEach((row, index) => {
-        row.animate(
-          [
-            { opacity: 0, transform: 'translateY(12px)' },
-            { opacity: 1, transform: 'translateY(0)' }
-          ],
-          {
-            duration: 360,
-            delay: index * 55,
-            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-            fill: 'both'
-          }
-        );
-      });
-    });
-  }
-
-  async function rotate(track, viewport) {
-    if (paused || rotating || reducedMotion.matches || document.hidden) return;
-    rotating = true;
-
-    const rows = [...track.children];
-    const animations = rows.map((row, index) => row.animate(
-      [
-        { opacity: 1, transform: 'translateY(0)' },
-        { opacity: 0, transform: 'translateY(-12px)' }
-      ],
-      {
-        duration: 260,
-        delay: index * 35,
-        easing: 'cubic-bezier(0.4, 0, 1, 1)',
-        fill: 'forwards'
+    visible.forEach((item) => {
+      const card = document.createElement(item.href ? 'a' : 'div');
+      card.className = 'latest-news-card';
+      card.setAttribute('role', 'listitem');
+      if (item.href) {
+        card.href = item.href;
+        card.target = '_blank';
+        card.rel = 'noopener';
       }
-    ).finished.catch(() => undefined));
+      const text = document.createElement('span');
+      text.className = 'latest-news-text';
+      text.appendChild(createHighlightedText(item));
+      card.appendChild(text);
+      if (item.href) {
+        const link = document.createElement('span');
+        link.className = 'latest-news-link';
+        link.textContent = isChinese() ? item.linkLabelZh : item.linkLabel;
+        card.appendChild(link);
+      }
+      wrapper.appendChild(card);
+    });
 
-    await Promise.all(animations);
+    section.replaceChildren(wrapper);
+  }
+
+  function rotateNews() {
+    if (paused || rotating || reducedMotion.matches) return;
+    rotating = true;
     startIndex = (startIndex + 1) % newsItems.length;
-    renderWindow(track, viewport, true);
+    renderNews();
     rotating = false;
   }
 
-  function scheduleRotation(track, viewport) {
+  function scheduleRotation() {
     window.clearInterval(timer);
-    if (reducedMotion.matches) return;
-    timer = window.setInterval(() => rotate(track, viewport), rotationDelay);
+    if (!reducedMotion.matches) timer = window.setInterval(rotateNews, rotationDelay);
   }
 
-  function buildLatestNews() {
-    if (document.getElementById(sectionId)) return;
-
-    const home = document.getElementById('page-home');
-    const welcome = home?.querySelector('.welcome-section');
-    if (!home || !welcome) return;
-
-    const section = document.createElement('section');
-    section.id = sectionId;
-    section.className = 'favorites-section';
-    section.dataset.latestNews = 'true';
-    section.setAttribute('aria-labelledby', 'latest-news-title');
-    section.setAttribute('aria-roledescription', 'carousel');
-
-    const heading = document.createElement('h2');
-    heading.id = 'latest-news-title';
-    heading.className = 'section-title';
-    heading.textContent = isChinese() ? '最新动态' : 'Latest News';
-
-    const viewport = document.createElement('div');
-    viewport.setAttribute('aria-live', 'off');
-    Object.assign(viewport.style, {
-      overflow: 'hidden',
-      transition: 'height 320ms cubic-bezier(0.22, 1, 0.36, 1)'
-    });
-
-    const track = document.createElement('div');
-    track.setAttribute('role', 'list');
-    track.setAttribute('aria-label', isChinese() ? '最新动态' : 'Latest news updates');
-    track.style.display = 'grid';
-    track.style.gridTemplateColumns = 'minmax(0, 1fr)';
-
-    viewport.appendChild(track);
-    section.append(heading, viewport);
-    welcome.insertAdjacentElement('afterend', section);
-
-    renderWindow(track, viewport, true);
-    scheduleRotation(track, viewport);
-
+  function init() {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
     section.addEventListener('mouseenter', () => { paused = true; });
     section.addEventListener('mouseleave', () => { paused = false; });
     section.addEventListener('focusin', () => { paused = true; });
-    section.addEventListener('focusout', () => {
-      window.requestAnimationFrame(() => {
-        paused = section.contains(document.activeElement);
-      });
-    });
-
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) scheduleRotation(track, viewport);
-    });
-
-    const languageObserver = new MutationObserver(() => {
-      heading.textContent = isChinese() ? '最新动态' : 'Latest News';
-      track.setAttribute('aria-label', isChinese() ? '最新动态' : 'Latest news updates');
-      renderWindow(track, viewport, false);
-    });
-    languageObserver.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['lang']
-    });
-
+    section.addEventListener('focusout', () => { paused = false; });
     reducedMotion.addEventListener?.('change', () => {
-      renderWindow(track, viewport, false);
-      scheduleRotation(track, viewport);
+      renderNews();
+      scheduleRotation();
     });
-
     window.addEventListener('resize', () => {
       window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(() => renderWindow(track, viewport, false), 160);
-    }, { passive: true });
+      resizeTimer = window.setTimeout(renderNews, 150);
+    });
+    renderNews();
+    scheduleRotation();
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildLatestNews, { once: true });
+    document.addEventListener('DOMContentLoaded', init, { once: true });
   } else {
-    buildLatestNews();
+    init();
   }
 })();
