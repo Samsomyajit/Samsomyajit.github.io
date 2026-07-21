@@ -6,6 +6,9 @@ title: "Publications"
 # Publications
 
 ## 📰 Journals
+- **Cheng, N., Chakraborty, S., Liu, X., Zhang, W., Liang, X., Zhao, H., Bi, W., Zhang, M., Sun, B., He, J. and Liu, Y., 2026.**  
+  _Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets._ Journal of the American Ceramic Society. Article ID: JACE71067. [doi: 10.1111/jace.71067](https://doi.org/10.1111/jace.71067).
+
 - **Gayen, A., Chakraborty, S., Mitra, S. and Jana, A., 2025.** _Comeback or dropout: study of discontinued researchers at early career stage._ Scientometrics, pp.1-36. 
   
 - **Gayen, A., Chakraborty, S., Chakraborty, N. and Jana, A., 2025.**  
@@ -22,8 +25,6 @@ title: "Publications"
 - **Chakraborty, S., Ming, P., and Chen, X., 2025.**  
   _PIBERT: A Physics-Informed Bi-directional Hybrid Spectral Transformer for Multiscale CFD Surrogate Modeling._ Journal of Computational Physics. *(Under review; 31 Dec 2025.)*
 
-- **Cheng, N., Chakraborty, S., Liu, X., Zhang, W., Liang, X., Zhao, H., Bi, W., Zhang, M., Sun, B., He, J. and Liu, Y.**  
-  _Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets._ Journal of Alloys and Compounds. (2025)
 
 ## 🎤 Conferences and Book Chapters
 - **Gayen, A., Chakraborty, S., Chakraborty, J. and Jana, A. (2024, June).**  

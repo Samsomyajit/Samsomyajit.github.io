@@ -8,6 +8,25 @@
   const newsItems = [
     {
       en: [
+        { text: 'New publication: ' },
+        { text: 'Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets', highlight: true },
+        { text: ' accepted/published in ' },
+        { text: 'Journal of the American Ceramic Society', highlight: true },
+        { text: '. DOI: 10.1111/jace.71067.' }
+      ],
+      zh: [
+        { text: '新论文：' },
+        { text: 'Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets', highlight: true },
+        { text: ' 已在 ' },
+        { text: 'Journal of the American Ceramic Society', highlight: true },
+        { text: ' 发表。DOI：10.1111/jace.71067。' }
+      ],
+      href: 'https://doi.org/10.1111/jace.71067',
+      linkLabel: 'View DOI →',
+      linkLabelZh: '查看 DOI →'
+    },
+    {
+      en: [
         { text: 'PharmaDissolve-MCP', highlight: true },
         { text: ' featured in the ' },
         { text: 'AI4Science Hackathon at Shanghai Jiao Tong University', highlight: true },

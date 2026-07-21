@@ -10,6 +10,17 @@
 const publications = {
   journals: [
     {
+      id: 6,
+      title: "Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets",
+      authors: "Cheng, N., Chakraborty, S., Liu, X., Zhang, W., Liang, X., Zhao, H., Bi, W., Zhang, M., Sun, B., He, J. and Liu, Y.",
+      year: 2026,
+      journal: "Journal of the American Ceramic Society",
+      articleId: "JACE71067",
+      internalArticleId: "100636828",
+      doi: "10.1111/jace.71067",
+      url: "https://doi.org/10.1111/jace.71067",
+    },
+    {
       id: 1,
       title: "Comeback or dropout: study of discontinued researchers at early career stage",
       authors: "Gayen, A., Chakraborty, S., Mitra, S. and Jana, A.",
@@ -50,14 +61,6 @@ const publications = {
       authors: "Chakraborty, S., Ming, P., and Chen, X.",
       year: 2025,
       journal: "Journal of Computational Physics",
-      status: "Under review",
-    },
-    {
-      id: 6,
-      title: "Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets",
-      authors: "Cheng, N., Chakraborty, S., Liu, X., Zhang, W., Liang, X., Zhao, H., Bi, W., Zhang, M., Sun, B., He, J. and Liu, Y.",
-      year: 2025,
-      journal: "Journal of Alloys and Compounds",
       status: "Under review",
     },
   ],

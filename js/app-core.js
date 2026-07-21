@@ -200,9 +200,9 @@
 
     const kpis = [...publicationPage.querySelectorAll('.kpi-pill')];
     const counts = {
-      Journals: 4,
+      Journals: 5,
       Conferences: 6,
-      'Under Review': 2,
+      'Under Review': 1,
       Preprints: 3,
       Patents: 1,
       Total: 16
