@@ -1,0 +1,112 @@
+name: Update JACerS publication thumbnail
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/update-jace-publication-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update-publication:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply publication thumbnail and metadata
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          title = "Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets"
+          authors = "Cheng, N., Chakraborty, S., Liu, X., Zhang, W., Liang, X., Zhao, H., Bi, W., Zhang, M., Sun, B., He, J. and Liu, Y."
+
+          index = Path("index.html")
+          text = index.read_text(encoding="utf-8")
+          old = f'''            <div class="pub-compact-card animated-card">
+              <span class="pub-compact-badge journal">Journal</span>
+              <div class="pub-compact-content">
+                <div class="pub-compact-title">{title}</div>
+                <div class="pub-compact-authors">{authors}</div>
+                <div class="pub-compact-meta">
+                  <span>Journal of the American Ceramic Society</span>
+                  <span class="pub-compact-meta-sep">·</span>
+                  <span>Article ID: JACE71067</span>
+                  <span class="pub-compact-meta-sep">·</span>
+                  <span>2026</span>
+                  <span class="pub-compact-meta-sep">·</span>
+                  <a href="https://doi.org/10.1111/jace.71067" target="_blank" rel="noopener">DOI</a>
+                </div>
+              </div>
+            </div>'''
+          new = f'''            <div class="pub-compact-card has-thumbnail animated-card">
+              <span class="pub-compact-badge journal">Journal</span>
+              <img class="pub-thumbnail" src="assets/FlowSputRes.png" alt="Inverse design of In–Ga–Sn–Zn oxide sputtering targets publication thumbnail">
+              <div class="pub-compact-content">
+                <div class="pub-compact-title">{title}</div>
+                <div class="pub-compact-authors">{authors}</div>
+                <div class="pub-compact-meta">
+                  <span>Journal of the American Ceramic Society</span>
+                  <span class="pub-compact-meta-sep">·</span>
+                  <span>Article ID: JACE71067</span>
+                  <span class="pub-compact-meta-sep">·</span>
+                  <span>Internal ID: 100636828</span>
+                  <span class="pub-compact-meta-sep">·</span>
+                  <span>2026</span>
+                  <span class="pub-compact-meta-sep">·</span>
+                  <a href="https://doi.org/10.1111/jace.71067" target="_blank" rel="noopener">DOI</a>
+                </div>
+              </div>
+            </div>'''
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif new not in text:
+              raise RuntimeError("JACerS publication card was not found in index.html")
+          index.write_text(text, encoding="utf-8")
+
+          def add_thumbnail(path, thumbnail):
+              file = Path(path)
+              data = file.read_text(encoding="utf-8")
+              start = data.index(f'title: "{title}"')
+              end = data.index("    },", start)
+              record = data[start:end]
+              if "thumbnail:" not in record:
+                  url_line = '      url: "https://doi.org/10.1111/jace.71067",\n'
+                  position = data.index(url_line, start, end) + len(url_line)
+                  data = data[:position] + f'      thumbnail: "{thumbnail}",\n' + data[position:]
+              file.write_text(data, encoding="utf-8")
+
+          add_thumbnail("js/data.js", "assets/FlowSputRes.png")
+          add_thumbnail("react-app/src/data/publications.js", "/assets/FlowSputRes.png")
+
+          md = Path("publications.md")
+          md_text = md.read_text(encoding="utf-8")
+          md_text = md_text.replace(
+              "Article ID: JACE71067. [doi: 10.1111/jace.71067]",
+              "Article ID: JACE71067; Internal Article ID: 100636828. [doi: 10.1111/jace.71067]",
+              1,
+          )
+          md.write_text(md_text, encoding="utf-8")
+
+          assert "assets/FlowSputRes.png" in index.read_text(encoding="utf-8")
+          assert "Internal ID: 100636828" in index.read_text(encoding="utf-8")
+          assert "thumbnail: \"assets/FlowSputRes.png\"" in Path("js/data.js").read_text(encoding="utf-8")
+          assert "thumbnail: \"/assets/FlowSputRes.png\"" in Path("react-app/src/data/publications.js").read_text(encoding="utf-8")
+          PY
+
+      - name: Commit website update
+        shell: bash
+        run: |
+          rm -f .github/workflows/update-jace-publication-once.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html publications.md js/data.js react-app/src/data/publications.js .github/workflows/update-jace-publication-once.yml
+          git commit -m "Add JACerS publication thumbnail and metadata"
+          git push origin HEAD:main
