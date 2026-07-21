@@ -10,6 +10,7 @@ export const publications = {
       internalArticleId: "100636828",
       doi: "10.1111/jace.71067",
       url: "https://doi.org/10.1111/jace.71067",
+      thumbnail: "/assets/FlowSputRes.png",
     },
     {
       id: 1,
