@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+- [Navier–Stokes, AI, and the Meaning of Discovery](/blogs/navier_stokes_ai_discovery.html)
 - [Homo in Compitis: The Magic of Human Imagination and Technology](/blogs/homoincompitis/Homo_in_Compitis_Blog.html)
 - [Comeback or Dropout? What the Data Tells Us About Early Career Researchers](/blogs/comeback.html)
 - [PINNs in Practice: From First Principles to PyTorch](/blogs/pinns.html)
