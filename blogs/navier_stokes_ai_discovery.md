@@ -540,7 +540,7 @@ The fourth task is cultural. Academic credit systems were built for a world wher
 
 The fifth task is educational. If AI can generate proofs, then training the next generation cannot be reduced to producing proofs faster than AI. Students will need to learn how to ask good questions, recognize a deep mechanism, verify assumptions, challenge a machine-generated argument, connect mathematics to physical meaning, and explain a result to another human being. In an age of proof abundance, taste and understanding become more valuable, not less.
 
-## My own reaction
+## What do I make of all this?
 
 I keep coming back to the same sentence. I love the paper, and that is exactly why I do not want it swallowed by the narrative around it.
 
