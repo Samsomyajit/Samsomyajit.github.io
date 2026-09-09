@@ -21,14 +21,16 @@
   metadataScript.defer = true;
   document.head.appendChild(metadataScript);
 
-  loadScript('js/latest-news.js', () => {
-    loadScript('js/publication-sync.js', () => {
-      loadScript('js/bio-i18n.js', () => {
-        loadScript('js/app-core.js', () => {
-          window.dispatchEvent(new Event('publication-data-ready'));
-          if (window.location.pathname === '/') {
-            document.title = 'Somyajit Chakraborty | Doctoral Researcher at Shanghai Jiao Tong University';
-          }
+  loadScript('js/navier-stokes-blog-entry.js', () => {
+    loadScript('js/latest-news.js', () => {
+      loadScript('js/publication-sync.js', () => {
+        loadScript('js/bio-i18n.js', () => {
+          loadScript('js/app-core.js', () => {
+            window.dispatchEvent(new Event('publication-data-ready'));
+            if (window.location.pathname === '/') {
+              document.title = 'Somyajit Chakraborty | Doctoral Researcher at Shanghai Jiao Tong University';
+            }
+          });
         });
       });
     });
