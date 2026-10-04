@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sim2Real Physical Fidelity | Somyajit Chakraborty</title>
+  <meta name="description" content="Research project on physics-grounded diagnostics for Sim2Real neural operators and scientific machine-learning evaluation.">
+  <link rel="canonical" href="https://samchakraborty.me/research/sim2real-physics/">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ResearchProject","@id":"https://samchakraborty.me/research/sim2real-physics/#project","name":"Sim2Real Physical Fidelity","url":"https://samchakraborty.me/research/sim2real-physics/","creator":{"@id":"https://samchakraborty.me/#person"},"subjectOf":{"@id":"https://samchakraborty.me/publications/do-better-scores/#article"}}
+  </script>
+</head>
+<body>
+  <main id="content" class="page-shell">
+    <div class="breadcrumbs"><a href="/">Home</a> / <a href="/research/">Research</a> / Sim2Real Physical Fidelity</div>
+    <section class="project-hero">
+      <div>
+        <span class="status accepted">Accepted · NeurIPS 2026 XAI4Science</span>
+        <h1>Sim2Real Physical Fidelity</h1>
+        <p class="hero-copy">Physics-grounded diagnostics for understanding when better neural-operator benchmark scores do not necessarily imply better agreement with physically meaningful flow behavior.</p>
+        <div class="link-row">
+          <a class="button primary" href="/publications/do-better-scores/">Publication page</a>
+          <a class="button" href="https://arxiv.org/abs/2610.00415" target="_blank" rel="noopener noreferrer">arXiv</a>
+        </div>
+      </div>
+      <figure class="project-visual">
+        <div class="architecture"><span>CFD + PIV</span><span>Forecast</span><span>Intervention</span><span>Physical diagnostics</span></div>
+      </figure>
+    </section>
+
+    <div class="project-layout">
+      <article class="project-content">
+        <section><h2>Research question</h2><p>Can a scientific AI model obtain a better aggregate prediction score while representing important flow statistics less faithfully?</p></section>
+        <section><h2>Approach</h2><ul><li>Paired CFD and experimental PIV data around a NACA4418 airfoil.</li><li>20 observed PIV frames mapped to 20 future frames.</li><li>Four evaluated neural-operator architectures: hybrid reference, FNO, CNO, and Transolver.</li><li>Mean-preserving masking of energetic, random, and low-energy regions with frozen-model re-evaluation.</li><li>Comparison of field error, two-component fluctuation-energy error, MVPE, regional error, and total fluctuation-energy diagnostics.</li></ul></section>
+        <section><h2>Current result</h2><p>Aggregate prediction scores and physically meaningful flow diagnostics can disagree. The accepted workshop study documents this behavior and defines the limitations that motivate the next stage of the project, including energy-matched controls, smooth interventions, physically realizable solver-based perturbations, and broader cross-system evaluation.</p></section>
+        <section><h2>Related publication</h2><p><a href="/publications/do-better-scores/">Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators</a></p></section>
+      </article>
+      <aside class="project-sidebar"><div class="card"><h2>Project facts</h2><ul class="fact-list"><li><strong>Lead researcher</strong>Somyajit Chakraborty</li><li><strong>Collaborator</strong>Xizhong Chen</li><li><strong>Domain</strong>Scientific machine learning · CFD · Explainable AI</li><li><strong>Status</strong>Accepted workshop study; continuing research</li></ul></div></aside>
+    </div>
+  </main>
+  <script src="/js/site.js" defer></script>
+</body>
+</html>
