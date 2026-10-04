@@ -116,12 +116,13 @@
   if (kind === 'publications' && typeof publications !== 'undefined') {
     root.append(addText('h1', 'Publications'));
     const latest = card();
-    latest.append(addText('h2', 'PacePal: A Geo-Aware Retrieval-Augmented Chatbot Agent for Walking Engagement and Well-Being'));
-    latest.append(addText('p', 'Somyajit Chakraborty; Muhammad Shoaib; Rosane Minghim; Mujahid Tabassum'));
-    latest.append(addText('p', 'Accepted for ICHCAI 2026 and IEEE Xplore publication, subject to revisions and publication checks.', 'meta'));
+    latest.append(addText('h2', 'Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators'));
+    latest.append(addText('p', 'Somyajit Chakraborty; Xizhong Chen'));
+    latest.append(addText('p', 'Accepted at the NeurIPS 2026 XAI4Science Workshop · non-archival workshop paper · arXiv:2610.00415.', 'meta'));
     const latestRow = document.createElement('div');
     latestRow.className = 'link-row';
-    addLink(latestRow, 'Project page', '/research/pacepal/');
+    addLink(latestRow, 'Publication page', '/publications/do-better-scores/');
+    addLink(latestRow, 'arXiv', 'https://arxiv.org/abs/2610.00415');
     latest.append(latestRow);
     root.append(latest);
     const groups = [['Journal articles',publications.journals],['Under review',publications.underReview],['Conference papers',publications.conferences],['Preprints',publications.preprints]];
