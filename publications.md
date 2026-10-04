@@ -27,6 +27,9 @@ title: "Publications"
 
 
 ## 🎤 Conferences and Book Chapters
+- **Chakraborty, S. and Chen, X., 2026.**  
+  _Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators._ Accepted at the **NeurIPS 2026 XAI4Science Workshop: Knowledge Discovery and Trust through Interpretable Foundation Models**. Non-archival workshop paper. [arXiv:2610.00415](https://arxiv.org/abs/2610.00415) · [OpenReview](https://openreview.net/forum?id=swbkiw3whb).
+
 - **Gayen, A., Chakraborty, S., Chakraborty, J. and Jana, A. (2024, June).**  
   _Ml-HCN: A Novel Healthcare System Architecture Based on Multi-layered Network Approach._ In 2024 15th Int. Conf. on Computing Communication & Networking Technologies (ICCCNT). IEEE.  
   
