@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Do Better Scores Mean Better Physics?</title>
+  <desc id="desc">Scientific AI blog cover showing a Sim2Real neural-operator workflow and disagreement between field accuracy and physical diagnostics.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#081c33"/>
+      <stop offset="0.55" stop-color="#12375e"/>
+      <stop offset="1" stop-color="#0d6f7f"/>
+    </linearGradient>
+    <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5f2a8a"/>
+      <stop offset="0.28" stop-color="#2458a6"/>
+      <stop offset="0.55" stop-color="#1fa187"/>
+      <stop offset="0.78" stop-color="#9bd93c"/>
+      <stop offset="1" stop-color="#fde725"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#000" flood-opacity=".22"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1320" cy="145" r="260" fill="#50d7df" opacity=".08"/>
+  <circle cx="250" cy="780" r="300" fill="#7aa8ff" opacity=".06"/>
+
+  <text x="95" y="118" fill="#9fe9ef" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" letter-spacing="2">NEURIPS 2026 · XAI4SCIENCE WORKSHOP</text>
+  <text x="95" y="220" fill="#ffffff" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="700">Do Better Scores</text>
+  <text x="95" y="300" fill="#ffffff" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="700">Mean Better Physics?</text>
+  <text x="98" y="360" fill="#cce7f0" font-family="Arial, Helvetica, sans-serif" font-size="31">Physics-grounded explanations for Sim2Real neural operators</text>
+
+  <g transform="translate(95 450)" filter="url(#shadow)">
+    <rect x="0" y="0" width="270" height="220" rx="28" fill="#ffffff" opacity=".96"/>
+    <text x="135" y="48" text-anchor="middle" fill="#17375e" font-family="Arial" font-size="28" font-weight="700">Measured flow</text>
+    <rect x="38" y="74" width="194" height="96" rx="16" fill="url(#flow)"/>
+    <path d="M45 132 C85 95, 125 155, 164 116 S220 104, 229 142" fill="none" stroke="#fff" stroke-width="6" opacity=".85"/>
+    <text x="135" y="202" text-anchor="middle" fill="#5e7185" font-family="Arial" font-size="22">20 PIV history frames</text>
+  </g>
+
+  <path d="M390 560 H500" stroke="#9fe9ef" stroke-width="8" stroke-linecap="round"/>
+  <polygon points="500,560 474,544 474,576" fill="#9fe9ef"/>
+
+  <g transform="translate(525 450)" filter="url(#shadow)">
+    <rect x="0" y="0" width="310" height="220" rx="28" fill="#eaf5fb" opacity=".98"/>
+    <text x="155" y="48" text-anchor="middle" fill="#17375e" font-family="Arial" font-size="28" font-weight="700">Neural operator</text>
+    <rect x="42" y="82" width="96" height="48" rx="12" fill="#fff" stroke="#5f8fb2" stroke-width="3"/>
+    <rect x="172" y="82" width="96" height="48" rx="12" fill="#fff" stroke="#5f8fb2" stroke-width="3"/>
+    <text x="90" y="114" text-anchor="middle" fill="#17375e" font-family="Arial" font-size="20">Fourier</text>
+    <text x="220" y="114" text-anchor="middle" fill="#17375e" font-family="Arial" font-size="20">Wavelet</text>
+    <rect x="105" y="150" width="100" height="42" rx="12" fill="#fff6dd" stroke="#9d8751" stroke-width="3"/>
+    <text x="155" y="178" text-anchor="middle" fill="#17375e" font-family="Arial" font-size="20">forecast</text>
+  </g>
+
+  <path d="M860 560 H970" stroke="#9fe9ef" stroke-width="8" stroke-linecap="round"/>
+  <polygon points="970,560 944,544 944,576" fill="#9fe9ef"/>
+
+  <g transform="translate(995 450)" filter="url(#shadow)">
+    <rect x="0" y="0" width="510" height="220" rx="28" fill="#ffffff" opacity=".96"/>
+    <text x="255" y="48" text-anchor="middle" fill="#17375e" font-family="Arial" font-size="28" font-weight="700">Two ways to judge the forecast</text>
+    <rect x="38" y="78" width="196" height="92" rx="18" fill="#eef7ff" stroke="#5d91bd" stroke-width="3"/>
+    <text x="136" y="114" text-anchor="middle" fill="#17375e" font-family="Arial" font-size="22" font-weight="700">Field error ↓</text>
+    <text x="136" y="146" text-anchor="middle" fill="#258b62" font-family="Arial" font-size="28" font-weight="700">better</text>
+    <rect x="276" y="78" width="196" height="92" rx="18" fill="#fff2f2" stroke="#c46d6d" stroke-width="3"/>
+    <text x="374" y="114" text-anchor="middle" fill="#17375e" font-family="Arial" font-size="22" font-weight="700">TKE error ↑</text>
+    <text x="374" y="146" text-anchor="middle" fill="#b74b4b" font-family="Arial" font-size="28" font-weight="700">worse</text>
+    <text x="255" y="202" text-anchor="middle" fill="#5e7185" font-family="Arial" font-size="20">A lower benchmark score can hide a worse physical statistic</text>
+  </g>
+
+  <g transform="translate(95 735)">
+    <rect x="0" y="0" width="1410" height="92" rx="24" fill="#061729" opacity=".7"/>
+    <text x="38" y="38" fill="#ffffff" font-family="Arial" font-size="25" font-weight="700">Key idea:</text>
+    <text x="165" y="38" fill="#dbeff4" font-family="Arial" font-size="25">scientific AI should be evaluated with both prediction accuracy and physically meaningful diagnostics.</text>
+    <text x="38" y="72" fill="#9fe9ef" font-family="Arial" font-size="22">Somyajit Chakraborty · Xizhong Chen · arXiv:2610.00415</text>
+  </g>
+</svg>
