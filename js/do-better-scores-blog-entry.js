@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const cleanUrl = '/blog/do-better-scores-physics';
+  const cleanUrl = '/blog/do-better-scores-physics/';
   const post = {
     id: 'do-better-scores-physics',
     title: 'Do Better Scores Mean Better Physics? What We Learned from Sim2Real Neural Operators',
