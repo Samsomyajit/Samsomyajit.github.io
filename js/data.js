@@ -116,6 +116,15 @@ const scholarUrl = "https://scholar.google.com/citations?user=R9Wr3yQAAAAJ&hl=en
 // ============================================
 const blogs = [
   {
+    id: 'do-better-scores-physics',
+    title: 'Do Better Scores Mean Better Physics? What We Learned from Sim2Real Neural Operators',
+    category: 'Research',
+    date: '2026-10-04',
+    excerpt: 'Why a lower neural-operator prediction error can still hide a worse physical forecast, and what that means for evaluating scientific AI.',
+    contentUrl: 'blogs/do_better_scores_mean_better_physics.md',
+    image: 'assets/img/do-better-scores-blog-cover.svg',
+  },
+  {
     id: 'conscious-dust',
     title: 'The Philosophy of Conscious Dust: Meaning After Nihilism, Religion, Love, and Chaos',
     category: 'Anecdotes',
