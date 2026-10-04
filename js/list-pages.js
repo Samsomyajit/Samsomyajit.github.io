@@ -87,6 +87,7 @@
     const grid = document.createElement('div');
     grid.className = 'grid two';
     const blogItems = [
+      ...blogs,
       {
         id: 'navier-stokes-ai-discovery',
         title: 'Navier–Stokes, AI, and the Meaning of Discovery',
@@ -94,9 +95,8 @@
         date: '2026-09-09',
         excerpt: 'A detailed reflection on the proposed Navier–Stokes blowup proof, its mathematical mechanism, the controversy around AI-assisted discovery, and what it means for scientific intelligence and physics-informed machine learning.',
         contentUrl: 'blogs/navier_stokes_ai_discovery.html'
-      },
-      ...blogs
-    ];
+      }
+    ].sort((a, b) => String(b.date).localeCompare(String(a.date)));
     blogItems.forEach((item) => {
       const c = card();
       c.append(addText('h2', item.title));
