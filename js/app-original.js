@@ -240,13 +240,30 @@ function addComment(blogId, author, text) {
 // ============================================
 // BLOG RENDERING
 // ============================================
+function getBlogFeed() {
+  const xai4sciencePost = {
+    id: 'do-better-scores-physics',
+    title: 'Do Better Scores Mean Better Physics? What We Learned from Sim2Real Neural Operators',
+    category: 'Research',
+    date: '2026-10-04',
+    excerpt: 'Why a lower neural-operator prediction error can still hide a worse physical forecast, and what that means for evaluating scientific AI.',
+    contentUrl: 'blogs/do_better_scores_mean_better_physics.md',
+    image: 'assets/img/do-better-scores-blog-cover.svg'
+  };
+  const feed = Array.isArray(blogs) ? [...blogs] : [];
+  const existingIndex = feed.findIndex((item) => item.id === xai4sciencePost.id);
+  if (existingIndex >= 0) feed[existingIndex] = { ...feed[existingIndex], ...xai4sciencePost };
+  else feed.push(xai4sciencePost);
+  return feed.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+}
+
 function showBlogList() {
   const blogPage = document.getElementById('page-blog');
   blogPage.classList.remove('blog-post-view');
 }
 
 function showBlogPost(blogId) {
-  const blog = blogs.find(b => b.id === blogId);
+  const blog = getBlogFeed().find(b => b.id === blogId);
   if (!blog) return;
   
   const blogPage = document.getElementById('page-blog');
@@ -613,10 +630,11 @@ function renderBlogPage() {
   const container = document.getElementById('blog-grid');
   const filtersContainer = document.getElementById('blog-filters');
   
-  const categories = ['all', ...new Set(blogs.map(b => b.category))];
-  const filteredBlogs = currentBlogFilter === 'all' 
-    ? blogs 
-    : blogs.filter(b => b.category === currentBlogFilter);
+  const blogFeed = getBlogFeed();
+  const categories = ['all', ...new Set(blogFeed.map(b => b.category))];
+  const filteredBlogs = currentBlogFilter === 'all'
+    ? blogFeed
+    : blogFeed.filter(b => b.category === currentBlogFilter);
   
   // Render filters
   filtersContainer.innerHTML = categories.map(cat => `
