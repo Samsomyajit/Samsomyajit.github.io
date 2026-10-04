@@ -84,14 +84,14 @@ To look inside the models' behavior, we constructed a simple intervention on the
 
 For every 20-frame input sequence, we calculate a history fluctuation-energy map,
 
-[
-k_{mathrm{hist}}(x,y)
+$$
+k_{\mathrm{hist}}(x,y)
 =
-rac{1}{2}
-leftlangle
-(u-ar{u})^2 + (v-ar{v})^2
-ightangle_{mathrm{hist}}.
-]
+\frac{1}{2}
+\left\langle
+(u-\bar{u})^2 + (v-\bar{v})^2
+\right\rangle_{\mathrm{hist}}.
+$$
 
 This map tells us which observed spatial regions contain the strongest temporal fluctuations.
 
@@ -142,15 +142,15 @@ Compared with the reference model, CNO achieved a **lower field error** on both 
 
 On the selection subset, the trajectory-balanced difference was
 
-[
-Delta e_{mathrm{Rel-L2}} = -0.0189.
-]
+$$
+\Delta e_{\mathrm{Rel-L2}} = -0.0189.
+$$
 
 On calibration it was
 
-[
-Delta e_{mathrm{Rel-L2}} = -0.0191.
-]
+$$
+\Delta e_{\mathrm{Rel-L2}} = -0.0191.
+$$
 
 Negative is better here: CNO improved the velocity-field metric.
 
@@ -158,15 +158,15 @@ But the fluctuation-energy result moved in the opposite direction.
 
 The CNO-reference differences were
 
-[
-Delta e_{mathrm{TKE}} = +0.1196
-]
+$$
+\Delta e_{\mathrm{TKE}} = +0.1196
+$$
 
 on selection and
 
-[
-Delta e_{mathrm{TKE}} = +0.1232
-]
+$$
+\Delta e_{\mathrm{TKE}} = +0.1232
+$$
 
 on calibration.
 
@@ -186,16 +186,16 @@ This is not a philosophical thought experiment. It appears directly in the measu
 
 A technical clarification is important.
 
-The experimental PIV data provide the two in-plane velocity components (u) and (v). Therefore the paper's “TKE” diagnostic is the **two-component PIV-resolved fluctuation energy**,
+The experimental PIV data provide the two in-plane velocity components \(u\) and \(v\). Therefore the paper's “TKE” diagnostic is the **two-component PIV-resolved fluctuation energy**,
 
-[
+$$
 k(x,y)
 =
-rac{1}{2}
-leftlangle
-(u-ar u)^2+(v-ar v)^2
-ightangle_t.
-]
+\frac{1}{2}
+\left\langle
+(u-\bar u)^2+(v-\bar v)^2
+\right\rangle_t.
+$$
 
 It is not the full three-component turbulent kinetic energy that would require the out-of-plane velocity component as well.
 
@@ -213,15 +213,15 @@ However, the reference forecast was already under-energetic.
 
 Its domain-summed fluctuation-energy ratio was approximately
 
-[
-R_E approx 0.815.
-]
+$$
+R_E \approx 0.815.
+$$
 
 After attenuation, it fell further to approximately
 
-[
-R_E approx 0.756.
-]
+$$
+R_E \approx 0.756.
+$$
 
 So the benchmark TKE error improved while the total fluctuation-energy deficit became larger.
 
