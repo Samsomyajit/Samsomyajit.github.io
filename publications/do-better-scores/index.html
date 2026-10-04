@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Do Better Scores Mean Better Physics? | Somyajit Chakraborty</title>
+  <meta name="description" content="Publication page for Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators, accepted at the NeurIPS 2026 XAI4Science Workshop.">
+  <link rel="canonical" href="https://samchakraborty.me/publications/do-better-scores/">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ScholarlyArticle",
+    "@id":"https://samchakraborty.me/publications/do-better-scores/#article",
+    "url":"https://samchakraborty.me/publications/do-better-scores/",
+    "headline":"Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators",
+    "datePublished":"2026",
+    "author":[
+      {"@type":"Person","@id":"https://samchakraborty.me/#person","name":"Somyajit Chakraborty"},
+      {"@type":"Person","name":"Xizhong Chen"}
+    ],
+    "about":["Scientific machine learning","Neural operators","Sim2Real transfer","Explainable AI","Computational fluid dynamics"],
+    "sameAs":["https://arxiv.org/abs/2610.00415","https://openreview.net/forum?id=swbkiw3whb"],
+    "isPartOf":{"@type":"Event","name":"NeurIPS 2026 XAI4Science Workshop: Knowledge Discovery and Trust through Interpretable Foundation Models"}
+  }
+  </script>
+</head>
+<body>
+  <main id="content" class="page-shell">
+    <div class="breadcrumbs"><a href="/">Home</a> / <a href="/publications/">Publications</a> / Do Better Scores Mean Better Physics?</div>
+
+    <section class="project-hero">
+      <div>
+        <span class="status accepted">Accepted · NeurIPS 2026 XAI4Science Workshop</span>
+        <h1>Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators</h1>
+        <p class="hero-copy">A diagnostic study of when lower neural-operator prediction error can disagree with physically meaningful flow statistics in a Sim2Real airfoil forecasting problem.</p>
+        <div class="link-row">
+          <a class="button primary" href="https://arxiv.org/abs/2610.00415" target="_blank" rel="noopener noreferrer">Read on arXiv</a>
+          <a class="button" href="https://openreview.net/forum?id=swbkiw3whb" target="_blank" rel="noopener noreferrer">OpenReview</a>
+          <a class="button" href="/research/sim2real-physics/">Project page</a>
+        </div>
+      </div>
+      <figure class="project-visual">
+        <div class="architecture">
+          <span>Paired CFD + PIV</span>
+          <span>20-frame PIV history</span>
+          <span>Neural operator forecast</span>
+          <span>Physics-grounded diagnostics</span>
+        </div>
+      </figure>
+    </section>
+
+    <div class="project-layout">
+      <article class="project-content">
+        <section>
+          <h2>Plain-language summary</h2>
+          <p>Scientific machine-learning models are often compared using one or two aggregate prediction errors. This study asks whether those scores tell the whole story. Using experimental PIV measurements and paired CFD development data for flow around a NACA4418 airfoil, we compare neural-operator predictions with fluctuation-energy diagnostics and controlled perturbation tests.</p>
+        </section>
+
+        <section>
+          <h2>Main findings</h2>
+          <ul>
+            <li>Across four tested neural-operator architectures, masking the most energetic regions of the observed flow history changes forecasts more than masking equal-area random regions.</li>
+            <li>A CNO can achieve lower velocity-field error than the reference while producing substantially higher two-component fluctuation-energy error.</li>
+            <li>The results show that aggregate prediction error and physically meaningful flow diagnostics can rank the same forecasts differently.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Interpretation and scope</h2>
+          <p>The masking experiment is interpreted as a model-sensitivity diagnostic rather than a causal measure of physical importance: equal-area energetic and random masks do not remove equal amounts of fluctuation energy, and the modified histories do not have a known physical counterfactual future. The two analysis subsets are window-disjoint but share the same 23 experimental trajectories, so their agreement is replication rather than trajectory-disjoint generalization.</p>
+        </section>
+
+        <section>
+          <h2>Publication status</h2>
+          <p>Accepted at the <strong>NeurIPS 2026 XAI4Science Workshop: Knowledge Discovery and Trust through Interpretable Foundation Models</strong>. The workshop is non-archival; the public preprint is available on arXiv as <strong>arXiv:2610.00415</strong>.</p>
+        </section>
+
+        <section>
+          <h2>Recommended citation</h2>
+          <div class="citation" id="citation-xai4science">Chakraborty, S. and Chen, X. (2026). Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators. NeurIPS 2026 XAI4Science Workshop. arXiv:2610.00415.</div>
+          <div class="link-row"><button class="button" type="button" data-copy-citation="#citation-xai4science">Copy citation</button></div>
+        </section>
+
+        <section>
+          <h2>BibTeX</h2>
+          <div class="citation">@inproceedings{chakraborty2026do,
+  title={Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators},
+  author={Somyajit Chakraborty and Xizhong Chen},
+  booktitle={XAI4Science: Knowledge Discovery and Trust through Interpretable Foundation Models},
+  year={2026},
+  url={https://openreview.net/forum?id=swbkiw3whb}
+}</div>
+        </section>
+
+        <section>
+          <h2>Related work</h2>
+          <p><a href="/research/sim2real-physics/">Sim2Real Physical Fidelity project</a> · <a href="/publications/fourier-wavelet-transformer/">Fourier-Wavelet Transformer</a> · <a href="/research/pibert/">PIBERT</a></p>
+        </section>
+      </article>
+
+      <aside class="project-sidebar">
+        <div class="card">
+          <h2>Publication facts</h2>
+          <ul class="fact-list">
+            <li><strong>Authors</strong>Somyajit Chakraborty; Xizhong Chen</li>
+            <li><strong>Venue</strong>NeurIPS 2026 XAI4Science Workshop</li>
+            <li><strong>Track</strong>Tiny Paper Track</li>
+            <li><strong>Status</strong>Accepted</li>
+            <li><strong>Type</strong>Non-archival workshop paper</li>
+            <li><strong>arXiv</strong><a href="https://arxiv.org/abs/2610.00415" target="_blank" rel="noopener noreferrer">2610.00415</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <script src="/js/site.js" defer></script>
+</body>
+</html>
