@@ -3,6 +3,7 @@
 
   const PACEPAL_TITLE = 'PacePal: A Geo-Aware Retrieval-Augmented Chatbot Agent for Walking Engagement and Well-Being';
   const FOURIER_WAVELET_TITLE = 'A Physics-Informed Fourier-Wavelet Transformer for Multiscale Computational Fluid Dynamics Surrogate Modeling';
+  const XAI4SCIENCE_TITLE = 'Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators';
   const NAVIER_CFD_PROJECT = Object.freeze({
     id: 10,
     title: 'NAVIER-CFD',
@@ -78,6 +79,19 @@
 
   function addNewPublications() {
     if (typeof publications === 'undefined') return;
+
+    if (Array.isArray(publications.conferences) && !publications.conferences.some((item) => item.title === XAI4SCIENCE_TITLE)) {
+      publications.conferences.unshift({
+        id: 14,
+        title: XAI4SCIENCE_TITLE,
+        authors: 'Chakraborty, S. and Chen, X.',
+        year: 2026,
+        conference: 'NeurIPS 2026 XAI4Science Workshop: Knowledge Discovery and Trust through Interpretable Foundation Models',
+        url: 'https://arxiv.org/abs/2610.00415',
+        openReview: 'https://openreview.net/forum?id=swbkiw3whb',
+        status: 'Accepted · non-archival workshop paper · arXiv:2610.00415'
+      });
+    }
 
     if (Array.isArray(publications.conferences) && !publications.conferences.some((item) => item.title === PACEPAL_TITLE)) {
       publications.conferences.unshift({
@@ -175,6 +189,16 @@
 
     const conferenceGroup = findPublicationGroup('Conference Proceedings');
     const conferenceList = conferenceGroup?.querySelector('.pub-compact-list');
+    if (conferenceList && !publicationPage.querySelector(`[data-publication-title="${XAI4SCIENCE_TITLE}"]`)) {
+      conferenceList.prepend(createCompactPublicationCard({
+        badge: 'Workshop',
+        badgeClass: 'conference',
+        title: XAI4SCIENCE_TITLE,
+        authors: 'Chakraborty, S. and Chen, X.',
+        meta: ['NeurIPS 2026 XAI4Science Workshop', 'Accepted', 'Non-archival', 'arXiv:2610.00415'],
+        link: 'https://arxiv.org/abs/2610.00415'
+      }));
+    }
     if (conferenceList && !publicationPage.querySelector(`[data-publication-title="${PACEPAL_TITLE}"]`)) {
       conferenceList.appendChild(createCompactPublicationCard({
         badge: 'Conf.',
@@ -201,11 +225,11 @@
     const kpis = [...publicationPage.querySelectorAll('.kpi-pill')];
     const counts = {
       Journals: 5,
-      Conferences: 6,
+      Conferences: 7,
       'Under Review': 1,
       Preprints: 3,
       Patents: 1,
-      Total: 16
+      Total: 17
     };
     kpis.forEach((pill) => {
       const label = pill.querySelector('.kpi-pill-label')?.textContent.trim();
