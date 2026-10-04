@@ -271,8 +271,21 @@
 
     if (pageByPath) {
       const page = pageByPath[0];
-      const blogId = page === 'blog' ? new URLSearchParams(window.location.search).get('post') : null;
-      return { page, blogId, legacy: false };
+      const queryBlogId = page === 'blog' ? new URLSearchParams(window.location.search).get('post') : null;
+      return { page, blogId: queryBlogId, legacy: Boolean(queryBlogId) || Boolean(window.location.hash) };
+    }
+
+    if (path.startsWith('/blog/')) {
+      const encodedSlug = path.slice('/blog/'.length);
+      if (encodedSlug) {
+        let blogId = encodedSlug;
+        try {
+          blogId = decodeURIComponent(encodedSlug);
+        } catch (_) {
+          blogId = encodedSlug;
+        }
+        return { page: 'blog', blogId, legacy: Boolean(window.location.hash) || Boolean(window.location.search) };
+      }
     }
 
     let hash = window.location.hash.replace(/^#/, '');
@@ -290,12 +303,20 @@
   }
 
   function pathForRoute(page, blogId = null) {
-    if (page === 'blog' && blogId) return `/blog/?post=${encodeURIComponent(blogId)}`;
+    if (page === 'blog' && blogId) return `/blog/${encodeURIComponent(blogId)}/`;
     return ROUTE_PATHS[page] || '/';
   }
 
   function updateMetadata(page, blogId = null) {
-    document.title = PAGE_TITLES[page] || PAGE_TITLES.home;
+    if (page === 'blog' && blogId) {
+      const source = typeof getBlogFeed === 'function'
+        ? getBlogFeed()
+        : (typeof blogs !== 'undefined' && Array.isArray(blogs) ? blogs : []);
+      const post = source.find((item) => item.id === blogId);
+      document.title = post ? `${post.title} | Somyajit Chakraborty` : PAGE_TITLES.blog;
+    } else {
+      document.title = PAGE_TITLES[page] || PAGE_TITLES.home;
+    }
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.href = `${window.location.origin}${pathForRoute(page, blogId)}`;
   }
@@ -566,7 +587,7 @@
 
   function loadOriginalApplication() {
     const script = document.createElement('script');
-    script.src = 'js/app-original.js?v=20261004c';
+    script.src = 'js/app-original.js?v=20261004d';
     script.async = true;
     script.onload = () => {
       if (typeof init === 'function') document.removeEventListener('DOMContentLoaded', init);
@@ -585,7 +606,7 @@
   const preload = document.createElement('link');
   preload.rel = 'preload';
   preload.as = 'script';
-  preload.href = 'js/app-original.js';
+  preload.href = 'js/app-original.js?v=20261004d';
   document.head.appendChild(preload);
 
   if (document.readyState === 'loading') {
