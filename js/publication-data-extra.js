@@ -12,6 +12,17 @@
     status: 'Accepted subject to revisions and publication checks'
   };
 
+  const xai4science = {
+    id: 14,
+    title: 'Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators',
+    authors: 'Chakraborty, S. and Chen, X.',
+    year: 2026,
+    conference: 'NeurIPS 2026 XAI4Science Workshop: Knowledge Discovery and Trust through Interpretable Foundation Models',
+    url: 'https://arxiv.org/abs/2610.00415',
+    openReview: 'https://openreview.net/forum?id=swbkiw3whb',
+    status: 'Accepted · non-archival workshop paper · arXiv:2610.00415'
+  };
+
   const fourierWavelet = {
     id: 13,
     title: 'A Physics-Informed Fourier-Wavelet Transformer for Multiscale Computational Fluid Dynamics Surrogate Modeling',
@@ -22,6 +33,7 @@
     status: 'Submitted to Engineering Applications of Artificial Intelligence'
   };
 
+  if (!publications.conferences.some((item) => item.title === xai4science.title)) publications.conferences.unshift(xai4science);
   if (!publications.conferences.some((item) => item.title === pacePal.title)) publications.conferences.unshift(pacePal);
   if (!publications.preprints.some((item) => item.title === fourierWavelet.title)) publications.preprints.unshift(fourierWavelet);
 })();
