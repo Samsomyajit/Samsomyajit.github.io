@@ -8,6 +8,25 @@
   const newsItems = [
     {
       en: [
+        { text: 'Accepted at ' },
+        { text: 'NeurIPS 2026 XAI4Science Workshop', highlight: true },
+        { text: ': ' },
+        { text: 'Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators', highlight: true },
+        { text: '. The preprint is now available as arXiv:2610.00415.' }
+      ],
+      zh: [
+        { text: '论文获 ' },
+        { text: 'NeurIPS 2026 XAI4Science Workshop', highlight: true },
+        { text: ' 接收：' },
+        { text: 'Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators', highlight: true },
+        { text: '。预印本已发布于 arXiv:2610.00415。' }
+      ],
+      href: 'https://arxiv.org/abs/2610.00415',
+      linkLabel: 'Read on arXiv →',
+      linkLabelZh: '在 arXiv 阅读 →'
+    },
+    {
+      en: [
         { text: 'New publication: ' },
         { text: 'Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets', highlight: true },
         { text: ' published in ' },
