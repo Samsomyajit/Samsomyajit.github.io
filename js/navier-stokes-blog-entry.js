@@ -13,8 +13,9 @@
     permalink: cleanUrl,
   };
 
-  if (typeof blogs !== 'undefined' && Array.isArray(blogs) && !blogs.some((item) => item.id === post.id)) {
-    blogs.unshift(post);
+  if (typeof blogs !== 'undefined' && Array.isArray(blogs)) {
+    if (!blogs.some((item) => item.id === post.id)) blogs.unshift(post);
+    blogs.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
   }
 
   document.addEventListener('click', (event) => {
