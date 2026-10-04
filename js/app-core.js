@@ -566,7 +566,7 @@
 
   function loadOriginalApplication() {
     const script = document.createElement('script');
-    script.src = 'js/app-original.js';
+    script.src = 'js/app-original.js?v=20261004c';
     script.async = true;
     script.onload = () => {
       if (typeof init === 'function') document.removeEventListener('DOMContentLoaded', init);
