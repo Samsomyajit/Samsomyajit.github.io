@@ -19,7 +19,7 @@ const publications = {
       articleId: "127313",
       doi: "10.1016/j.oceaneng.2026.127313",
       url: "https://doi.org/10.1016/j.oceaneng.2026.127313",
-      thumbnail: "assets/img/ai-wind-turbine-maintenance.svg",
+      thumbnail: "assets/img/ocean-engineering-wind-farm.webp",
     },
     {
       id: 6,
