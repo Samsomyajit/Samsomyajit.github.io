@@ -20,6 +20,7 @@
     conference: 'NeurIPS 2026 XAI4Science Workshop: Knowledge Discovery and Trust through Interpretable Foundation Models',
     url: 'https://arxiv.org/abs/2610.00415',
     openReview: 'https://openreview.net/forum?id=swbkiw3whb',
+    thumbnail: 'assets/img/sim2real-intervention.webp',
     status: 'Accepted · non-archival workshop paper · arXiv:2610.00415'
   };
 
