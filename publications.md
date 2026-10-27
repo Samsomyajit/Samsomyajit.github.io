@@ -6,6 +6,9 @@ title: "Publications"
 # Publications
 
 ## 📰 Journals
+- **Yadav, H.K., Chakraborty, S., Gupta, M.N., Sarkar, J. and Sarkar, A., 2026.**  
+  _AI calibrated framework for adaptive maintenance of wind turbines._ Ocean Engineering, 365, article 127313. [doi: 10.1016/j.oceaneng.2026.127313](https://doi.org/10.1016/j.oceaneng.2026.127313) · [Publication page](/publications/ai-wind-turbine-maintenance/).
+
 - **Cheng, N., Chakraborty, S., Liu, X., Zhang, W., Liang, X., Zhao, H., Bi, W., Zhang, M., Sun, B., He, J. and Liu, Y., 2026.**  
   _Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets._ Journal of the American Ceramic Society. Article ID: JACE71067. [doi: 10.1111/jace.71067](https://doi.org/10.1111/jace.71067).
 
