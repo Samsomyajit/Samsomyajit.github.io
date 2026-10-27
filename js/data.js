@@ -10,6 +10,18 @@
 const publications = {
   journals: [
     {
+      id: 15,
+      title: "AI calibrated framework for adaptive maintenance of wind turbines",
+      authors: "Yadav, H. K., Chakraborty, S., Gupta, M. N., Sarkar, J. and Sarkar, A.",
+      year: 2026,
+      journal: "Ocean Engineering",
+      volume: "365",
+      articleId: "127313",
+      doi: "10.1016/j.oceaneng.2026.127313",
+      url: "https://doi.org/10.1016/j.oceaneng.2026.127313",
+      thumbnail: "assets/img/ai-wind-turbine-maintenance.svg",
+    },
+    {
       id: 6,
       title: "Machine learning assisted inverse design of low resistivity In–Ga–Sn–Zn oxide sputtering targets",
       authors: "Cheng, N., Chakraborty, S., Liu, X., Zhang, W., Liang, X., Zhao, H., Bi, W., Zhang, M., Sun, B., He, J. and Liu, Y.",
