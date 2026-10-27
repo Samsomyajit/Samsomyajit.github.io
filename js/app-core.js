@@ -179,7 +179,17 @@
     }
 
     content.append(titleElement, authorsElement, metaElement);
-    card.append(badgeElement, content);
+    if (title === XAI4SCIENCE_TITLE) {
+      card.classList.add('has-thumbnail');
+      const thumbnail = document.createElement('img');
+      thumbnail.className = 'pub-thumbnail';
+      thumbnail.src = 'assets/img/sim2real-intervention.webp';
+      thumbnail.alt = 'Sim2Real CFD and PIV history forecasting with physics-grounded counterfactual interventions';
+      thumbnail.loading = 'lazy';
+      card.append(badgeElement, thumbnail, content);
+    } else {
+      card.append(badgeElement, content);
+    }
     return card;
   }
 
@@ -191,7 +201,7 @@
     const conferenceList = conferenceGroup?.querySelector('.pub-compact-list');
     if (conferenceList && !publicationPage.querySelector(`[data-publication-title="${XAI4SCIENCE_TITLE}"]`)) {
       conferenceList.prepend(createCompactPublicationCard({
-        badge: 'Workshop',
+        badge: 'Conf.',
         badgeClass: 'conference',
         title: XAI4SCIENCE_TITLE,
         authors: 'Chakraborty, S. and Chen, X.',
@@ -224,12 +234,12 @@
 
     const kpis = [...publicationPage.querySelectorAll('.kpi-pill')];
     const counts = {
-      Journals: 5,
+      Journals: 6,
       Conferences: 7,
       'Under Review': 1,
       Preprints: 3,
       Patents: 1,
-      Total: 17
+      Total: 18
     };
     kpis.forEach((pill) => {
       const label = pill.querySelector('.kpi-pill-label')?.textContent.trim();
