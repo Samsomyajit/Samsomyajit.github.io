@@ -1,1068 +1,915 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0b1f36">
-  <title>Do Better Scores Mean Better Physics? | Sim2Real Physical Fidelity</title>
-  <meta name="description" content="Research project on physics-grounded diagnostics for Sim2Real neural operators using paired CFD and experimental PIV around a NACA4418 airfoil.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07121f">
+  <title>Do Better Scores Mean Better Physics? — Sim2Real Research</title>
+  <meta name="description" content="An interactive research microsite exploring physics-grounded diagnostics for Sim2Real neural operators using paired CFD and experimental PIV around a NACA4418 airfoil.">
   <meta name="author" content="Somyajit Chakraborty">
   <link rel="canonical" href="https://samchakraborty.me/research/sim2real-physics/">
-  <meta property="og:type" content="article">
+  <meta property="og:type" content="website">
   <meta property="og:title" content="Do Better Scores Mean Better Physics?">
   <meta property="og:description" content="Physics-grounded explanations for Sim2Real neural operators.">
   <meta property="og:url" content="https://samchakraborty.me/research/sim2real-physics/">
   <meta property="og:image" content="https://samchakraborty.me/assets/img/do-better-scores-blog-cover.svg">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="/css/site.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"ResearchProject",
-    "@id":"https://samchakraborty.me/research/sim2real-physics/#project",
-    "name":"Sim2Real Physical Fidelity",
-    "url":"https://samchakraborty.me/research/sim2real-physics/",
-    "description":"Physics-grounded diagnostics for understanding when better neural-operator benchmark scores do not necessarily imply better agreement with physically meaningful flow statistics.",
-    "creator":{"@id":"https://samchakraborty.me/#person"},
-    "subjectOf":{
-      "@type":"ScholarlyArticle",
-      "@id":"https://samchakraborty.me/publications/do-better-scores/#article",
-      "headline":"Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators",
-      "url":"https://arxiv.org/abs/2610.00415",
-      "author":[
-        {"@type":"Person","name":"Somyajit Chakraborty"},
-        {"@type":"Person","name":"Xizhong Chen"}
-      ],
-      "datePublished":"2026"
-    }
-  }
-  </script>
-  <script>
-    window.MathJax = {
-      tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']], processEscapes: true },
-      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
-    };
-  </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
-    .sim-page {
-      --sim-ink: #15283d;
-      --sim-muted: #607286;
-      --sim-line: #dce5ec;
-      --sim-paper: #ffffff;
-      --sim-soft: #f4f7fa;
-      --sim-soft-2: #edf2f6;
-      --sim-red: #bd3d35;
-      --sim-green: #16805d;
-      --sim-amber: #a76b18;
-      max-width: 1240px;
-      font-family: 'DM Sans', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: var(--sim-ink);
+    :root {
+      color-scheme: dark;
+      --bg: #07121f;
+      --bg-2: #0b1b2b;
+      --panel: #102438;
+      --panel-2: #132b40;
+      --line: rgba(193,220,236,.14);
+      --line-strong: rgba(193,220,236,.25);
+      --ink: #f1f7fb;
+      --muted: #9db0c1;
+      --muted-2: #71889d;
+      --cyan: #70d6d4;
+      --cyan-2: #a5efdf;
+      --red: #f07c70;
+      --red-2: #ffb09a;
+      --green: #76d5aa;
+      --amber: #e8bd79;
+      --radius: 20px;
+      --max: 1320px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-    [data-theme='dark'] .sim-page {
-      --sim-ink: #e8eef5;
-      --sim-muted: #a6b5c5;
-      --sim-line: #33465a;
-      --sim-paper: #142235;
-      --sim-soft: #17283d;
-      --sim-soft-2: #20334a;
-      --sim-red: #f08078;
-      --sim-green: #5fd1a4;
-      --sim-amber: #e8b66a;
-    }
-    .sim-page .breadcrumbs { margin-bottom: 1.4rem; }
-    .sim-page .breadcrumbs a { text-decoration: none; }
-    .sim-hero {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr);
-      gap: clamp(1.5rem, 4vw, 3.5rem);
-      align-items: center;
-      overflow: hidden;
-      padding: clamp(2rem, 5vw, 4.2rem);
-      color: #f8fbff;
-      border-radius: 22px;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
       background:
-        radial-gradient(circle at 82% 12%, rgba(89, 202, 207, .22), transparent 28%),
-        radial-gradient(circle at 12% 100%, rgba(189, 61, 53, .18), transparent 32%),
-        linear-gradient(128deg, #091a2d 0%, #123450 58%, #0c5964 100%);
-      box-shadow: 0 22px 60px rgba(11, 31, 54, .2);
-    }
-    .sim-hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: .16;
-      background-image: radial-gradient(rgba(255,255,255,.5) .7px, transparent .7px);
-      background-size: 18px 18px;
-      mask-image: linear-gradient(90deg, transparent, #000 70%);
-    }
-    .sim-hero-copy, .sim-hero-art { position: relative; z-index: 1; }
-    .sim-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: .65rem;
-      margin-bottom: 1.25rem;
-      color: #a9e6e7;
-      font: 600 .74rem/1.4 'IBM Plex Mono', monospace;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-    }
-    .sim-eyebrow::before {
-      content: "";
-      width: 25px;
-      height: 2px;
-      background: #e56b61;
-    }
-    .sim-status {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      margin-bottom: 1.1rem;
-      padding: .4rem .75rem;
-      color: #dff8ec;
-      background: rgba(42, 145, 105, .2);
-      border: 1px solid rgba(131, 224, 181, .35);
-      border-radius: 999px;
-      font-size: .76rem;
-      font-weight: 700;
-      letter-spacing: .02em;
-    }
-    .sim-status::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #65d4a4;
-      box-shadow: 0 0 0 4px rgba(101, 212, 164, .13);
-    }
-    .sim-hero h1 {
-      max-width: 720px;
-      margin: 0 0 1.1rem;
-      color: #fff;
-      font-size: clamp(2.5rem, 5.2vw, 4.45rem);
-      font-weight: 800;
-      letter-spacing: -.055em;
-      line-height: .99;
-    }
-    .sim-hero h1 em {
-      color: #a9e6e7;
-      font-style: normal;
-    }
-    .sim-hero-subtitle {
-      max-width: 620px;
-      margin: 0;
-      color: #d4e1eb;
-      font-size: clamp(1rem, 1.4vw, 1.15rem);
-      line-height: 1.75;
-    }
-    .sim-authors {
-      margin-top: 1.25rem;
-      color: #f3f7fb;
-      font-size: .94rem;
-      font-weight: 600;
-    }
-    .sim-authors span { color: #a9e6e7; padding: 0 .45rem; }
-    .sim-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .7rem;
-      margin-top: 1.7rem;
-    }
-    .sim-button {
-      display: inline-flex;
-      min-height: 45px;
-      align-items: center;
-      justify-content: center;
-      gap: .55rem;
-      padding: .72rem 1.05rem;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.25);
-      border-radius: 9px;
-      background: rgba(255,255,255,.08);
-      font-size: .88rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-    .sim-button:hover {
-      color: #fff;
-      background: rgba(255,255,255,.16);
-      border-color: rgba(255,255,255,.55);
-      transform: translateY(-2px);
-      text-decoration: none;
-    }
-    .sim-button.primary {
-      color: #10283b;
-      background: #f7fbff;
-      border-color: #f7fbff;
-    }
-    .sim-button.primary:hover { color: #10283b; background: #dff4f3; }
-    .sim-button .arrow { font-size: 1.05rem; }
-    .sim-hero-note {
-      margin-top: 1.2rem;
-      color: #aebfce;
-      font-size: .76rem;
-      line-height: 1.5;
-    }
-    .sim-hero-art {
-      padding: .7rem;
-      border: 1px solid rgba(255,255,255,.17);
-      border-radius: 17px;
-      background: rgba(5, 19, 33, .42);
-      box-shadow: 0 16px 45px rgba(0,0,0,.2);
-    }
-    .sim-hero-art svg { display: block; width: 100%; height: auto; }
-    .sim-art-caption {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: .65rem .65rem .2rem;
-      color: #afc7d4;
-      font: 500 .68rem/1.4 'IBM Plex Mono', monospace;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-    }
-    .sim-stats {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      margin: 1.25rem 0 3.5rem;
-      padding: 1.25rem 0;
-      border-bottom: 1px solid var(--sim-line);
-    }
-    .sim-stat {
-      min-height: 82px;
-      padding: .3rem 1.35rem;
-      border-right: 1px solid var(--sim-line);
-    }
-    .sim-stat:first-child { padding-left: .25rem; }
-    .sim-stat:last-child { border-right: 0; }
-    .sim-stat strong {
-      display: block;
-      color: var(--sim-ink);
-      font-size: clamp(1.65rem, 3vw, 2.35rem);
-      font-weight: 800;
-      letter-spacing: -.05em;
-      line-height: 1.15;
-    }
-    .sim-stat span {
-      display: block;
-      max-width: 190px;
-      margin-top: .45rem;
-      color: var(--sim-muted);
-      font-size: .78rem;
-      line-height: 1.45;
-    }
-    .sim-section { margin: 4rem 0; scroll-margin-top: 100px; }
-    .sim-section-head {
-      display: grid;
-      grid-template-columns: 150px minmax(0, 1fr);
-      gap: 1.5rem;
-      align-items: start;
-      margin-bottom: 1.7rem;
-    }
-    .sim-section-no {
-      padding-top: .5rem;
-      color: var(--sim-red);
-      font: 600 .76rem/1.4 'IBM Plex Mono', monospace;
-      letter-spacing: .1em;
-    }
-    .sim-section h2 {
-      margin: 0;
-      color: var(--sim-ink);
-      font-size: clamp(1.75rem, 3.2vw, 2.65rem);
-      font-weight: 800;
-      letter-spacing: -.045em;
-      line-height: 1.1;
-    }
-    .sim-section-intro {
-      max-width: 780px;
-      margin: .75rem 0 0;
-      color: var(--sim-muted);
-      font-size: 1rem;
-      line-height: 1.75;
-    }
-    .sim-question-grid {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 1.2rem;
-    }
-    .sim-question-card {
-      padding: clamp(1.4rem, 3vw, 2rem);
-      border: 1px solid var(--sim-line);
-      border-radius: 15px;
-      background: var(--sim-soft);
-    }
-    .sim-question-card.dark {
-      color: #edf7fa;
-      border-color: #173b56;
-      background: linear-gradient(135deg, #102a43, #164b59);
-    }
-    .sim-question-card h3 {
-      margin: 0 0 .65rem;
-      color: inherit;
-      font-size: 1.15rem;
-      letter-spacing: -.02em;
-    }
-    .sim-question-card p {
-      margin: 0;
-      color: var(--sim-muted);
-      font-size: .94rem;
-      line-height: 1.7;
-    }
-    .sim-question-card.dark p { color: #c6d9e3; }
-    .sim-question-mark {
-      display: block;
-      margin-bottom: .8rem;
-      color: #e68a7f;
-      font: 600 .72rem/1.4 'IBM Plex Mono', monospace;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-    .sim-facts {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: .8rem;
-      margin-top: 1rem;
-    }
-    .sim-fact {
-      padding: 1.15rem;
-      border: 1px solid var(--sim-line);
-      border-radius: 12px;
-      background: var(--sim-paper);
-    }
-    .sim-fact strong {
-      display: block;
-      margin-bottom: .35rem;
-      color: var(--sim-ink);
-      font-size: 1.15rem;
-      letter-spacing: -.03em;
-    }
-    .sim-fact span {
-      display: block;
-      color: var(--sim-muted);
-      font-size: .77rem;
-      line-height: 1.5;
-    }
-    .sim-pipeline {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: .85rem;
-    }
-    .sim-step {
-      position: relative;
-      min-height: 210px;
-      padding: 1.25rem;
-      border: 1px solid var(--sim-line);
-      border-radius: 13px;
-      background: var(--sim-paper);
-    }
-    .sim-step::after {
-      content: "→";
-      position: absolute;
-      top: 1.1rem;
-      right: -1rem;
-      z-index: 2;
-      display: grid;
-      width: 28px;
-      height: 28px;
-      place-items: center;
-      color: var(--sim-red);
-      background: var(--sim-paper);
-      border: 1px solid var(--sim-line);
-      border-radius: 50%;
-      font-weight: 700;
-    }
-    .sim-step:last-child::after { display: none; }
-    .sim-step-no {
-      display: block;
-      margin-bottom: 1.2rem;
-      color: var(--sim-red);
-      font: 600 .75rem/1.4 'IBM Plex Mono', monospace;
-    }
-    .sim-step h3 {
-      margin: 0 0 .55rem;
-      color: var(--sim-ink);
-      font-size: 1rem;
-      line-height: 1.35;
-    }
-    .sim-step p {
-      margin: 0;
-      color: var(--sim-muted);
-      font-size: .82rem;
-      line-height: 1.65;
-    }
-    .sim-tag-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .8rem; }
-    .sim-tag {
-      display: inline-flex;
-      padding: .25rem .5rem;
-      color: var(--sim-muted);
-      background: var(--sim-soft);
-      border: 1px solid var(--sim-line);
-      border-radius: 5px;
-      font: 500 .68rem/1.3 'IBM Plex Mono', monospace;
-    }
-    .sim-formula-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: .85rem;
-      margin-top: 1rem;
-    }
-    .sim-formula {
-      overflow-x: auto;
-      padding: 1.1rem 1.25rem;
-      color: var(--sim-ink);
-      background: var(--sim-soft);
-      border: 1px solid var(--sim-line);
-      border-radius: 11px;
-      font-size: .92rem;
-    }
-    .sim-formula-label {
-      display: block;
-      margin-bottom: .6rem;
-      color: var(--sim-muted);
-      font: 600 .68rem/1.4 'IBM Plex Mono', monospace;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    .sim-score-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(300px, .82fr);
-      gap: 1rem;
-      align-items: stretch;
-    }
-    .sim-panel {
-      padding: clamp(1.2rem, 2.5vw, 1.7rem);
-      border: 1px solid var(--sim-line);
-      border-radius: 15px;
-      background: var(--sim-paper);
-    }
-    .sim-panel h3 {
-      margin: 0 0 .5rem;
-      color: var(--sim-ink);
-      font-size: 1.15rem;
-      letter-spacing: -.02em;
-    }
-    .sim-panel > p {
-      margin: 0 0 1.2rem;
-      color: var(--sim-muted);
-      font-size: .86rem;
-      line-height: 1.65;
-    }
-    .sim-result-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .84rem;
-    }
-    .sim-result-table th {
-      padding: .7rem .55rem;
-      color: var(--sim-muted);
-      background: var(--sim-soft);
-      font: 600 .67rem/1.4 'IBM Plex Mono', monospace;
-      text-align: left;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-    }
-    .sim-result-table td {
-      padding: .85rem .55rem;
-      color: var(--sim-ink);
-      border-bottom: 1px solid var(--sim-line);
-      vertical-align: top;
-    }
-    .sim-result-table tr:last-child td { border-bottom: 0; }
-    .sim-value-good { color: var(--sim-green); font-weight: 800; }
-    .sim-value-bad { color: var(--sim-red); font-weight: 800; }
-    .sim-ci {
-      display: block;
-      margin-top: .22rem;
-      color: var(--sim-muted);
-      font: 400 .69rem/1.45 'IBM Plex Mono', monospace;
-    }
-    .sim-chart-wrap {
-      padding: .7rem;
-      border-radius: 12px;
-      background: var(--sim-soft);
-    }
-    .sim-chart-wrap svg { display: block; width: 100%; height: auto; }
-    .sim-chart-caption {
-      margin: .75rem .25rem 0 !important;
-      color: var(--sim-muted);
-      font-size: .75rem !important;
-    }
-    .sim-insight {
-      display: grid;
-      grid-template-columns: 42px minmax(0, 1fr);
-      gap: .85rem;
-      align-items: start;
-      margin-top: 1rem;
-      padding: 1rem 1.1rem;
-      border-left: 3px solid var(--sim-red);
-      border-radius: 0 9px 9px 0;
-      background: var(--sim-soft);
-    }
-    .sim-insight-mark {
-      display: grid;
-      width: 36px;
-      height: 36px;
-      place-items: center;
-      color: #fff;
-      background: var(--sim-red);
-      border-radius: 10px;
-      font-weight: 800;
-    }
-    .sim-insight p {
-      margin: 0;
-      color: var(--sim-muted);
-      font-size: .84rem;
-      line-height: 1.65;
-    }
-    .sim-intervention {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr);
-      gap: 1rem;
-      align-items: stretch;
-      margin-top: 1rem;
-    }
-    .sim-contrast-box {
-      padding: 1.35rem;
-      border: 1px solid var(--sim-line);
-      border-radius: 13px;
-      background: var(--sim-soft);
-    }
-    .sim-contrast-box h3 {
-      margin: 0 0 .5rem;
-      color: var(--sim-ink);
-      font-size: 1rem;
-    }
-    .sim-contrast-box p {
-      margin: 0;
-      color: var(--sim-muted);
-      font-size: .82rem;
+        radial-gradient(ellipse at 80% 0%, rgba(33,112,126,.16), transparent 34rem),
+        radial-gradient(ellipse at 0% 40%, rgba(52,79,122,.12), transparent 38rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
       line-height: 1.6;
+      overflow-x: hidden;
     }
-    .sim-contrast-values {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: .65rem;
-      margin-top: 1rem;
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    ::selection { background: rgba(112,214,212,.3); color: white; }
+    .progress { position: fixed; inset: 0 auto auto 0; z-index: 1000; width: 100%; height: 3px; background: transparent; }
+    .progress span { display: block; width: 0; height: 100%; background: linear-gradient(90deg,var(--cyan),var(--red)); box-shadow: 0 0 18px rgba(112,214,212,.6); }
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 72px; padding: 0 clamp(18px,4vw,64px);
+      background: rgba(7,18,31,.78); backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(193,220,236,.09);
     }
-    .sim-contrast-value {
-      padding: .9rem;
-      background: var(--sim-paper);
-      border: 1px solid var(--sim-line);
-      border-radius: 9px;
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-size: .78rem; font-weight: 800; letter-spacing: .13em; }
+    .brand-mark { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid rgba(112,214,212,.6); border-radius: 9px; color: var(--cyan); font: 700 .75rem var(--mono); box-shadow: inset 0 0 16px rgba(112,214,212,.1); }
+    .brand small { color: var(--muted-2); font: 500 .67rem var(--mono); letter-spacing: .09em; }
+    .nav-links { display: flex; align-items: center; gap: clamp(14px,2.5vw,34px); }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .77rem; font-weight: 650; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--cyan-2); }
+    .nav-links .nav-paper { padding: 9px 14px; color: var(--ink); border: 1px solid var(--line-strong); border-radius: 8px; }
+    .nav-links .nav-paper:hover { border-color: var(--cyan); background: rgba(112,214,212,.08); }
+    .menu-toggle { display: none; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: var(--panel); }
+    .wrap { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+    .hero {
+      position: relative; min-height: min(850px, calc(100svh - 72px));
+      display: grid; align-items: center; overflow: hidden;
+      padding: clamp(60px,8vw,112px) 0 clamp(70px,8vw,110px);
+      isolation: isolate;
     }
-    .sim-contrast-value strong {
-      display: block;
-      color: var(--sim-green);
-      font-size: 1.55rem;
-      letter-spacing: -.04em;
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -2;
+      background-image: linear-gradient(rgba(140,190,215,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(140,190,215,.035) 1px,transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(90deg,transparent,#000 15%,#000 88%,transparent);
     }
-    .sim-contrast-value span {
-      display: block;
-      margin-top: .2rem;
-      color: var(--sim-muted);
-      font-size: .72rem;
+    .hero::after {
+      content: ""; position: absolute; z-index: -1; width: 58vw; height: 58vw; max-width: 850px; max-height: 850px;
+      right: -16vw; top: -26vw; border-radius: 50%;
+      background: radial-gradient(circle,rgba(39,152,163,.19),rgba(39,152,163,.04) 42%,transparent 70%);
+      animation: breathe 9s ease-in-out infinite alternate;
     }
-    .sim-warning {
-      padding: 1.3rem 1.4rem;
-      color: #694719;
-      background: #fff8e9;
-      border: 1px solid #f1d7a4;
-      border-radius: 13px;
+    .hero-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(440px,.96fr); gap: clamp(36px,6vw,90px); align-items: center; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--cyan); font: 600 .7rem var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 30px; height: 1px; background: var(--red); box-shadow: 0 0 12px var(--red); }
+    .acceptance { display: inline-flex; align-items: center; gap: 9px; margin: 23px 0 20px; padding: 7px 11px; border: 1px solid rgba(118,213,170,.35); border-radius: 999px; background: rgba(42,128,91,.13); color: #b9f2d6; font-size: .72rem; font-weight: 750; }
+    .acceptance i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(118,213,170,.12),0 0 12px var(--green); }
+    h1 { max-width: 760px; margin: 0; font-size: clamp(3.4rem,7.4vw,7rem); line-height: .94; letter-spacing: -.075em; font-weight: 850; }
+    h1 .line-2 { display: block; color: var(--cyan-2); }
+    .hero-sub { max-width: 620px; margin: 27px 0 0; color: #b8c8d6; font-size: clamp(1rem,1.35vw,1.17rem); line-height: 1.8; }
+    .authors { margin-top: 22px; color: #eaf2f7; font-size: .9rem; font-weight: 700; }
+    .authors span { padding: 0 8px; color: var(--red); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 30px; }
+    .btn { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; gap: 9px; padding: 0 17px; border: 1px solid var(--line-strong); border-radius: 9px; color: var(--ink); background: rgba(255,255,255,.035); text-decoration: none; font-size: .8rem; font-weight: 750; transition: transform .22s,border-color .22s,background .22s,box-shadow .22s; }
+    .btn:hover { transform: translateY(-3px); border-color: var(--cyan); background: rgba(112,214,212,.09); box-shadow: 0 10px 28px rgba(0,0,0,.2); }
+    .btn.primary { color: #08202a; border-color: transparent; background: linear-gradient(115deg,#a9eee1,#70d6d4); box-shadow: 0 8px 26px rgba(112,214,212,.17); }
+    .btn.primary:hover { color: #061b24; background: linear-gradient(115deg,#c4fff0,#86e8e0); }
+    .btn .arrow { font-size: 1rem; }
+    .hero-footnote { margin-top: 18px; color: var(--muted-2); font: 500 .68rem/1.6 var(--mono); }
+    .hero-visual {
+      position: relative; min-height: 510px; overflow: hidden; border: 1px solid rgba(156,211,226,.2); border-radius: 25px;
+      background: linear-gradient(145deg,rgba(18,48,68,.92),rgba(7,25,39,.96));
+      box-shadow: 0 28px 90px rgba(0,0,0,.35),inset 0 1px rgba(255,255,255,.06);
+      transform: perspective(1200px) rotateY(-3deg) rotateX(1deg);
     }
-    [data-theme='dark'] .sim-warning {
-      color: #f4d69d;
-      background: #342b1d;
-      border-color: #67502c;
+    .hero-visual::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(130,188,210,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(130,188,210,.055) 1px,transparent 1px); background-size: 34px 34px; mask-image: linear-gradient(180deg,#000,transparent 95%); }
+    #flowCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .visual-label { position: absolute; z-index: 2; top: 21px; left: 22px; display: flex; align-items: center; gap: 9px; color: #a8c6d5; font: 600 .64rem var(--mono); letter-spacing: .13em; }
+    .visual-label::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
+    .airfoil-art { position: absolute; z-index: 2; left: 12%; top: 31%; width: 76%; filter: drop-shadow(0 12px 24px rgba(0,0,0,.35)); }
+    .airfoil-art path { fill: url(#foilGradient); stroke: #e5ffff; stroke-width: 1.8; }
+    .airfoil-art .foil-highlight { fill: none; stroke: rgba(255,255,255,.8); stroke-width: 1; }
+    .visual-callout { position: absolute; z-index: 3; padding: 10px 13px; border: 1px solid rgba(176,222,231,.2); border-radius: 10px; background: rgba(5,21,34,.78); backdrop-filter: blur(12px); box-shadow: 0 10px 25px rgba(0,0,0,.18); }
+    .visual-callout small { display: block; color: var(--muted-2); font: 600 .58rem var(--mono); letter-spacing: .11em; text-transform: uppercase; }
+    .visual-callout strong { display: block; margin-top: 3px; color: #eaf8fa; font: 750 1rem var(--mono); }
+    .callout-top { right: 20px; top: 20px; }
+    .callout-bottom { left: 20px; bottom: 22px; }
+    .callout-bottom strong { color: var(--cyan-2); }
+    .visual-caption { position: absolute; right: 20px; bottom: 22px; max-width: 190px; color: #7897a9; font: 500 .58rem/1.5 var(--mono); text-align: right; }
+    .orbit { position: absolute; z-index: 1; left: 50%; top: 51%; width: 64%; aspect-ratio: 1; border: 1px solid rgba(112,214,212,.12); border-radius: 50%; transform: translate(-50%,-50%); animation: orbit 34s linear infinite; }
+    .orbit::before,.orbit::after { content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%; background: var(--red); box-shadow: 0 0 15px var(--red); }
+    .orbit::before { left: 13%; top: 18%; }
+    .orbit::after { right: 12%; bottom: 20%; width: 5px; height: 5px; background: var(--cyan); box-shadow: 0 0 15px var(--cyan); }
+    .ticker { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(14,34,51,.72); }
+    .ticker-inner { display: grid; grid-template-columns: repeat(4,1fr); }
+    .ticker-item { padding: 23px 26px; border-right: 1px solid var(--line); }
+    .ticker-item:first-child { padding-left: 0; }
+    .ticker-item:last-child { border-right: 0; }
+    .ticker-item strong { display: block; color: var(--ink); font: 800 clamp(1.45rem,2.5vw,2.1rem)/1.15 var(--mono); letter-spacing: -.07em; }
+    .ticker-item span { display: block; margin-top: 6px; color: var(--muted); font-size: .72rem; }
+    .section { padding: clamp(76px,9vw,128px) 0; border-bottom: 1px solid rgba(193,220,236,.08); }
+    .section-kicker { margin-bottom: 15px; color: var(--red); font: 650 .69rem var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+    .section-title { max-width: 850px; margin: 0; color: var(--ink); font-size: clamp(2.2rem,5vw,4.5rem); line-height: 1.02; letter-spacing: -.065em; font-weight: 820; }
+    .section-title em { color: var(--cyan); font-style: normal; }
+    .section-lead { max-width: 760px; margin: 19px 0 0; color: var(--muted); font-size: 1rem; line-height: 1.85; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 45px; }
+    .section-index { flex: 0 0 auto; color: var(--muted-2); font: 600 .68rem var(--mono); letter-spacing: .13em; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 45px; }
+    .story-card { position: relative; min-height: 270px; overflow: hidden; padding: clamp(25px,3vw,38px); border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg,rgba(20,47,68,.95),rgba(11,29,45,.95)); }
+    .story-card::after { content: ""; position: absolute; right: -50px; bottom: -90px; width: 250px; height: 250px; border: 1px solid rgba(112,214,212,.13); border-radius: 50%; box-shadow: 0 0 0 22px rgba(112,214,212,.025),0 0 0 48px rgba(112,214,212,.02); }
+    .story-card.red::after { border-color: rgba(240,124,112,.18); box-shadow: 0 0 0 22px rgba(240,124,112,.025),0 0 0 48px rgba(240,124,112,.02); }
+    .card-index { color: var(--muted-2); font: 600 .66rem var(--mono); letter-spacing: .13em; }
+    .story-card h3 { position: relative; z-index: 1; margin: 24px 0 9px; font-size: clamp(1.5rem,2.5vw,2.1rem); line-height: 1.12; letter-spacing: -.05em; }
+    .story-card p { position: relative; z-index: 1; max-width: 440px; margin: 0; color: var(--muted); font-size: .89rem; line-height: 1.8; }
+    .big-arrow { position: absolute; right: 31px; top: 24px; color: var(--cyan); font-size: 2rem; opacity: .8; }
+    .red .big-arrow { color: var(--red); }
+    .micro-label { display: inline-flex; align-items: center; gap: 7px; margin-top: 24px; color: var(--cyan-2); font: 600 .65rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .micro-label::before { content: ""; width: 17px; height: 1px; background: currentColor; }
+    .model-strip { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+    .model-chip { padding: 7px 11px; border: 1px solid var(--line-strong); border-radius: 7px; color: #c7d8e3; background: rgba(255,255,255,.025); font: 600 .68rem var(--mono); }
+    .model-chip.primary-chip { border-color: rgba(112,214,212,.38); color: var(--cyan-2); background: rgba(112,214,212,.07); }
+    .method-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 13px; counter-reset: steps; }
+    .method-card { position: relative; min-height: 255px; padding: 24px 22px; border: 1px solid var(--line); border-radius: 15px; background: linear-gradient(155deg,rgba(17,43,63,.96),rgba(9,25,40,.96)); transition: transform .3s,border-color .3s,background .3s; }
+    .method-card:hover { transform: translateY(-7px); border-color: rgba(112,214,212,.45); background: linear-gradient(155deg,rgba(20,56,73,.98),rgba(9,25,40,.98)); }
+    .method-card::before { counter-increment: steps; content: "0" counter(steps); display: inline-flex; color: var(--red); font: 700 .75rem var(--mono); }
+    .method-card:not(:last-child)::after { content: "→"; position: absolute; right: -16px; top: 27px; z-index: 2; display: grid; width: 29px; height: 29px; place-items: center; color: var(--cyan); border: 1px solid var(--line-strong); border-radius: 50%; background: var(--bg-2); }
+    .method-icon { display: grid; width: 46px; height: 46px; margin: 21px 0 18px; place-items: center; border: 1px solid rgba(112,214,212,.23); border-radius: 12px; color: var(--cyan); background: rgba(112,214,212,.08); font-size: 1.15rem; }
+    .method-card h3 { margin: 0 0 8px; font-size: 1.03rem; letter-spacing: -.02em; }
+    .method-card p { margin: 0; color: var(--muted); font-size: .79rem; line-height: 1.75; }
+    .method-foot { display: flex; align-items: center; gap: 12px; margin-top: 22px; color: var(--muted-2); font: 600 .66rem var(--mono); }
+    .method-foot::before { content: ""; width: 28px; height: 1px; background: var(--red); }
+    .result-layout { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(330px,.9fr); gap: 18px; align-items: stretch; }
+    .result-panel { padding: clamp(23px,3vw,36px); border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg,rgba(17,43,63,.96),rgba(9,25,40,.96)); }
+    .panel-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; }
+    .panel-top h3 { margin: 0; font-size: 1.16rem; letter-spacing: -.03em; }
+    .panel-top p { max-width: 460px; margin: 8px 0 0; color: var(--muted); font-size: .79rem; line-height: 1.7; }
+    .tabs { display: flex; gap: 5px; padding: 4px; border: 1px solid var(--line); border-radius: 9px; background: rgba(0,0,0,.15); }
+    .tabs button { padding: 8px 11px; border: 0; border-radius: 6px; color: var(--muted); background: transparent; font: 650 .68rem var(--mono); }
+    .tabs button[aria-selected="true"] { color: #08202a; background: var(--cyan); box-shadow: 0 3px 12px rgba(112,214,212,.16); }
+    .metric { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .metric-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+    .metric-head span { color: #c8d8e4; font-size: .83rem; font-weight: 700; }
+    .metric-head strong { font: 800 1.35rem var(--mono); letter-spacing: -.06em; }
+    .metric-head .good { color: var(--green); }
+    .metric-head .bad { color: var(--red-2); }
+    .axis { position: relative; height: 17px; margin-top: 13px; border-radius: 99px; background: rgba(0,0,0,.22); overflow: hidden; }
+    .axis::after { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(232,244,250,.65); z-index: 2; }
+    .axis-bar { position: absolute; top: 3px; bottom: 3px; width: 0; border-radius: 99px; transition: width .65s cubic-bezier(.2,.7,.2,1); }
+    .axis-bar.negative { right: 50%; background: linear-gradient(90deg,#328d82,#8de3c2); }
+    .axis-bar.positive { left: 50%; background: linear-gradient(90deg,#e77c70,#ffb29b); }
+    .metric-ci { display: flex; justify-content: space-between; gap: 12px; margin-top: 9px; color: var(--muted-2); font: 500 .65rem var(--mono); }
+    .metric-interpret { margin-top: 10px; color: var(--muted); font-size: .74rem; }
+    .ranking-card { position: relative; overflow: hidden; padding: clamp(23px,3vw,36px); border: 1px solid rgba(240,124,112,.27); border-radius: var(--radius); background: radial-gradient(circle at 100% 0%,rgba(240,124,112,.15),transparent 45%),linear-gradient(145deg,#172b3e,#0d2032); }
+    .ranking-card .mini-kicker { color: var(--red-2); font: 650 .67rem var(--mono); letter-spacing: .13em; text-transform: uppercase; }
+    .ranking-card h3 { max-width: 440px; margin: 18px 0 12px; font-size: clamp(1.8rem,3.3vw,2.8rem); line-height: 1.04; letter-spacing: -.06em; }
+    .ranking-card h3 em { color: var(--red-2); font-style: normal; }
+    .ranking-card p { color: #aebfcd; font-size: .84rem; line-height: 1.8; }
+    .rank-stat { display: flex; align-items: center; gap: 15px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .rank-stat strong { color: var(--cyan-2); font: 800 2.6rem/1 var(--mono); letter-spacing: -.08em; }
+    .rank-stat span { max-width: 170px; color: var(--muted); font-size: .72rem; line-height: 1.5; }
+    .result-note { margin-top: 18px; padding: 13px 15px; border-left: 2px solid var(--amber); border-radius: 0 8px 8px 0; background: rgba(232,189,121,.07); color: #c9c1ae; font-size: .74rem; line-height: 1.7; }
+    .comparison { margin-top: 22px; overflow: hidden; border: 1px solid var(--line); border-radius: 13px; }
+    .comparison-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; padding: 14px 17px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .75rem; }
+    .comparison-row:last-child { border-bottom: 0; }
+    .comparison-row.header { color: var(--muted-2); background: rgba(255,255,255,.035); font: 600 .63rem var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+    .comparison-row strong { color: var(--ink); }
+    .status-good { color: var(--green)!important; }
+    .status-warn { color: var(--red-2)!important; }
+    .mask-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(300px,.78fr); gap: 18px; }
+    .mask-stage { position: relative; padding: clamp(20px,3vw,32px); border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg,rgba(17,43,63,.96),rgba(9,25,40,.96)); }
+    .mask-stage-head { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 19px; }
+    .mask-stage-head h3 { margin: 0; font-size: 1rem; }
+    .schematic-tag { padding: 6px 9px; border: 1px solid rgba(232,189,121,.28); border-radius: 6px; color: var(--amber); font: 600 .6rem var(--mono); letter-spacing: .06em; }
+    .mask-grid { display: grid; grid-template-columns: repeat(10,1fr); gap: 5px; width: min(100%,520px); margin: 0 auto; padding: 15px; border: 1px solid rgba(193,220,236,.1); border-radius: 12px; background: rgba(2,12,22,.35); }
+    .mask-cell { aspect-ratio: 1; min-width: 0; border: 1px solid rgba(130,180,198,.08); border-radius: 3px; background: rgba(64,181,176,var(--heat)); transition: background .25s,border-color .25s,transform .25s,box-shadow .25s; }
+    .mask-cell.is-selected { border-color: rgba(255,185,151,.95); background: linear-gradient(145deg,#f5a37e,#cb514d); box-shadow: 0 0 10px rgba(240,124,112,.35); transform: scale(.92); }
+    .mask-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 17px; margin-top: 14px; color: var(--muted-2); font: 500 .63rem var(--mono); }
+    .mask-legend span { display: inline-flex; align-items: center; gap: 7px; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 2px; background: #48aaa6; }
+    .legend-dot.selected { background: #e77c70; }
+    .mask-controls { display: flex; flex-direction: column; gap: 20px; padding: clamp(22px,3vw,34px); border: 1px solid var(--line); border-radius: var(--radius); background: rgba(15,36,54,.82); }
+    .mask-controls h3 { margin: 0; font-size: 1.12rem; letter-spacing: -.03em; }
+    .mask-controls p { margin: 7px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.7; }
+    .mode-switch { display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; padding: 4px; border: 1px solid var(--line); border-radius: 9px; background: rgba(0,0,0,.15); }
+    .mode-switch button { padding: 9px 5px; border: 0; border-radius: 6px; color: var(--muted); background: transparent; font-size: .68rem; font-weight: 700; }
+    .mode-switch button[aria-pressed="true"] { color: #09232c; background: var(--cyan); }
+    .range-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .range-row label { color: #d9e5ed; font-size: .78rem; font-weight: 700; }
+    .range-row output { color: var(--cyan-2); font: 750 1rem var(--mono); }
+    input[type=range] { width: 100%; accent-color: var(--cyan); }
+    .mask-count { display: flex; align-items: baseline; justify-content: space-between; padding-top: 17px; border-top: 1px solid var(--line); }
+    .mask-count strong { font: 800 1.9rem var(--mono); letter-spacing: -.07em; }
+    .mask-count span { color: var(--muted-2); font: 600 .65rem var(--mono); }
+    .mask-description { min-height: 52px; color: var(--muted)!important; }
+    .intervention-results { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+    .intervention-result { padding: 20px; border: 1px solid rgba(112,214,212,.22); border-radius: 13px; background: rgba(112,214,212,.055); }
+    .intervention-result small { color: var(--muted-2); font: 600 .62rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .intervention-result strong { display: block; margin-top: 8px; color: var(--cyan-2); font: 800 clamp(1.4rem,2.8vw,2rem) var(--mono); letter-spacing: -.07em; }
+    .intervention-result span { display: block; margin-top: 5px; color: var(--muted); font: 500 .62rem/1.5 var(--mono); }
+    .guardrail { margin-top: 18px; padding: 16px 18px; border: 1px solid rgba(232,189,121,.22); border-radius: 11px; background: rgba(232,189,121,.06); color: #c9c1ae; font-size: .76rem; line-height: 1.75; }
+    .guardrail strong { color: var(--amber); }
+    .stress-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; margin-top: 42px; }
+    .stress-card { position: relative; overflow: hidden; padding: 25px; border: 1px solid var(--line); border-radius: 15px; background: linear-gradient(145deg,rgba(18,44,64,.95),rgba(9,25,40,.95)); }
+    .stress-card::after { content: ""; position: absolute; right: -22px; bottom: -44px; width: 110px; height: 110px; border: 1px solid rgba(112,214,212,.13); border-radius: 50%; box-shadow: 0 0 0 14px rgba(112,214,212,.025); }
+    .stress-card small { display: block; color: var(--muted-2); font: 600 .62rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .stress-card strong { display: block; margin-top: 18px; color: var(--ink); font: 750 clamp(1.05rem,2vw,1.42rem) var(--mono); letter-spacing: -.06em; white-space: nowrap; }
+    .stress-card em { display: block; margin-top: 11px; color: var(--red-2); font-size: .72rem; font-style: normal; }
+    .stress-foot { margin-top: 18px; color: var(--muted); font-size: .76rem; line-height: 1.75; }
+    .limits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 38px; }
+    details.limit { padding: 18px 20px; border: 1px solid var(--line); border-radius: 11px; background: rgba(14,34,51,.62); transition: border-color .2s; }
+    details.limit[open] { border-color: rgba(112,214,212,.36); }
+    details.limit summary { display: flex; align-items: center; gap: 12px; list-style: none; cursor: pointer; color: #dce7ee; font-size: .82rem; font-weight: 750; }
+    details.limit summary::-webkit-details-marker { display: none; }
+    details.limit summary::before { content: "+"; display: grid; width: 23px; height: 23px; flex: 0 0 auto; place-items: center; border: 1px solid var(--line-strong); border-radius: 6px; color: var(--cyan); font: 600 .9rem var(--mono); transition: transform .2s; }
+    details.limit[open] summary::before { content: "−"; transform: rotate(180deg); }
+    details.limit p { margin: 13px 0 0 35px; color: var(--muted); font-size: .75rem; line-height: 1.75; }
+    .paper-card { position: relative; overflow: hidden; padding: clamp(28px,5vw,58px); border: 1px solid rgba(112,214,212,.23); border-radius: 22px; background: radial-gradient(circle at 100% 0%,rgba(54,153,158,.2),transparent 40%),linear-gradient(135deg,#102b41,#0a1c2d 72%); }
+    .paper-card::after { content: "SIM2REAL"; position: absolute; right: -18px; bottom: -52px; color: rgba(200,235,239,.035); font: 900 clamp(5rem,13vw,12rem)/1 var(--sans); letter-spacing: -.09em; pointer-events: none; }
+    .paper-topline { display: flex; align-items: center; gap: 10px; color: var(--cyan); font: 650 .67rem var(--mono); letter-spacing: .13em; text-transform: uppercase; }
+    .paper-card h2 { position: relative; z-index: 1; max-width: 900px; margin: 22px 0 12px; font-size: clamp(2rem,4.5vw,3.8rem); line-height: 1.04; letter-spacing: -.06em; }
+    .paper-card > p { position: relative; z-index: 1; max-width: 750px; color: #b2c6d4; font-size: .88rem; line-height: 1.8; }
+    .paper-meta { display: flex; flex-wrap: wrap; gap: 9px; margin: 22px 0; }
+    .paper-meta span { padding: 7px 10px; border: 1px solid rgba(193,220,236,.18); border-radius: 6px; color: #c3d3de; font: 600 .63rem var(--mono); }
+    .citation { position: relative; z-index: 1; margin-top: 28px; padding: 18px; border: 1px solid rgba(193,220,236,.17); border-radius: 10px; background: rgba(2,13,23,.35); color: #c5d5df; font-size: .75rem; line-height: 1.75; overflow-wrap: anywhere; }
+    .citation strong { color: #f3f8fb; }
+    .paper-actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 21px; }
+    .copy-btn { border: 1px solid rgba(193,220,236,.25); color: #e8f3f8; background: rgba(255,255,255,.05); }
+    .copy-btn:hover { border-color: var(--cyan); }
+    .footer { padding: 35px 0 50px; color: var(--muted-2); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+    .footer small { font: 500 .65rem/1.7 var(--mono); }
+    .footer a { color: var(--cyan); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .back-top { position: fixed; right: 24px; bottom: 24px; z-index: 50; display: grid; width: 43px; height: 43px; place-items: center; border: 1px solid var(--line-strong); border-radius: 12px; color: var(--cyan); background: rgba(10,29,44,.88); backdrop-filter: blur(10px); opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity .2s,transform .2s; }
+    .back-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    @keyframes breathe { from { transform: scale(.92); opacity: .65; } to { transform: scale(1.08); opacity: 1; } }
+    @keyframes orbit { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    @keyframes pulse { 50% { opacity: .35; transform: scale(.9); } }
+    @media (max-width: 1040px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-copy { max-width: 850px; }
+      .hero-visual { min-height: 460px; transform: none; }
+      .result-layout,.mask-layout { grid-template-columns: 1fr; }
+      .method-grid { grid-template-columns: repeat(2,1fr); }
+      .method-card:nth-child(2)::after { display: none; }
     }
-    .sim-warning strong { display: block; margin-bottom: .35rem; font-size: .9rem; }
-    .sim-warning p { margin: 0; font-size: .82rem; line-height: 1.65; }
-    .sim-stress-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: .75rem;
-      margin-top: 1rem;
-    }
-    .sim-stress {
-      padding: 1rem;
-      border: 1px solid var(--sim-line);
-      border-radius: 11px;
-      background: var(--sim-paper);
-    }
-    .sim-stress span {
-      display: block;
-      color: var(--sim-muted);
-      font-size: .72rem;
-      line-height: 1.45;
-    }
-    .sim-stress strong {
-      display: block;
-      margin-top: .45rem;
-      color: var(--sim-ink);
-      font: 600 1.02rem/1.3 'IBM Plex Mono', monospace;
-    }
-    .sim-stress em {
-      display: block;
-      margin-top: .25rem;
-      color: var(--sim-muted);
-      font-size: .7rem;
-      font-style: normal;
-    }
-    .sim-limits {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: .75rem;
-    }
-    .sim-limit {
-      display: grid;
-      grid-template-columns: 23px minmax(0, 1fr);
-      gap: .7rem;
-      padding: 1rem;
-      border: 1px solid var(--sim-line);
-      border-radius: 10px;
-      background: var(--sim-paper);
-    }
-    .sim-limit b {
-      color: var(--sim-red);
-      font: 600 .75rem/1.5 'IBM Plex Mono', monospace;
-    }
-    .sim-limit p {
-      margin: 0;
-      color: var(--sim-muted);
-      font-size: .82rem;
-      line-height: 1.6;
-    }
-    .sim-citation-card {
-      padding: clamp(1.3rem, 3vw, 2rem);
-      color: #edf6fa;
-      background: linear-gradient(135deg, #10283f, #164b59);
-      border-radius: 16px;
-    }
-    .sim-citation-card h2 { color: #fff; }
-    .sim-citation-card p { color: #c7d9e2; }
-    .sim-citation-card .sim-section-no { color: #9ee1df; }
-    .sim-citation-card .sim-section-head { margin-bottom: 1.1rem; }
-    .sim-citation-card .sim-section-head h2 { color: #fff; }
-    .sim-citation-card .sim-citation-text {
-      margin: 0 0 1rem;
-      padding: 1rem;
-      color: #e7f1f6;
-      background: rgba(3, 17, 30, .42);
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 9px;
-      font-size: .84rem;
-      line-height: 1.65;
-    }
-    .sim-bibtex {
-      overflow-x: auto;
-      margin: .75rem 0 0;
-      padding: 1rem;
-      color: #dbeaf2;
-      background: rgba(3, 17, 30, .55);
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 9px;
-      font: 400 .75rem/1.65 'IBM Plex Mono', monospace;
-      white-space: pre;
-    }
-    .sim-citation-card .sim-button { margin-top: .8rem; }
-    .sim-citation-card .sim-button.primary { color: #10283b; }
-    .sim-footer-note {
-      margin-top: 2rem;
-      padding-top: 1.2rem;
-      color: var(--sim-muted);
-      border-top: 1px solid var(--sim-line);
-      font-size: .76rem;
-      line-height: 1.65;
-    }
-    @media (max-width: 980px) {
-      .sim-hero { grid-template-columns: 1fr; }
-      .sim-hero-art { max-width: 720px; }
-      .sim-score-grid, .sim-intervention { grid-template-columns: 1fr; }
-      .sim-pipeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .sim-step:nth-child(2)::after { display: none; }
-    }
-    @media (max-width: 680px) {
-      .sim-hero { padding: 1.5rem; border-radius: 16px; }
-      .sim-hero h1 { font-size: clamp(2.45rem, 12vw, 3.5rem); }
-      .sim-hero-art { padding: .35rem; }
-      .sim-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1rem; }
-      .sim-stat { padding: .25rem .8rem; }
-      .sim-stat:nth-child(2) { border-right: 0; }
-      .sim-stat:nth-child(3) { padding-left: .25rem; }
-      .sim-section { margin: 3rem 0; }
-      .sim-section-head { grid-template-columns: 1fr; gap: .35rem; }
-      .sim-question-grid, .sim-facts, .sim-formula-grid, .sim-limits { grid-template-columns: 1fr; }
-      .sim-pipeline { grid-template-columns: 1fr; }
-      .sim-step { min-height: 0; }
-      .sim-step::after, .sim-step:nth-child(2)::after { display: none; }
-      .sim-stress-grid { grid-template-columns: 1fr; }
-      .sim-result-table { font-size: .76rem; }
-      .sim-result-table th, .sim-result-table td { padding: .65rem .35rem; }
+    @media (max-width: 700px) {
+      .topbar { min-height: 64px; }
+      .nav-links { display: none; position: absolute; top: 63px; left: 0; right: 0; padding: 18px 22px 22px; border-bottom: 1px solid var(--line); background: rgba(7,18,31,.97); flex-direction: column; align-items: stretch; gap: 14px; }
+      .nav-links.open { display: flex; }
+      .nav-links .nav-paper { text-align: center; }
+      .menu-toggle { display: grid; place-items: center; }
+      .wrap { width: min(100% - 34px,var(--max)); }
+      .hero { min-height: auto; padding: 70px 0 58px; }
+      .hero-grid { gap: 40px; }
+      h1 { font-size: clamp(3.2rem,15vw,5.1rem); }
+      .hero-visual { min-height: 340px; border-radius: 17px; }
+      .visual-callout { padding: 8px 10px; }
+      .callout-top { right: 11px; top: 12px; }
+      .callout-bottom { left: 11px; bottom: 12px; }
+      .visual-caption { right: 11px; bottom: 13px; max-width: 145px; font-size: .5rem; }
+      .ticker-inner { grid-template-columns: 1fr 1fr; }
+      .ticker-item { padding: 17px 12px; border-bottom: 1px solid var(--line); }
+      .ticker-item:first-child { padding-left: 12px; }
+      .ticker-item:nth-child(2) { border-right: 0; }
+      .ticker-item:nth-child(3),.ticker-item:nth-child(4) { border-bottom: 0; }
+      .section-head { display: block; }
+      .section-index { display: block; margin-top: 18px; }
+      .story-grid,.limits-grid { grid-template-columns: 1fr; }
+      .story-card { min-height: 235px; }
+      .method-grid { grid-template-columns: 1fr; }
+      .method-card { min-height: 0; }
+      .method-card::after,.method-card:nth-child(2)::after { display: none; }
+      .panel-top { display: block; }
+      .tabs { width: max-content; margin-top: 18px; }
+      .comparison-row { grid-template-columns: .75fr 1fr 1fr; gap: 7px; padding: 12px 10px; font-size: .68rem; }
+      .comparison-row.header { font-size: .55rem; }
+      .stress-grid { grid-template-columns: 1fr; }
+      .stress-card { padding: 21px; }
+      .intervention-results { grid-template-columns: 1fr; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .back-top { right: 15px; bottom: 15px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .sim-button { transition: none; }
-      .sim-button:hover { transform: none; }
+      html { scroll-behavior: auto; }
+      *,*::before,*::after { animation-duration: .01ms!important; animation-iteration-count: 1!important; transition-duration: .01ms!important; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
-  <main id="content" class="page-shell sim-page">
-    <div class="breadcrumbs"><a href="/">Home</a> / <a href="/research/">Research</a> / Sim2Real Physical Fidelity</div>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Sim2Real project home">
+      <span class="brand-mark">S2R</span>
+      <span>SIM2REAL <small>/ RESEARCH NOTE</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#question">Question</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#intervention">Intervention</a>
+      <a href="#scope">Scope</a>
+      <a class="nav-paper" href="https://arxiv.org/abs/2610.00415" target="_blank" rel="noopener noreferrer">Read paper ↗</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </header>
 
-    <section class="sim-hero">
-      <div class="sim-hero-copy">
-        <div class="sim-eyebrow">Scientific machine learning · Sim2Real</div>
-        <span class="sim-status">Accepted · NeurIPS 2026 XAI4Science Workshop</span>
-        <h1>Do better scores<br><em>mean better physics?</em></h1>
-        <p class="sim-hero-subtitle">Physics-grounded explanations for Sim2Real neural operators. A diagnostic study of why lower velocity-field error does not necessarily mean more faithful flow statistics.</p>
-        <div class="sim-authors">Somyajit Chakraborty <span>·</span> Xizhong Chen</div>
-        <div class="sim-actions">
-          <a class="sim-button primary" href="https://arxiv.org/abs/2610.00415" target="_blank" rel="noopener noreferrer">Read the paper <span class="arrow">↗</span></a>
-          <a class="sim-button" href="https://arxiv.org/pdf/2610.00415" target="_blank" rel="noopener noreferrer">PDF <span class="arrow">↗</span></a>
-          <a class="sim-button" href="https://doi.org/10.48550/arXiv.2610.00415" target="_blank" rel="noopener noreferrer">DOI <span class="arrow">↗</span></a>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Scientific machine learning · Sim2Real</div>
+          <div class="acceptance"><i></i> Accepted · NeurIPS 2026 XAI4Science Workshop</div>
+          <h1>Do better scores <span class="line-2">mean better physics?</span></h1>
+          <p class="hero-sub">A physics-grounded diagnostic study of neural operators: why a closer velocity field can still produce a less faithful picture of flow fluctuations.</p>
+          <div class="authors">Somyajit Chakraborty <span>·</span> Xizhong Chen</div>
+          <div class="hero-actions">
+            <a class="btn primary" href="https://arxiv.org/abs/2610.00415" target="_blank" rel="noopener noreferrer">Explore the paper <span class="arrow">↗</span></a>
+            <a class="btn" href="https://arxiv.org/pdf/2610.00415" target="_blank" rel="noopener noreferrer">Read PDF <span class="arrow">↗</span></a>
+            <a class="btn" href="#results">See the key result ↓</a>
+          </div>
+          <div class="hero-footnote">XAI4Science Workshop · Tiny Paper Track · Workshop preprint, not a NeurIPS main-conference paper</div>
         </div>
-        <p class="sim-hero-note">XAI4Science Workshop · Tiny Paper Track · Non-archival workshop preprint (not a NeurIPS main-conference paper)</p>
-      </div>
-
-      <figure class="sim-hero-art" aria-label="Illustration of flow around an airfoil and an energetic-region intervention">
-        <svg viewBox="0 0 680 450" role="img" aria-labelledby="flowTitle flowDesc">
-          <title id="flowTitle">Flow around a NACA4418 airfoil</title>
-          <desc id="flowDesc">Stylised streamlines pass around an airfoil. A highlighted region marks energetic flow fluctuations used in a mean-preserving input intervention.</desc>
-          <defs>
-            <linearGradient id="flowBg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#102c46"/>
-              <stop offset="1" stop-color="#0a4654"/>
-            </linearGradient>
-            <linearGradient id="airfoilFill" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#f5fbff"/>
-              <stop offset="1" stop-color="#9bbbc9"/>
-            </linearGradient>
-            <linearGradient id="hotMask" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#f4a26f" stop-opacity=".9"/>
-              <stop offset="1" stop-color="#c83f43" stop-opacity=".55"/>
-            </linearGradient>
-            <pattern id="flowGrid" width="34" height="34" patternUnits="userSpaceOnUse">
-              <path d="M34 0H0V34" fill="none" stroke="#b6d8e4" stroke-opacity=".12" stroke-width="1"/>
-            </pattern>
-          </defs>
-          <rect x="0" y="0" width="680" height="450" rx="13" fill="url(#flowBg)"/>
-          <rect x="0" y="0" width="680" height="450" rx="13" fill="url(#flowGrid)"/>
-          <g fill="none" stroke-linecap="round">
-            <path d="M22 118 C130 118 158 116 214 119 C300 125 360 128 435 114 S575 96 660 101" stroke="#78c7d0" stroke-width="2.1" opacity=".65"/>
-            <path d="M22 155 C130 155 165 151 220 151 C300 151 363 159 442 150 S575 135 660 138" stroke="#79c6d4" stroke-width="2" opacity=".75"/>
-            <path d="M22 191 C120 191 162 185 214 180 C295 172 362 192 442 190 S578 174 660 174" stroke="#9bd7db" stroke-width="2" opacity=".75"/>
-            <path d="M22 230 C120 230 163 226 211 218 C298 204 363 225 442 226 S574 218 660 211" stroke="#b2e5e1" stroke-width="2.4" opacity=".9"/>
-            <path d="M22 268 C118 268 158 273 211 279 C292 291 361 267 440 260 S573 255 660 250" stroke="#b2e5e1" stroke-width="2.2" opacity=".82"/>
-            <path d="M22 306 C120 306 161 312 217 319 C297 328 365 300 442 292 S580 291 660 286" stroke="#8acbd5" stroke-width="2" opacity=".7"/>
-            <path d="M22 344 C124 344 164 347 220 348 C302 350 370 333 442 324 S574 326 660 324" stroke="#6db9cb" stroke-width="2" opacity=".58"/>
-          </g>
-          <g opacity=".55" fill="#a6d9dc">
-            <circle cx="55" cy="230" r="3"/><circle cx="91" cy="230" r="3"/><circle cx="127" cy="230" r="3"/>
-            <circle cx="163" cy="230" r="3"/><circle cx="199" cy="230" r="3"/>
-          </g>
-          <path d="M204 230 C268 185 369 181 463 230 C369 247 268 276 204 230Z" fill="url(#airfoilFill)" stroke="#ffffff" stroke-width="2"/>
-          <path d="M204 230 C268 185 369 181 463 230" fill="none" stroke="#ffffff" stroke-width="1.5" opacity=".9"/>
-          <g fill="url(#hotMask)" stroke="#ffcc9f" stroke-width="1.2">
-            <circle cx="480" cy="176" r="10"/><circle cx="505" cy="164" r="8"/><circle cx="526" cy="188" r="12"/>
-            <circle cx="548" cy="169" r="7"/><circle cx="567" cy="197" r="9"/><circle cx="592" cy="179" r="6"/>
-            <circle cx="514" cy="218" r="6"/><circle cx="552" cy="232" r="8"/><circle cx="584" cy="218" r="6"/>
-          </g>
-          <g transform="translate(28 28)">
-            <rect x="0" y="0" width="170" height="62" rx="10" fill="#071b2c" fill-opacity=".72" stroke="#b7dce6" stroke-opacity=".25"/>
-            <text x="14" y="24" fill="#a9e6e7" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.2">FLOW SYSTEM</text>
-            <text x="14" y="45" fill="#f4f9fc" font-family="DM Sans, sans-serif" font-size="15" font-weight="700">NACA4418 airfoil</text>
-          </g>
-          <g transform="translate(478 350)">
-            <rect x="0" y="0" width="174" height="68" rx="10" fill="#071b2c" fill-opacity=".82" stroke="#eaa17f" stroke-opacity=".55"/>
-            <circle cx="17" cy="21" r="5" fill="#ee9c75"/>
-            <text x="31" y="25" fill="#f9e2d5" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing=".7">TOP-ENERGY MASK</text>
-            <text x="15" y="49" fill="#ffffff" font-family="DM Sans, sans-serif" font-size="15" font-weight="700">10% of valid cells</text>
-          </g>
-          <text x="28" y="416" fill="#b8d2dc" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1">SCHEMATIC — NOT A MEASURED VELOCITY FIELD</text>
-        </svg>
-        <figcaption class="sim-art-caption"><span>Paired CFD / PIV setting</span><span>Mean-preserving intervention</span></figcaption>
-      </figure>
-    </section>
-
-    <section class="sim-stats" aria-label="Study at a glance">
-      <div class="sim-stat"><strong>100</strong><span>paired trajectories in the released dataset</span></div>
-      <div class="sim-stat"><strong>23</strong><span>experimental trajectories used in this analysis</span></div>
-      <div class="sim-stat"><strong>20 → 20</strong><span>observed PIV frames mapped to future frames</span></div>
-      <div class="sim-stat"><strong>4</strong><span>neural-operator families evaluated</span></div>
-    </section>
-
-    <section class="sim-section" id="question">
-      <div class="sim-section-head">
-        <div class="sim-section-no">01 / THE QUESTION</div>
-        <div>
-          <h2>A better score can tell an incomplete story.</h2>
-          <p class="sim-section-intro">Neural operators are commonly compared using aggregate prediction errors. But a velocity field can look closer to measurements while its fluctuation dynamics remain less faithful. This study examines that mismatch in a Sim2Real airfoil-forecasting setting.</p>
-        </div>
-      </div>
-      <div class="sim-question-grid">
-        <div class="sim-question-card dark">
-          <span class="sim-question-mark">Research question</span>
-          <h3>Do lower field errors imply better physical agreement?</h3>
-          <p>We test whether standard velocity-field scores tell the same story as resolved fluctuation-energy diagnostics, and how frozen forecasts respond when selected parts of the observed flow history are modified.</p>
-        </div>
-        <div class="sim-question-card">
-          <span class="sim-question-mark">What the paper is — and is not</span>
-          <h3>A diagnostic protocol, not a new architecture.</h3>
-          <p>The contribution is an evaluation approach for probing model sensitivity and metric disagreement. The experiments do not establish causal physical importance or prove counterfactual physical correctness.</p>
+        <div class="hero-visual" aria-label="Animated schematic of flow around a NACA4418 airfoil">
+          <canvas id="flowCanvas" aria-hidden="true"></canvas>
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="visual-label">ANIMATED FLOW SCHEMATIC</div>
+          <div class="visual-callout callout-top"><small>Flow geometry</small><strong>NACA4418</strong></div>
+          <svg class="airfoil-art" viewBox="0 0 600 250" role="img" aria-label="Stylised airfoil profile">
+            <defs>
+              <linearGradient id="foilGradient" x1="0" y1="0" x2="0.8" y2="1">
+                <stop offset="0" stop-color="#f7ffff"/>
+                <stop offset=".55" stop-color="#b9d7df"/>
+                <stop offset="1" stop-color="#7298a8"/>
+              </linearGradient>
+            </defs>
+            <path d="M54 130 C151 62 335 65 548 128 C356 157 157 197 54 130Z"/>
+            <path class="foil-highlight" d="M54 130 C151 62 335 65 548 128"/>
+          </svg>
+          <div class="visual-callout callout-bottom"><small>Forecast task</small><strong>20 frames → 20</strong></div>
+          <div class="visual-caption">SCHEMATIC ONLY<br>NOT A MEASURED CFD / PIV FIELD</div>
         </div>
       </div>
     </section>
 
-    <section class="sim-section" id="setting">
-      <div class="sim-section-head">
-        <div class="sim-section-no">02 / STUDY SETTING</div>
-        <div>
-          <h2>Paired simulation and measurement.</h2>
-          <p class="sim-section-intro">The study uses the NeurIPS 2026 RealPDE Competition Sim-to-Real Transfer Learning task: time-resolved PIV measurements paired with CFD simulations around a NACA4418 airfoil.</p>
+    <div class="ticker">
+      <div class="wrap ticker-inner">
+        <div class="ticker-item"><strong>100</strong><span>paired trajectories in released dataset</span></div>
+        <div class="ticker-item"><strong>23</strong><span>experimental trajectories analysed</span></div>
+        <div class="ticker-item"><strong>4</strong><span>neural-operator families compared</span></div>
+        <div class="ticker-item"><strong>20 → 20</strong><span>observed frames to future frames</span></div>
+      </div>
+    </div>
+
+    <section class="section" id="question">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">01 / The research question</div>
+            <h2 class="section-title">One forecast.<br><em>Two different scoreboards.</em></h2>
+            <p class="section-lead">Aggregate velocity-field error is useful, but it does not describe every property of a flow. This work asks whether a model that is closer point-by-point is also closer in its resolved fluctuation-energy behaviour.</p>
+          </div>
+          <div class="section-index">THE METRIC PARADOX</div>
         </div>
-      </div>
-      <div class="sim-facts">
-        <div class="sim-fact"><strong>NACA4418</strong><span>Airfoil flow · angles of attack 0°, 5°, 10°, 15°, 20°</span></div>
-        <div class="sim-fact"><strong>Re = 2,968–27,975</strong><span>Released operating-condition range</span></div>
-        <div class="sim-fact"><strong>64 × 128 → 32 × 64</strong><span>Released fields and scorer grid after 2× spatial subsampling</span></div>
-        <div class="sim-fact"><strong>184 windows</strong><span>Selection subset, drawn from the analysed trajectories</span></div>
-        <div class="sim-fact"><strong>768 windows</strong><span>Calibration subset; window-disjoint from selection</span></div>
-        <div class="sim-fact"><strong>u, v</strong><span>Measured PIV velocity components; CFD also provides pressure</span></div>
-      </div>
-      <div class="sim-insight">
-        <div class="sim-insight-mark">i</div>
-        <p><strong>Important sampling boundary.</strong> Both analysis subsets draw from the same 23 experimental trajectories and operating-condition support. They are window-disjoint, but not trajectory-disjoint; this is within-trajectory replication, not independent out-of-trajectory validation. The results should not be generalized to all 100 released trajectories.</p>
+        <div class="story-grid">
+          <article class="story-card reveal">
+            <div class="card-index">METRIC A / FIELD ACCURACY</div>
+            <div class="big-arrow">↘</div>
+            <h3>Closer to the measured velocity field.</h3>
+            <p>Relative L₂ error compares predicted and measured velocity components over the evaluation window. Lower values indicate smaller field discrepancy under this metric.</p>
+            <div class="micro-label">Lower is better</div>
+          </article>
+          <article class="story-card red reveal">
+            <div class="card-index">METRIC B / FLUCTUATION ENERGY</div>
+            <div class="big-arrow">↗</div>
+            <h3>Further from the fluctuation-energy target.</h3>
+            <p>The two-component temporal fluctuation-energy diagnostic captures behaviour that a single aggregate field score can conceal.</p>
+            <div class="micro-label" style="color:var(--red-2)">Lower error is better</div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="sim-section" id="method">
-      <div class="sim-section-head">
-        <div class="sim-section-no">03 / DIAGNOSTIC DESIGN</div>
-        <div>
-          <h2>Change the history. Keep the model frozen.</h2>
-          <p class="sim-section-intro">The same forecasting checkpoint is evaluated before and after a mean-preserving intervention. The model is not retrained; the analysis measures how its forecasts respond to selectively removed temporal fluctuations.</p>
+    <section class="section" id="method">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">02 / Experimental design</div>
+            <h2 class="section-title">A frozen model.<br><em>A changed history.</em></h2>
+            <p class="section-lead">The diagnostic pipeline changes the observed history while keeping the forecasting checkpoint fixed. It then measures how the forecast responds and whether the two evaluation metrics tell a consistent story.</p>
+          </div>
+          <div class="section-index">THE PIPELINE</div>
         </div>
-      </div>
-      <div class="sim-pipeline">
-        <article class="sim-step">
-          <span class="sim-step-no">STEP 01</span>
-          <h3>Pair CFD and PIV</h3>
-          <p>Use matched simulation and experimental flow data around the NACA4418 airfoil. PIV supplies the measured in-plane velocity history.</p>
-          <div class="sim-tag-row"><span class="sim-tag">CFD</span><span class="sim-tag">PIV</span></div>
-        </article>
-        <article class="sim-step">
-          <span class="sim-step-no">STEP 02</span>
-          <h3>Forecast 20 future frames</h3>
-          <p>Each sample maps 20 observed PIV frames to 20 future frames on the 32 × 64 scoring grid.</p>
-          <div class="sim-tag-row"><span class="sim-tag">20 → 20</span><span class="sim-tag">u, v</span></div>
-        </article>
-        <article class="sim-step">
-          <span class="sim-step-no">STEP 03</span>
-          <h3>Intervene on the history</h3>
-          <p>Mask the highest-energy, lowest-energy, or random 10% of valid cells. Replace changing values with each cell's temporal mean.</p>
-          <div class="sim-tag-row"><span class="sim-tag">Mean-preserving</span><span class="sim-tag">No retraining</span></div>
-        </article>
-        <article class="sim-step">
-          <span class="sim-step-no">STEP 04</span>
-          <h3>Compare physical diagnostics</h3>
-          <p>Measure forecast response, velocity-field error, two-component fluctuation-energy error, and domain-summed energy ratio.</p>
-          <div class="sim-tag-row"><span class="sim-tag">Field error</span><span class="sim-tag">TKE</span><span class="sim-tag">Energy ratio</span></div>
-        </article>
-      </div>
-      <div class="sim-insight">
-        <div class="sim-insight-mark">4</div>
-        <p><strong>Model comparison.</strong> The reference is a compact hybrid Fourier–wavelet operator with local convolution, temporal attention, source adaptation, and residual forecasting. It is compared with released real-finetuned FNO, CNO, and Transolver baselines. The reference is a comparison checkpoint, not a physics-ground-truth model.</p>
-      </div>
-
-      <div class="sim-formula-grid">
-        <div class="sim-formula">
-          <span class="sim-formula-label">History fluctuation energy</span>
-          $$k_{\mathrm{hist}}(x,y)=\frac{1}{2}\left\langle (u-\bar{u})^2+(v-\bar{v})^2\right\rangle_{\mathrm{hist}}$$
+        <div class="method-grid">
+          <article class="method-card reveal">
+            <div class="method-icon">◌</div>
+            <h3>Pair CFD and PIV</h3>
+            <p>Matched numerical and experimental flow data around a NACA4418 airfoil. PIV provides the measured in-plane velocity history.</p>
+            <div class="method-foot">REAL + SIMULATED</div>
+          </article>
+          <article class="method-card reveal">
+            <div class="method-icon">⇢</div>
+            <h3>Forecast the future</h3>
+            <p>Map 20 observed PIV frames to 20 future frames on the 32 × 64 scoring grid.</p>
+            <div class="method-foot">20 INPUT / 20 OUTPUT</div>
+          </article>
+          <article class="method-card reveal">
+            <div class="method-icon">▦</div>
+            <h3>Intervene on history</h3>
+            <p>Replace selected cells' changing values with their temporal means. Compare energetic, low-energy and random masks.</p>
+            <div class="method-foot">FROZEN CHECKPOINT</div>
+          </article>
+          <article class="method-card reveal">
+            <div class="method-icon">⌁</div>
+            <h3>Read two diagnostics</h3>
+            <p>Measure velocity-field error, two-component fluctuation-energy error and domain-summed energy ratio.</p>
+            <div class="method-foot">COMPLEMENTARY METRICS</div>
+          </article>
         </div>
-        <div class="sim-formula">
-          <span class="sim-formula-label">Forecast response</span>
-          $$A_{\mathrm{TKE}}=\frac{\|\hat{k}_{\Omega}-\hat{k}_{0}\|_2}{\|\hat{k}_{0}\|_2}$$
+        <div class="model-strip reveal" aria-label="Compared model families">
+          <span class="model-chip primary-chip">Hybrid Fourier–wavelet reference</span>
+          <span class="model-chip">FNO</span>
+          <span class="model-chip">CNO</span>
+          <span class="model-chip">Transolver</span>
         </div>
-      </div>
-      <div class="sim-warning" style="margin-top:1rem">
-        <strong>Interpretation guardrail: equal area is not equal energy.</strong>
-        <p>The energetic and random masks cover the same fraction of valid cells, but they do not remove the same amount of fluctuation energy. A larger response therefore indicates greater sensitivity to that input perturbation; it does not independently establish physical importance. The modified histories also have no known physically realizable future target.</p>
+        <p class="section-lead reveal" style="font-size:.8rem;margin-top:18px">The reference is a compact hybrid Fourier–wavelet operator with local convolution, temporal attention, source adaptation and residual forecasting. It is a comparison checkpoint, not a physics-ground-truth model.</p>
       </div>
     </section>
 
-    <section class="sim-section" id="findings">
-      <div class="sim-section-head">
-        <div class="sim-section-no">04 / KEY FINDING</div>
-        <div>
-          <h2>Two scoreboards can rank the same forecast differently.</h2>
-          <p class="sim-section-intro">The clearest ranking inversion appears for the convolutional neural operator (CNO): it improves relative velocity-field error against the reference, while its two-component fluctuation-energy error becomes substantially worse.</p>
+    <section class="section" id="results">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">03 / The central result</div>
+            <h2 class="section-title">CNO moves in <em>opposite directions.</em></h2>
+            <p class="section-lead">Relative to the reference surrogate, CNO has a lower relative velocity-field error but a higher fluctuation-energy error. Switch between the two analysis subsets to inspect the reported estimates and confidence intervals.</p>
+          </div>
+          <div class="section-index">RANKING INVERSION</div>
+        </div>
+        <div class="result-layout">
+          <div class="result-panel reveal">
+            <div class="panel-top">
+              <div>
+                <h3>CNO minus reference</h3>
+                <p>Negative field-error differences favour CNO. Positive fluctuation-energy-error differences indicate worse CNO error.</p>
+              </div>
+              <div class="tabs" role="tablist" aria-label="Analysis subset">
+                <button type="button" role="tab" id="tabSelection" aria-selected="true" data-split="selection">Selection</button>
+                <button type="button" role="tab" id="tabCalibration" aria-selected="false" data-split="calibration">Calibration</button>
+              </div>
+            </div>
+            <div class="metric">
+              <div class="metric-head"><span>Relative L₂ field error</span><strong class="good" id="fieldValue">−0.0189</strong></div>
+              <div class="axis"><span class="axis-bar negative" id="fieldBar"></span></div>
+              <div class="metric-ci"><span id="fieldCI">95% CI [−0.0265, −0.0117]</span><span>FAVOURS CNO</span></div>
+              <div class="metric-interpret">Lower field error than the reference checkpoint.</div>
+            </div>
+            <div class="metric">
+              <div class="metric-head"><span>Fluctuation-energy error</span><strong class="bad" id="tkeValue">+0.1196</strong></div>
+              <div class="axis"><span class="axis-bar positive" id="tkeBar"></span></div>
+              <div class="metric-ci"><span id="tkeCI">95% CI [+0.1016, +0.1369]</span><span>WORSE THAN REF.</span></div>
+              <div class="metric-interpret">Higher two-component fluctuation-energy error than the reference.</div>
+            </div>
+            <div class="result-note">The estimates are trajectory-balanced model-minus-reference differences. Confidence intervals are trajectory-bootstrap intervals.</div>
+          </div>
+          <aside class="ranking-card reveal">
+            <div class="mini-kicker">The key observation</div>
+            <h3>Better field score.<br><em>Worse flow statistic.</em></h3>
+            <p>The ranking inversion appears in 18 of 23 trajectory aggregates on each analysis subset. A single benchmark score would miss this disagreement.</p>
+            <div class="rank-stat"><strong>18/23</strong><span>trajectory aggregates show the opposite-sign CNO result</span></div>
+          </aside>
+        </div>
+        <div class="comparison reveal" aria-label="Other model comparisons">
+          <div class="comparison-row header"><span>Model</span><span>Field error</span><span>Fluctuation energy</span></div>
+          <div class="comparison-row"><strong>FNO</strong><span>—</span><span>Positive difference not resolved at trajectory level</span></div>
+          <div class="comparison-row"><strong>CNO</strong><span class="status-good">Lower than reference</span><span class="status-warn">Higher error than reference</span></div>
+          <div class="comparison-row"><strong>Transolver</strong><span class="status-warn">Worse than reference</span><span class="status-warn">Worse than reference</span></div>
         </div>
       </div>
-      <div class="sim-score-grid">
-        <div class="sim-panel">
-          <h3>CNO minus reference</h3>
-          <p>Trajectory-balanced model-minus-reference differences. Negative field-error differences favour CNO; positive fluctuation-energy differences indicate worse CNO error.</p>
-          <table class="sim-result-table">
-            <thead>
-              <tr><th>Subset</th><th>Δ Rel-L₂ field error</th><th>Δ fluctuation-energy error</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Selection</strong></td>
-                <td><span class="sim-value-good">−0.0189</span><span class="sim-ci">95% CI [−0.0265, −0.0117]</span></td>
-                <td><span class="sim-value-bad">+0.1196</span><span class="sim-ci">95% CI [+0.1016, +0.1369]</span></td>
-              </tr>
-              <tr>
-                <td><strong>Calibration</strong></td>
-                <td><span class="sim-value-good">−0.0191</span><span class="sim-ci">95% CI [−0.0267, −0.0120]</span></td>
-                <td><span class="sim-value-bad">+0.1232</span><span class="sim-ci">95% CI [+0.1101, +0.1366]</span></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="sim-insight">
-            <div class="sim-insight-mark">↗</div>
-            <p>The opposite-sign ranking occurs in <strong>18 of 23 trajectory aggregates</strong> on each analysis subset. FNO's positive TKE-error difference is not resolved at trajectory level; Transolver is worse than the reference on both metrics.</p>
+    </section>
+
+    <section class="section" id="intervention">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">04 / Interactive intervention lab</div>
+            <h2 class="section-title">Which part of the history<br><em>moves the forecast?</em></h2>
+            <p class="section-lead">Explore equal-area masks. The grid below is an illustrative ranking, not a measured PIV map; it helps explain the intervention logic without pretending to reproduce the paper's spatial field.</p>
+          </div>
+          <div class="section-index">TRY THE MASK</div>
+        </div>
+        <div class="mask-layout">
+          <div class="mask-stage reveal">
+            <div class="mask-stage-head">
+              <h3>Temporal fluctuation map</h3>
+              <span class="schematic-tag">ILLUSTRATIVE ONLY</span>
+            </div>
+            <div class="mask-grid" id="maskGrid" aria-label="Illustrative 10 by 10 fluctuation ranking grid"></div>
+            <div class="mask-legend"><span><i class="legend-dot"></i> Unmasked cells</span><span><i class="legend-dot selected"></i> Selected mask</span></div>
+          </div>
+          <div class="mask-controls reveal">
+            <div>
+              <h3>Choose a mask strategy</h3>
+              <p>All strategies select the same fraction of cells. Only the selection rule changes.</p>
+            </div>
+            <div class="mode-switch" role="group" aria-label="Mask strategy">
+              <button type="button" data-mode="energetic" aria-pressed="true">High energy</button>
+              <button type="button" data-mode="random" aria-pressed="false">Random</button>
+              <button type="button" data-mode="low" aria-pressed="false">Low energy</button>
+            </div>
+            <div>
+              <div class="range-row"><label for="maskRange">Area selected</label><output id="maskPercent">10%</output></div>
+              <input type="range" id="maskRange" min="5" max="20" step="5" value="10">
+              <div class="mask-count"><strong id="maskCount">10 / 100</strong><span>CELLS SELECTED</span></div>
+            </div>
+            <p class="mask-description" id="maskDescription">The highest-ranked illustrative fluctuation cells are selected.</p>
           </div>
         </div>
-        <div class="sim-panel">
-          <h3>The ranking inversion</h3>
-          <p>Where the CNO comparison falls in the two-metric space.</p>
-          <div class="sim-chart-wrap">
-            <svg viewBox="0 0 440 310" role="img" aria-labelledby="rankTitle rankDesc">
-              <title id="rankTitle">CNO ranking inversion</title>
-              <desc id="rankDesc">CNO is in the upper-left quadrant: lower velocity-field error but higher fluctuation-energy error than the reference.</desc>
-              <defs>
-                <marker id="axisArrow" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="#8293a4"/></marker>
-              </defs>
-              <rect x="26" y="18" width="388" height="255" rx="10" fill="none" stroke="var(--sim-line)"/>
-              <rect x="27" y="19" width="192" height="126" fill="#d9f0e7" opacity=".65"/>
-              <rect x="220" y="19" width="193" height="126" fill="#f6e3df" opacity=".35"/>
-              <line x1="220" y1="20" x2="220" y2="272" stroke="#8293a4" stroke-width="1.5" stroke-dasharray="5 5"/>
-              <line x1="27" y1="146" x2="414" y2="146" stroke="#8293a4" stroke-width="1.5" stroke-dasharray="5 5"/>
-              <text x="39" y="39" fill="#187653" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600">BETTER FIELD</text>
-              <text x="39" y="53" fill="#187653" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600">WORSE TKE</text>
-              <text x="234" y="39" fill="#9a5149" font-family="IBM Plex Mono, monospace" font-size="10">WORSE ON BOTH</text>
-              <text x="39" y="259" fill="#8293a4" font-family="IBM Plex Mono, monospace" font-size="10">BETTER ON BOTH</text>
-              <circle cx="151" cy="82" r="17" fill="#bd3d35" opacity=".16"/>
-              <circle cx="151" cy="82" r="8" fill="#bd3d35" stroke="#fff" stroke-width="2"/>
-              <path d="M160 77 L192 63" stroke="#bd3d35" stroke-width="1.5"/>
-              <text x="198" y="62" fill="var(--sim-ink)" font-family="DM Sans, sans-serif" font-size="13" font-weight="800">CNO</text>
-              <text x="220" y="293" text-anchor="middle" fill="var(--sim-muted)" font-family="IBM Plex Mono, monospace" font-size="10">Δ REL-L₂ FIELD ERROR →</text>
-              <text x="15" y="155" transform="rotate(-90 15 155)" text-anchor="middle" fill="var(--sim-muted)" font-family="IBM Plex Mono, monospace" font-size="10">Δ TKE ERROR →</text>
-              <text x="207" y="162" text-anchor="end" fill="var(--sim-muted)" font-family="IBM Plex Mono, monospace" font-size="9">−</text>
-              <text x="231" y="162" fill="var(--sim-muted)" font-family="IBM Plex Mono, monospace" font-size="9">+</text>
-            </svg>
+        <div class="intervention-results reveal">
+          <div class="intervention-result"><small>Selection · 10% mask</small><strong>+0.3508</strong><span>Energetic minus random TKE-response contrast<br>95% CI [0.3294, 0.3726]</span></div>
+          <div class="intervention-result"><small>Calibration · 10% mask</small><strong>+0.3463</strong><span>Energetic minus random TKE-response contrast<br>95% CI [0.3259, 0.3663]</span></div>
+        </div>
+        <div class="guardrail reveal"><strong>Interpretation guardrail.</strong> Equal-area masks do not remove equal amounts of fluctuation energy. A larger response indicates greater sensitivity to that input perturbation; it does not independently establish causal spatial importance. Modified histories also have no known physically realizable future target. The positive energetic-minus-random contrast is reported at 5%, 10% and 20% mask sizes for the reference model; exact numerical contrasts above are shown only for the 10% setting.</div>
+      </div>
+    </section>
+
+    <section class="section" id="stress">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">05 / Output stress test</div>
+            <h2 class="section-title">An error can improve<br>while <em>energy gets worse.</em></h2>
+            <p class="section-lead">On the selection subset, a mean-preserving attenuation of predicted fluctuations slightly improves both normalized benchmark errors, while the domain-summed fluctuation-energy ratio moves further below one.</p>
           </div>
-          <p class="sim-chart-caption">Schematic sign interpretation, not a scale-accurate scatter plot. The exact estimates and confidence intervals are shown alongside.</p>
+          <div class="section-index">SELECTION SUBSET</div>
         </div>
+        <div class="stress-grid">
+          <article class="stress-card reveal"><small>Relative velocity-field error</small><strong>0.120958 → 0.119692</strong><em>Lower benchmark error ↓</em></article>
+          <article class="stress-card reveal"><small>Relative fluctuation-energy error</small><strong>0.533389 → 0.528463</strong><em>Lower benchmark error ↓</em></article>
+          <article class="stress-card reveal"><small>Domain-summed energy ratio, R<sub>E</sub></small><strong>0.815 → 0.756</strong><em>Greater under-energy ↑</em></article>
+        </div>
+        <p class="stress-foot reveal">This is a diagnostic stress test, not a held-out correction: attenuation gains were selected using both analysis subsets. It illustrates how sample-normalized errors and a domain-pooled energy ratio can rank predictions differently.</p>
       </div>
     </section>
 
-    <section class="sim-section" id="intervention">
-      <div class="sim-section-head">
-        <div class="sim-section-no">05 / INPUT INTERVENTION</div>
-        <div>
-          <h2>Energetic regions consistently influence forecasts.</h2>
-          <p class="sim-section-intro">For the reference surrogate, removing fluctuations from the highest-energy 10% of valid observed cells changes the predicted TKE more than equal-area random masking. The contrast is positive across all 23 trajectory aggregates on both subsets.</p>
-        </div>
-      </div>
-      <div class="sim-intervention">
-        <div class="sim-contrast-box">
-          <h3>Energetic minus random TKE-response contrast</h3>
-          <p>Reference surrogate · 10% masks · mean contrast with 95% trajectory-bootstrap confidence interval.</p>
-          <div class="sim-contrast-values">
-            <div class="sim-contrast-value"><strong>+0.3508</strong><span>Selection · 95% CI [0.3294, 0.3726]</span></div>
-            <div class="sim-contrast-value"><strong>+0.3463</strong><span>Calibration · 95% CI [0.3259, 0.3663]</span></div>
+    <section class="section" id="scope">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">06 / Scientific boundaries</div>
+            <h2 class="section-title">What the evidence<br><em>does not claim.</em></h2>
+            <p class="section-lead">The conclusions are intentionally bounded by the benchmark, sampling design and intervention assumptions. These limitations are part of how the results should be read.</p>
           </div>
+          <div class="section-index">LIMITATIONS</div>
         </div>
-        <div class="sim-contrast-box">
-          <h3>Robustness across models</h3>
-          <p>At the 10% mask setting, the energetic-minus-random TKE-response contrast also remains positive for the released FNO, CNO, and Transolver baselines. For the reference, the contrast remains positive at 5%, 10%, and 20% mask sizes.</p>
-          <div class="sim-tag-row"><span class="sim-tag">Reference</span><span class="sim-tag">FNO</span><span class="sim-tag">CNO</span><span class="sim-tag">Transolver</span></div>
+        <div class="limits-grid">
+          <details class="limit reveal"><summary>One physical system</summary><p>The evidence comes from a NACA4418 airfoil benchmark. It is not a broad cross-system validation.</p></details>
+          <details class="limit reveal"><summary>Shared trajectory support</summary><p>Both analysis subsets use the same 23 experimental trajectories. They are window-disjoint, not trajectory-disjoint, and do not establish out-of-trajectory generalization.</p></details>
+          <details class="limit reveal"><summary>Equal area is not equal energy</summary><p>Energetic and random masks cover the same fraction of valid cells but do not remove the same amount of fluctuation energy.</p></details>
+          <details class="limit reveal"><summary>No physical counterfactual target</summary><p>The modified input histories do not have known physically realizable future observations.</p></details>
+          <details class="limit reveal"><summary>Possible intervention artifacts</summary><p>Hard mask boundaries may introduce spectral artifacts. Smooth and energy-matched controls are needed.</p></details>
+          <details class="limit reveal"><summary>Exploratory attenuation</summary><p>Attenuation gains were selected on both subsets, so the stress test is not evidence of a held-out physical correction.</p></details>
         </div>
-      </div>
-      <div class="sim-warning" style="margin-top:1rem">
-        <strong>What this result supports.</strong>
-        <p>The result supports a repeatable model-sensitivity contrast under the tested equal-area perturbations. It does not isolate spatial importance from the magnitude of fluctuation energy removed, and it should not be described as a causal attribution result.</p>
       </div>
     </section>
 
-    <section class="sim-section" id="stress-test">
-      <div class="sim-section-head">
-        <div class="sim-section-no">06 / OUTPUT STRESS TEST</div>
-        <div>
-          <h2>Even a lower error can accompany a larger energy deficit.</h2>
-          <p class="sim-section-intro">A mean-preserving attenuation of predicted fluctuations slightly improves the normalized benchmark errors on the selection subset, yet moves the domain-summed fluctuation-energy ratio farther below one.</p>
-        </div>
-      </div>
-      <div class="sim-stress-grid">
-        <div class="sim-stress"><span>Relative velocity-field error</span><strong>0.120958 → 0.119692</strong><em>Lower benchmark error</em></div>
-        <div class="sim-stress"><span>Relative fluctuation-energy error</span><strong>0.533389 → 0.528463</strong><em>Lower benchmark error</em></div>
-        <div class="sim-stress"><span>Domain-summed energy ratio, R<sub>E</sub></span><strong>0.815 → 0.756</strong><em>Greater under-energy</em></div>
-      </div>
-      <div class="sim-insight">
-        <div class="sim-insight-mark">!</div>
-        <p>This is a diagnostic stress test, not a held-out correction: attenuation gains were selected using both analysis subsets. The example illustrates that sample-normalized errors and a domain-pooled energy ratio can rank predictions differently.</p>
-      </div>
-    </section>
-
-    <section class="sim-section" id="scope">
-      <div class="sim-section-head">
-        <div class="sim-section-no">07 / INTERPRETATION</div>
-        <div>
-          <h2>What the evidence does — and does not — establish.</h2>
-          <p class="sim-section-intro">The paper is deliberately bounded. Its results motivate complementary physical diagnostics, while leaving stronger claims about physical importance and generalization for future tests.</p>
-        </div>
-      </div>
-      <div class="sim-limits">
-        <div class="sim-limit"><b>01</b><p><strong>One physical system.</strong> The evidence is from a NACA4418 airfoil benchmark, not a broad cross-system validation.</p></div>
-        <div class="sim-limit"><b>02</b><p><strong>Shared trajectory support.</strong> Both analysis subsets use the same 23 experimental trajectories; they do not establish out-of-trajectory generalization.</p></div>
-        <div class="sim-limit"><b>03</b><p><strong>Unequal removed energy.</strong> Equal-area masks are not matched for fluctuation energy, so sensitivity and spatial importance cannot be separated.</p></div>
-        <div class="sim-limit"><b>04</b><p><strong>No physical counterfactual target.</strong> The modified input histories do not have known physically realizable future observations.</p></div>
-        <div class="sim-limit"><b>05</b><p><strong>Intervention artifacts.</strong> Hard mask boundaries may introduce spectral artifacts; smooth and energy-matched controls are needed.</p></div>
-        <div class="sim-limit"><b>06</b><p><strong>Attenuation is exploratory.</strong> Its gains were selected on both subsets, so it is not evidence of a held-out physical correction.</p></div>
-      </div>
-    </section>
-
-    <section class="sim-section sim-citation-card" id="citation">
-      <div class="sim-section-head">
-        <div class="sim-section-no">08 / PAPER & CITATION</div>
-        <div>
-          <h2>Read, cite, and follow the work.</h2>
-          <p class="sim-section-intro">Accepted at the NeurIPS 2026 XAI4Science Workshop, Tiny Paper Track. This is a non-archival workshop preprint, not a NeurIPS main-conference paper.</p>
-        </div>
-      </div>
-      <p class="sim-citation-text" id="sim-citation-text">Chakraborty, S. and Chen, X. (2026). Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators. NeurIPS 2026 Workshop on XAI4Science: Knowledge Discovery and Trust through Interpretable Foundation Models. arXiv:2610.00415. https://doi.org/10.48550/arXiv.2610.00415</p>
-      <div class="sim-actions">
-        <a class="sim-button primary" href="https://arxiv.org/abs/2610.00415" target="_blank" rel="noopener noreferrer">arXiv abstract ↗</a>
-        <a class="sim-button" href="https://arxiv.org/pdf/2610.00415" target="_blank" rel="noopener noreferrer">Download PDF ↗</a>
-        <a class="sim-button" href="https://doi.org/10.48550/arXiv.2610.00415" target="_blank" rel="noopener noreferrer">DOI record ↗</a>
-        <a class="sim-button" href="/publications/do-better-scores/">Publication details ↗</a>
-      </div>
-      <h3 style="margin:1.8rem 0 .65rem;color:#fff;font-size:1rem">BibTeX</h3>
-      <pre class="sim-bibtex" id="sim-bibtex">@misc{chakraborty2026betterscores,
+    <section class="section" id="paper">
+      <div class="wrap">
+        <div class="paper-card reveal">
+          <div class="paper-topline">07 / The paper <span>—</span> XAI4Science 2026</div>
+          <h2>Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators</h2>
+          <p>Somyajit Chakraborty and Xizhong Chen. Accepted at the NeurIPS 2026 Workshop on XAI4Science, Tiny Paper Track. This is a non-archival workshop preprint, not a NeurIPS main-conference paper.</p>
+          <div class="paper-meta"><span>arXiv:2610.00415</span><span>2026</span><span>cs.LG</span><span>Workshop paper</span></div>
+          <div class="citation"><strong>Suggested citation</strong><br>Chakraborty, S. and Chen, X. (2026). Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators. NeurIPS 2026 Workshop on XAI4Science: Knowledge Discovery and Trust through Interpretable Foundation Models. arXiv:2610.00415. https://doi.org/10.48550/arXiv.2610.00415</div>
+          <div class="paper-actions">
+            <a class="btn primary" href="https://arxiv.org/abs/2610.00415" target="_blank" rel="noopener noreferrer">Open arXiv ↗</a>
+            <a class="btn" href="https://arxiv.org/pdf/2610.00415" target="_blank" rel="noopener noreferrer">PDF ↗</a>
+            <a class="btn" href="https://doi.org/10.48550/arXiv.2610.00415" target="_blank" rel="noopener noreferrer">DOI ↗</a>
+            <button class="btn copy-btn" id="copyBib" type="button">Copy BibTeX</button>
+          </div>
+          <textarea id="bibtex" aria-label="BibTeX citation" readonly style="position:absolute;left:-9999px">@misc{chakraborty2026betterscores,
   author        = {Chakraborty, Somyajit and Chen, Xizhong},
   title         = {{Do Better Scores Mean Better Physics? Physics-Grounded Explanations for Sim2Real Neural Operators}},
   year          = {2026},
-  howpublished  = {NeurIPS 2026 Workshop on XAI4Science:
-                   Knowledge Discovery and Trust through
-                   Interpretable Foundation Models},
+  howpublished  = {NeurIPS 2026 Workshop on XAI4Science: Knowledge Discovery and Trust through Interpretable Foundation Models},
   eprint        = {2610.00415},
   archivePrefix = {arXiv},
   primaryClass  = {cs.LG},
   doi           = {10.48550/arXiv.2610.00415},
   url           = {https://doi.org/10.48550/arXiv.2610.00415}
-}</pre>
-      <button class="sim-button" type="button" data-copy-citation="#sim-bibtex">Copy BibTeX</button>
+}</textarea>
+        </div>
+      </div>
     </section>
-
-    <p class="sim-footer-note">This page summarizes the scope and findings of the linked paper. “TKE” refers here to the resolved temporal fluctuation energy of the two measured in-plane PIV velocity components, not full three-component turbulent kinetic energy. For exact definitions, confidence intervals, and appendix details, consult the arXiv paper.</p>
   </main>
-  <script src="/js/site.js" defer></script>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <small>SIM2REAL PHYSICAL FIDELITY · SOMYAJIT CHAKRABORTY<br>Interactive research microsite · 2026</small>
+      <small><a href="https://samchakraborty.me">samchakraborty.me</a> · <a href="#top">Back to top ↑</a></small>
+    </div>
+  </footer>
+  <button class="back-top" id="backTop" type="button" aria-label="Back to top">↑</button>
+
+  <script>
+    (function () {
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const progressBar = document.getElementById('progressBar');
+      const backTop = document.getElementById('backTop');
+      const navLinks = document.getElementById('navLinks');
+      const menuToggle = document.getElementById('menuToggle');
+
+      function onScroll() {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+        progressBar.style.width = progress + '%';
+        backTop.classList.toggle('visible', window.scrollY > 650);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      menuToggle.addEventListener('click', function () {
+        const open = navLinks.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.textContent = open ? '×' : '☰';
+      });
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          navLinks.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.textContent = '☰';
+        });
+      });
+      backTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+      });
+
+      const revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+
+      const sectionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navLinks.querySelectorAll('a[href^="#"]').forEach(function (a) {
+              a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+            });
+          }
+        });
+      }, { rootMargin: '-35% 0px -55% 0px' });
+      ['question','method','results','intervention','scope'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) sectionObserver.observe(el);
+      });
+
+      const splitData = {
+        selection: {
+          field: '−0.0189',
+          fieldCI: '95% CI [−0.0265, −0.0117]',
+          tke: '+0.1196',
+          tkeCI: '95% CI [+0.1016, +0.1369]',
+          fieldWidth: 63,
+          tkeWidth: 80
+        },
+        calibration: {
+          field: '−0.0191',
+          fieldCI: '95% CI [−0.0267, −0.0120]',
+          tke: '+0.1232',
+          tkeCI: '95% CI [+0.1101, +0.1366]',
+          fieldWidth: 64,
+          tkeWidth: 82
+        }
+      };
+      function setSplit(key) {
+        const d = splitData[key];
+        document.getElementById('fieldValue').textContent = d.field;
+        document.getElementById('fieldCI').textContent = d.fieldCI;
+        document.getElementById('tkeValue').textContent = d.tke;
+        document.getElementById('tkeCI').textContent = d.tkeCI;
+        document.getElementById('fieldBar').style.width = d.fieldWidth + '%';
+        document.getElementById('tkeBar').style.width = d.tkeWidth + '%';
+        document.querySelectorAll('[data-split]').forEach(function (button) {
+          button.setAttribute('aria-selected', String(button.dataset.split === key));
+        });
+      }
+      document.querySelectorAll('[data-split]').forEach(function (button) {
+        button.addEventListener('click', function () { setSplit(button.dataset.split); });
+      });
+      setSplit('selection');
+
+      const grid = document.getElementById('maskGrid');
+      const maskRange = document.getElementById('maskRange');
+      const maskPercent = document.getElementById('maskPercent');
+      const maskCount = document.getElementById('maskCount');
+      const maskDescription = document.getElementById('maskDescription');
+      const intensities = Array.from({ length: 100 }, function (_, i) {
+        return (Math.sin((i + 3) * 12.9898) * Math.cos((i + 17) * 78.233) + 1) / 2;
+      });
+      intensities.forEach(function (value, i) {
+        const cell = document.createElement('span');
+        cell.className = 'mask-cell';
+        cell.style.setProperty('--heat', (0.12 + value * 0.48).toFixed(3));
+        cell.title = 'Illustrative cell ' + (i + 1);
+        grid.appendChild(cell);
+      });
+      let maskMode = 'energetic';
+      function seededRank(i) {
+        const x = Math.sin((i + 1) * 91.73) * 43758.5453;
+        return x - Math.floor(x);
+      }
+      function updateMask() {
+        const percent = Number(maskRange.value);
+        const count = Math.round(percent);
+        const indices = Array.from({ length: 100 }, function (_, i) { return i; });
+        if (maskMode === 'energetic') {
+          indices.sort(function (a,b) { return intensities[b] - intensities[a]; });
+          maskDescription.textContent = 'The highest-ranked illustrative fluctuation cells are selected.';
+        } else if (maskMode === 'low') {
+          indices.sort(function (a,b) { return intensities[a] - intensities[b]; });
+          maskDescription.textContent = 'The lowest-ranked illustrative fluctuation cells are selected.';
+        } else {
+          indices.sort(function (a,b) { return seededRank(a) - seededRank(b); });
+          maskDescription.textContent = 'A fixed-seed equal-area random subset is selected for visual comparison.';
+        }
+        const selected = new Set(indices.slice(0, count));
+        Array.from(grid.children).forEach(function (cell, i) {
+          cell.classList.toggle('is-selected', selected.has(i));
+        });
+        maskPercent.textContent = percent + '%';
+        maskCount.textContent = count + ' / 100';
+      }
+      document.querySelectorAll('[data-mode]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          maskMode = button.dataset.mode;
+          document.querySelectorAll('[data-mode]').forEach(function (other) {
+            other.setAttribute('aria-pressed', String(other === button));
+          });
+          updateMask();
+        });
+      });
+      maskRange.addEventListener('input', updateMask);
+      updateMask();
+
+      const copyButton = document.getElementById('copyBib');
+      copyButton.addEventListener('click', async function () {
+        const text = document.getElementById('bibtex').value;
+        try {
+          await navigator.clipboard.writeText(text);
+          copyButton.textContent = 'Copied ✓';
+        } catch (error) {
+          const area = document.getElementById('bibtex');
+          area.style.position = 'static';
+          area.style.left = 'auto';
+          area.select();
+          document.execCommand('copy');
+          area.style.position = 'absolute';
+          area.style.left = '-9999px';
+          copyButton.textContent = 'Copied ✓';
+        }
+        window.setTimeout(function () { copyButton.textContent = 'Copy BibTeX'; }, 1800);
+      });
+
+      const canvas = document.getElementById('flowCanvas');
+      const ctx = canvas.getContext('2d');
+      let width = 0, height = 0, particles = [], frame = 0, raf = 0, visible = true;
+      function resizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+        width = rect.width;
+        height = rect.height;
+        canvas.width = Math.max(1, Math.round(width * dpr));
+        canvas.height = Math.max(1, Math.round(height * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        particles = Array.from({ length: Math.max(65, Math.round(width / 5)) }, function () {
+          return { x: Math.random() * width, y: Math.random() * height, speed: .45 + Math.random() * .8, alpha: .25 + Math.random() * .55, size: .55 + Math.random() * 1.25 };
+        });
+        drawStill();
+      }
+      function drawAirfoil() {
+        const cx = width * .52, cy = height * .53;
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.scale(width * .00029, height * .00034);
+        ctx.beginPath();
+        ctx.moveTo(-220, 0);
+        ctx.bezierCurveTo(-80, -120, 210, -105, 420, -5);
+        ctx.bezierCurveTo(210, 45, -80, 88, -220, 0);
+        const foil = ctx.createLinearGradient(0,-110,120,110);
+        foil.addColorStop(0,'rgba(245,255,255,.98)');
+        foil.addColorStop(.55,'rgba(179,213,222,.95)');
+        foil.addColorStop(1,'rgba(86,132,150,.96)');
+        ctx.fillStyle = foil;
+        ctx.shadowColor = 'rgba(112,214,212,.28)';
+        ctx.shadowBlur = 24;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = 'rgba(235,255,255,.9)';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+        ctx.restore();
+      }
+      function drawStill() {
+        if (!width || !height) return;
+        ctx.clearRect(0,0,width,height);
+        ctx.fillStyle = 'rgba(7,20,32,.96)';
+        ctx.fillRect(0,0,width,height);
+        ctx.strokeStyle = 'rgba(112,180,205,.06)';
+        ctx.lineWidth = 1;
+        for (let x=0; x<width; x+=34) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,height); ctx.stroke(); }
+        for (let y=0; y<height; y+=34) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(width,y); ctx.stroke(); }
+        particles.forEach(function (p) {
+          ctx.beginPath();
+          ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+          ctx.fillStyle = 'rgba(112,214,212,' + p.alpha + ')';
+          ctx.fill();
+        });
+        drawAirfoil();
+      }
+      function animate() {
+        if (!visible || document.hidden) { raf = requestAnimationFrame(animate); return; }
+        ctx.fillStyle = 'rgba(7,20,32,.15)';
+        ctx.fillRect(0,0,width,height);
+        const cx = width * .52, cy = height * .53;
+        particles.forEach(function (p) {
+          const dx = (p.x - cx) / (width * .18);
+          const dy = (p.y - cy) / (height * .2);
+          const influence = Math.exp(-dx*dx*1.5 - dy*dy*2.2);
+          const deflect = (dy < 0 ? -1 : 1) * influence * 1.1;
+          const oldX = p.x, oldY = p.y;
+          p.x += p.speed * (1 + influence * .25);
+          p.y += deflect * p.speed + Math.sin((p.x / width) * 8 + frame * .008) * .08;
+          if (p.x > width + 4 || p.y < -6 || p.y > height + 6) {
+            p.x = -3;
+            p.y = Math.random() * height;
+          }
+          ctx.beginPath();
+          ctx.moveTo(oldX,oldY);
+          ctx.lineTo(p.x,p.y);
+          ctx.strokeStyle = 'rgba(112,214,212,' + p.alpha + ')';
+          ctx.lineWidth = p.size;
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(p.x,p.y,p.size*.9,0,Math.PI*2);
+          ctx.fillStyle = 'rgba(199,255,246,' + (p.alpha*.85) + ')';
+          ctx.fill();
+        });
+        drawAirfoil();
+        frame++;
+        raf = requestAnimationFrame(animate);
+      }
+      const canvasObserver = new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+      });
+      canvasObserver.observe(canvas);
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+      if (!reduceMotion) animate();
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) cancelAnimationFrame(raf);
+        else if (!reduceMotion) animate();
+      });
+    })();
+  </script>
 </body>
 </html>
