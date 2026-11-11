@@ -14,17 +14,17 @@ No package installation or build step is required.
 
 From the repository root:
 
-\`\`\`bash
+```bash
 python3 -m http.server 8000
-\`\`\`
+```
 
 Then open:
 
-\`\`\`
+```
 http://localhost:8000/research/sim2real-physics/
-\`\`\`
+```
 
-You can also open \`index.html\` directly in a modern browser. The page uses native HTML, CSS, Canvas and JavaScript; it has no framework or runtime dependency.
+You can also open `index.html` directly in a modern browser. The page uses native HTML, CSS, Canvas and JavaScript; it has no framework or runtime dependency.
 
 ## Interactions
 
