@@ -867,7 +867,7 @@
         drawAirfoil();
       }
       function animate() {
-        if (!visible || document.hidden) { raf = requestAnimationFrame(animate); return; }
+        if (!running || !visible || document.hidden) { running = false; return; }
         ctx.fillStyle = 'rgba(7,20,32,.15)';
         ctx.fillRect(0,0,width,height);
         const cx = width * .52, cy = height * .53;
@@ -898,16 +898,28 @@
         frame++;
         raf = requestAnimationFrame(animate);
       }
+      let running = false;
+      function startAnimation() {
+        if (reduceMotion || running || !visible || document.hidden) return;
+        running = true;
+        raf = requestAnimationFrame(animate);
+      }
+      function stopAnimation() {
+        running = false;
+        cancelAnimationFrame(raf);
+      }
       const canvasObserver = new IntersectionObserver(function (entries) {
         visible = entries[0].isIntersecting;
+        if (visible) startAnimation();
+        else stopAnimation();
       });
       canvasObserver.observe(canvas);
       resizeCanvas();
       window.addEventListener('resize', resizeCanvas);
-      if (!reduceMotion) animate();
+      if (!reduceMotion) startAnimation();
       document.addEventListener('visibilitychange', function () {
-        if (document.hidden) cancelAnimationFrame(raf);
-        else if (!reduceMotion) animate();
+        if (document.hidden) stopAnimation();
+        else startAnimation();
       });
     })();
   </script>
