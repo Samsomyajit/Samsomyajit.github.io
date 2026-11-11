@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="t d">
+  <title id="t">Do Better Scores Mean Better Physics?</title>
+  <desc id="d">A dark scientific research cover showing animated-style flow streamlines around an airfoil and a contrast between velocity-field error and fluctuation-energy error.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07121f"/>
+      <stop offset=".58" stop-color="#102b40"/>
+      <stop offset="1" stop-color="#0a4651"/>
+    </linearGradient>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7ffff"/>
+      <stop offset=".58" stop-color="#a9cbd5"/>
+      <stop offset="1" stop-color="#547f91"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4eaaa9" stop-opacity=".1"/>
+      <stop offset=".5" stop-color="#8ce8df"/>
+      <stop offset="1" stop-color="#4eaaa9" stop-opacity=".1"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#39b8b7" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#39b8b7" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#9cc8d8" stroke-opacity=".08"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="940" cy="300" r="380" fill="url(#glow)"/>
+  <circle cx="1040" cy="90" r="210" fill="#5ad0ce" opacity=".035"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="76" y="78" fill="#85e0dd" font-size="17" font-weight="700" letter-spacing="4">SIM2REAL / RESEARCH NOTE</text>
+    <rect x="76" y="112" width="346" height="34" rx="17" fill="#2c8c69" fill-opacity=".16" stroke="#78d6ac" stroke-opacity=".5"/>
+    <circle cx="94" cy="129" r="4" fill="#78d6ac"/>
+    <text x="108" y="134" fill="#c0f2d9" font-size="12" font-weight="700" letter-spacing="1">NEURIPS 2026 · XAI4SCIENCE WORKSHOP</text>
+    <text x="76" y="230" fill="#f2f8fc" font-size="67" font-weight="800" letter-spacing="-3">Do better scores</text>
+    <text x="76" y="305" fill="#a5efdf" font-size="67" font-weight="800" letter-spacing="-3">mean better physics?</text>
+    <text x="80" y="354" fill="#b8cad7" font-size="21">Physics-grounded explanations for Sim2Real neural operators</text>
+    <text x="80" y="400" fill="#dceaf1" font-size="16" font-weight="700">Somyajit Chakraborty  ·  Xizhong Chen</text>
+    <g fill="none" stroke-linecap="round">
+      <path d="M600 175 C720 110 800 115 895 170 S1070 204 1160 150" stroke="#73d3d1" stroke-width="2" opacity=".5"/>
+      <path d="M590 205 C720 140 810 148 900 202 S1065 239 1170 193" stroke="#8de4dd" stroke-width="2" opacity=".68"/>
+      <path d="M590 240 C720 180 815 184 900 235 S1065 280 1170 230" stroke="#b2efdf" stroke-width="2.5" opacity=".82"/>
+      <path d="M590 280 C720 250 815 252 900 280 S1060 330 1170 280" stroke="#b2efdf" stroke-width="2.5" opacity=".8"/>
+      <path d="M590 325 C720 360 810 340 900 330 S1065 370 1170 340" stroke="#82d8d5" stroke-width="2" opacity=".7"/>
+      <path d="M600 370 C720 410 820 392 900 374 S1060 420 1170 390" stroke="#63b9c4" stroke-width="2" opacity=".52"/>
+      <path d="M600 420 C720 460 820 442 900 422 S1060 465 1170 440" stroke="#63b9c4" stroke-width="2" opacity=".4"/>
+    </g>
+    <ellipse cx="884" cy="286" rx="190" ry="80" fill="#6cd7d3" opacity=".13" filter="url(#shadow)"/>
+    <path d="M700 286 C785 224 935 222 1085 282 C940 315 790 344 700 286Z" fill="url(#foil)" stroke="#efffff" stroke-width="2"/>
+    <path d="M700 286 C785 224 935 222 1085 282" fill="none" stroke="#ffffff" stroke-width="1.2" opacity=".85"/>
+    <g fill="#f5a07f" stroke="#ffd0b6" stroke-width="1">
+      <circle cx="1082" cy="205" r="7"/><circle cx="1110" cy="222" r="5"/><circle cx="1130" cy="194" r="6"/>
+      <circle cx="1098" cy="363" r="6"/><circle cx="1130" cy="382" r="5"/><circle cx="1152" cy="350" r="7"/>
+    </g>
+    <rect x="76" y="492" width="1048" height="82" rx="14" fill="#06111d" fill-opacity=".74" stroke="#a7d7df" stroke-opacity=".2"/>
+    <text x="101" y="524" fill="#9bb2c2" font-size="11" font-weight="700" letter-spacing="2">THE RANKING INVERSION</text>
+    <text x="101" y="553" fill="#8de6c2" font-size="23" font-weight="800">FIELD ERROR ↓</text>
+    <text x="385" y="553" fill="#f58b7d" font-size="23" font-weight="800">FLUCTUATION-ENERGY ERROR ↑</text>
+    <text x="1094" y="553" fill="#91aaba" font-size="12" text-anchor="end">arXiv:2610.00415</text>
+  </g>
+</svg>
