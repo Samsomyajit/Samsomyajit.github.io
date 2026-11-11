@@ -328,6 +328,45 @@
       *,*::before,*::after { animation-duration: .01ms!important; animation-iteration-count: 1!important; transition-duration: .01ms!important; }
       .reveal { opacity: 1; transform: none; }
     }
+
+    .figure-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 17px; margin-top: 42px; }
+    .figure-card { overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: linear-gradient(145deg,rgba(18,44,64,.96),rgba(8,23,37,.98)); transition: transform .28s,border-color .28s,box-shadow .28s; }
+    .figure-card:hover { transform: translateY(-5px); border-color: rgba(112,214,212,.45); box-shadow: 0 20px 45px rgba(0,0,0,.22); }
+    .figure-preview { position: relative; height: 310px; overflow: hidden; background: #f3f5f6; border-bottom: 1px solid var(--line); }
+    .figure-preview iframe { width: 100%; height: 100%; border: 0; background: #fff; pointer-events: none; }
+    .figure-preview::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,transparent 65%,rgba(4,15,25,.1)); pointer-events: none; }
+    .figure-open { position: absolute; z-index: 2; right: 13px; bottom: 13px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; color: #f3fbff; background: rgba(5,20,32,.88); backdrop-filter: blur(10px); font-size: .7rem; font-weight: 750; transition: background .2s,border-color .2s; }
+    .figure-open:hover { border-color: var(--cyan); background: rgba(9,45,57,.96); }
+    .figure-info { padding: 21px 23px 23px; }
+    .figure-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--muted-2); font: 600 .62rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .figure-number { color: var(--red-2); }
+    .figure-info h3 { margin: 13px 0 8px; font-size: 1.05rem; letter-spacing: -.025em; }
+    .figure-info p { margin: 0; color: var(--muted); font-size: .77rem; line-height: 1.75; }
+    .figure-topline { display:flex; align-items:center; gap:9px; margin-top:14px; color:var(--cyan-2); font:600 .62rem var(--mono); }
+    .figure-topline::before { content:""; width:18px; height:1px; background:var(--cyan); }
+    .figure-modal { position: fixed; inset: 0; z-index: 500; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(2,9,16,.88); backdrop-filter: blur(14px); }
+    .figure-modal.open { display: flex; animation: modalIn .22s ease-out; }
+    .figure-modal-panel { display: flex; width: min(1220px,100%); height: min(92vh,950px); flex-direction: column; overflow: hidden; border: 1px solid rgba(193,220,236,.22); border-radius: 17px; background: #091a29; box-shadow: 0 35px 100px rgba(0,0,0,.55); }
+    .figure-modal-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 15px 19px; border-bottom: 1px solid var(--line); }
+    .figure-modal-title { min-width:0; }
+    .figure-modal-title small { display:block; color:var(--cyan); font:600 .61rem var(--mono); letter-spacing:.1em; text-transform:uppercase; }
+    .figure-modal-title strong { display:block; margin-top:4px; overflow:hidden; color:var(--ink); font-size:.9rem; text-overflow:ellipsis; white-space:nowrap; }
+    .figure-modal-actions { display:flex; flex:0 0 auto; align-items:center; gap:7px; }
+    .figure-modal-actions button,.figure-modal-actions a { display:grid; min-width:36px; height:35px; place-items:center; padding:0 9px; border:1px solid var(--line-strong); border-radius:7px; color:#eaf5fa; background:rgba(255,255,255,.04); text-decoration:none; font-size:.75rem; }
+    .figure-modal-actions button:hover,.figure-modal-actions a:hover { border-color:var(--cyan); }
+    .figure-modal-body { flex:1; min-height:0; background:#e9edf0; }
+    .figure-modal-body iframe { width:100%; height:100%; border:0; background:#fff; }
+    .figure-modal-foot { padding:10px 17px; border-top:1px solid var(--line); color:var(--muted-2); font:500 .61rem/1.5 var(--mono); }
+    @keyframes modalIn { from { opacity:0; } to { opacity:1; } }
+    @media(max-width:700px) {
+      .figure-gallery { grid-template-columns:1fr; }
+      .figure-preview { height:270px; }
+      .figure-modal { padding:8px; }
+      .figure-modal-panel { height:96vh; border-radius:11px; }
+      .figure-modal-head { padding:11px; }
+      .figure-modal-title strong { max-width:135px; }
+    }
+
   </style>
 </head>
 <body>
@@ -341,6 +380,7 @@
       <a href="#question">Question</a>
       <a href="#method">Method</a>
       <a href="#results">Results</a>
+      <a href="#figure-gallery">Figures</a>
       <a href="#intervention">Intervention</a>
       <a href="#scope">Scope</a>
       <a class="nav-paper" href="https://arxiv.org/abs/2610.00415" target="_blank" rel="noopener noreferrer">Read paper ↗</a>
@@ -522,6 +562,112 @@
       </div>
     </section>
 
+
+    <section class="section" id="figure-gallery">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">04 / Original paper figures</div>
+            <h2 class="section-title">The evidence,<br><em>at full resolution.</em></h2>
+            <p class="section-lead">Explore the six figures from the original arXiv manuscript. Each preview is the corresponding page of the source PDF; open it to inspect the figure at higher zoom without replacing or redrawing the scientific content.</p>
+          </div>
+          <div class="section-index">SOURCE PDF · v1</div>
+        </div>
+        <div class="figure-gallery">
+          <article class="figure-card reveal">
+            <div class="figure-preview">
+              <iframe title="Original paper PDF page 2, Figure 1" src="https://arxiv.org/pdf/2610.00415v1#page=2&zoom=105&toolbar=0&navpanes=0" loading="lazy"></iframe>
+              <button class="figure-open" type="button" data-figure-page="2" data-figure-title="Figure 1 · Sim2Real workflow">Expand figure ↗</button>
+            </div>
+            <div class="figure-info">
+              <div class="figure-meta"><span class="figure-number">FIGURE 01</span><span>PDF PAGE 2</span></div>
+              <h3>Sim2Real forecasting and explanation workflow</h3>
+              <p>Paired CFD/PIV development, 20-frame PIV history to 20-frame forecast, equal-area energetic/random/low-energy masks, and frozen-surrogate response evaluation.</p>
+              <div class="figure-topline">WORKFLOW OVERVIEW</div>
+            </div>
+          </article>
+          <article class="figure-card reveal">
+            <div class="figure-preview">
+              <iframe title="Original paper PDF page 4, Figure 2" src="https://arxiv.org/pdf/2610.00415v1#page=4&zoom=105&toolbar=0&navpanes=0" loading="lazy"></iframe>
+              <button class="figure-open" type="button" data-figure-page="4" data-figure-title="Figure 2 · Counterfactual attribution">Expand figure ↗</button>
+            </div>
+            <div class="figure-info">
+              <div class="figure-meta"><span class="figure-number">FIGURE 02</span><span>PDF PAGE 4</span></div>
+              <h3>Physics-grounded counterfactual attribution</h3>
+              <p>History fluctuation-energy map, predicted-future TKE change after energetic-region removal, and trajectory-level energetic-minus-random response contrasts.</p>
+              <div class="figure-topline">SPATIAL ATTRIBUTION + BOOTSTRAP</div>
+            </div>
+          </article>
+          <article class="figure-card reveal">
+            <div class="figure-preview">
+              <iframe title="Original paper PDF page 5, Figure 3" src="https://arxiv.org/pdf/2610.00415v1#page=5&zoom=105&toolbar=0&navpanes=0" loading="lazy"></iframe>
+              <button class="figure-open" type="button" data-figure-page="5" data-figure-title="Figure 3 · Cross-model metric ranking">Expand figure ↗</button>
+            </div>
+            <div class="figure-info">
+              <div class="figure-meta"><span class="figure-number">FIGURE 03</span><span>PDF PAGE 5</span></div>
+              <h3>Cross-model metric ranking</h3>
+              <p>Selection and calibration comparisons of model-minus-reference field-error and TKE-error differences, with trajectory-bootstrap intervals.</p>
+              <div class="figure-topline">THE RANKING INVERSION</div>
+            </div>
+          </article>
+          <article class="figure-card reveal">
+            <div class="figure-preview">
+              <iframe title="Original paper PDF page 5, Figure 4" src="https://arxiv.org/pdf/2610.00415v1#page=5&zoom=145&toolbar=0&navpanes=0" loading="lazy"></iframe>
+              <button class="figure-open" type="button" data-figure-page="5" data-figure-title="Figure 4 · Energy mismatch diagnostics">Expand figure ↗</button>
+            </div>
+            <div class="figure-info">
+              <div class="figure-meta"><span class="figure-number">FIGURE 04</span><span>PDF PAGE 5</span></div>
+              <h3>Benchmark error versus domain-summed energy</h3>
+              <p>Trajectory-level TKE-error and energy-mismatch changes, calibration-mean TKE, and signed TKE-bias fields before and after attenuation.</p>
+              <div class="figure-topline">ENERGY-CONSISTENCY DIAGNOSTICS</div>
+            </div>
+          </article>
+          <article class="figure-card reveal">
+            <div class="figure-preview">
+              <iframe title="Original paper PDF page 8, Figure 5" src="https://arxiv.org/pdf/2610.00415v1#page=8&zoom=105&toolbar=0&navpanes=0" loading="lazy"></iframe>
+              <button class="figure-open" type="button" data-figure-page="8" data-figure-title="Figure 5 · Temporal velocity forecast comparison">Expand figure ↗</button>
+            </div>
+            <div class="figure-info">
+              <div class="figure-meta"><span class="figure-number">FIGURE 05</span><span>PDF PAGE 8</span></div>
+              <h3>Temporal evolution of cross-stream velocity</h3>
+              <p>Experimental PIV target and hybrid reference, FNO, CNO and Transolver forecasts at future times t₄, t₈, t₁₂, t₁₆ and t₂₀, on one shared colour scale.</p>
+              <div class="figure-topline">PIV TARGET VS FOUR SURROGATES</div>
+            </div>
+          </article>
+          <article class="figure-card reveal">
+            <div class="figure-preview">
+              <iframe title="Original paper PDF page 9, Figure 6" src="https://arxiv.org/pdf/2610.00415v1#page=9&zoom=105&toolbar=0&navpanes=0" loading="lazy"></iframe>
+              <button class="figure-open" type="button" data-figure-page="9" data-figure-title="Figure 6 · Attribution robustness">Expand figure ↗</button>
+            </div>
+            <div class="figure-info">
+              <div class="figure-meta"><span class="figure-number">FIGURE 06</span><span>PDF PAGE 9</span></div>
+              <h3>Robustness across mask sizes and architectures</h3>
+              <p>Energetic-minus-random TKE-response contrast for reference mask fractions of 5%, 10% and 20%, and across reference, FNO, CNO and Transolver at 10%.</p>
+              <div class="figure-topline">MASK-SIZE + MODEL ROBUSTNESS</div>
+            </div>
+          </article>
+        </div>
+        <div class="guardrail reveal"><strong>Source and viewing note.</strong> These are original figure pages embedded directly from arXiv:2610.00415v1, not re-plotted approximations. The embedded previews show the complete source PDF page to preserve the paper's original figure layout and vector detail. Use “Expand figure” for a larger native PDF view and zoom controls.</div>
+      </div>
+    </section>
+
+    <div class="figure-modal" id="figureModal" role="dialog" aria-modal="true" aria-labelledby="figureModalTitle">
+      <div class="figure-modal-panel">
+        <div class="figure-modal-head">
+          <div class="figure-modal-title"><small>Original manuscript · arXiv:2610.00415v1</small><strong id="figureModalTitle">Figure viewer</strong></div>
+          <div class="figure-modal-actions">
+            <button type="button" id="zoomOut" aria-label="Zoom out">−</button>
+            <button type="button" id="zoomLevel" aria-label="Current zoom">125%</button>
+            <button type="button" id="zoomIn" aria-label="Zoom in">+</button>
+            <a id="openSourcePdf" href="https://arxiv.org/pdf/2610.00415v1" target="_blank" rel="noopener noreferrer">PDF ↗</a>
+            <button type="button" id="closeFigureModal" aria-label="Close figure viewer">×</button>
+          </div>
+        </div>
+        <div class="figure-modal-body"><iframe id="figureModalFrame" title="Zoomable original paper figure page" src="about:blank"></iframe></div>
+        <div class="figure-modal-foot">Use the PDF viewer's own controls or the + / − controls above to inspect labels and fine detail. The full source page is retained; the figure itself is not cropped or altered.</div>
+      </div>
+    </div>
+
     <section class="section" id="intervention">
       <div class="wrap">
         <div class="section-head reveal">
@@ -698,9 +844,56 @@
           }
         });
       }, { rootMargin: '-35% 0px -55% 0px' });
-      ['question','method','results','intervention','scope'].forEach(function (id) {
+      ['question','method','results','figure-gallery','intervention','stress','scope'].forEach(function (id) {
         const el = document.getElementById(id);
         if (el) sectionObserver.observe(el);
+      });
+
+
+      const figureModal = document.getElementById('figureModal');
+      const figureModalFrame = document.getElementById('figureModalFrame');
+      const figureModalTitle = document.getElementById('figureModalTitle');
+      const zoomLevel = document.getElementById('zoomLevel');
+      let currentFigurePage = 2;
+      let currentFigureZoom = 125;
+      function updateFigureViewer() {
+        zoomLevel.textContent = currentFigureZoom + '%';
+        figureModalFrame.src = 'https://arxiv.org/pdf/2610.00415v1#page=' + currentFigurePage + '&zoom=' + currentFigureZoom + '&toolbar=1&navpanes=0';
+      }
+      function openFigureViewer(pageNumber, title) {
+        currentFigurePage = Number(pageNumber);
+        currentFigureZoom = 125;
+        figureModalTitle.textContent = title;
+        document.getElementById('openSourcePdf').href = 'https://arxiv.org/pdf/2610.00415v1#page=' + currentFigurePage;
+        updateFigureViewer();
+        figureModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('closeFigureModal').focus();
+      }
+      function closeFigureViewer() {
+        figureModal.classList.remove('open');
+        document.body.style.overflow = '';
+        figureModalFrame.src = 'about:blank';
+      }
+      document.querySelectorAll('[data-figure-page]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          openFigureViewer(button.dataset.figurePage, button.dataset.figureTitle);
+        });
+      });
+      document.getElementById('closeFigureModal').addEventListener('click', closeFigureViewer);
+      figureModal.addEventListener('click', function (event) {
+        if (event.target === figureModal) closeFigureViewer();
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && figureModal.classList.contains('open')) closeFigureViewer();
+      });
+      document.getElementById('zoomIn').addEventListener('click', function () {
+        currentFigureZoom = Math.min(250, currentFigureZoom + 25);
+        updateFigureViewer();
+      });
+      document.getElementById('zoomOut').addEventListener('click', function () {
+        currentFigureZoom = Math.max(75, currentFigureZoom - 25);
+        updateFigureViewer();
       });
 
       const splitData = {
