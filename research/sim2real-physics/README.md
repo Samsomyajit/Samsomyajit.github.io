@@ -38,3 +38,8 @@ You can also open `index.html` directly in a modern browser. The page uses nativ
 ## Scientific interpretation
 
 The animated flow and mask grid are explicitly labelled as schematic illustrations, not measured CFD/PIV data. The mask explorer explains the equal-area intervention logic; it does not reproduce the paper's spatial field. Exact reported values are displayed only where available in the paper summary.
+
+
+## Original figure gallery
+
+The page includes a six-figure gallery sourced from the original arXiv v1 PDF. Each card previews its original PDF page and opens a larger viewer with zoom controls. The gallery uses the PDF itself rather than re-drawing the figures, preserving their original labels, scales and panels.
